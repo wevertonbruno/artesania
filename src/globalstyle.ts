@@ -17,6 +17,7 @@ export default createGlobalStyle`
         --tran-03: all 0.3s ease;
         --tran-04: all 0.4s ease;
         --tran-05: all 0.5s ease;
+        --bezier: cubic-bezier(0.65, 0.25, 0.56, 0.96);
     }
 
     body.dark-mode {
@@ -38,6 +39,6 @@ export default createGlobalStyle`
     body {
         height: 100vh;
         background: var(--body-color);
+        color: var(--text-color);
     }
-
 `;

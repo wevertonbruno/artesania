@@ -19,7 +19,6 @@ const btn = css`
   border-width: 0;
   outline: none;
   border-radius: 2px;
-  margin: auto 2px;
   cursor: pointer;
 
   background-color: var(--btn-primary-color);
