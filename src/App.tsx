@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { ThemeProvider } from "styled-components";
+import lightTheme from "./themes/light";
+import darkTheme from "./themes/dark";
+import Globalstyle from "./globalstyle";
+import { ThemeContext } from "./context/ThemeContext";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./components/sidebar";
 
 function App() {
+  const { darkMode } = useContext(ThemeContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Globalstyle />
+      <Sidebar />
+      <Outlet />
+    </ThemeProvider>
   );
 }
 
