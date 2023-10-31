@@ -1,11 +1,17 @@
 const darkTheme = {
+  dark: true,
   colors: {
     bodyColor: "#121212",
     sidebarColor: "#1f1f1f",
     primaryColor: "#C8BEAF",
-    primaryColorLight: "#80322C",
-    toggleColor: "#AD8077",
+    primaryColorLight: "#2b2424",
+    toggleColor: "#C8BEAF",
     textColor: "#fefefe",
+    btn: {
+      primary: "#2b2424",
+      hover: "#1f1919",
+      text: "#fefefe",
+    },
   },
 };
 

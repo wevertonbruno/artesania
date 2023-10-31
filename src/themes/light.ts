@@ -1,11 +1,17 @@
 const lightTheme = {
+  dark: false,
   colors: {
-    bodyColor: "#D9D3C5",
-    sidebarColor: "#e9e8db",
-    primaryColor: "#701713",
-    primaryColorLight: "#CBB4A9",
-    toggleColor: "#701713",
-    textColor: "#333",
+    bodyColor: "##f5f5f5",
+    sidebarColor: "#FFF",
+    primaryColor: "#701614",
+    primaryColorLight: "#f6f1f1",
+    toggleColor: "#701614",
+    textColor: "#707070",
+    btn: {
+      primary: "#701614",
+      hover: "#57100e",
+      text: "#fefefe",
+    },
   },
 };
 

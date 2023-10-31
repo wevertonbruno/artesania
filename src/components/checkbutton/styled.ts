@@ -4,35 +4,38 @@ export const Container = styled.label`
   display: flex;
   align-items: center;
   user-select: none;
-  padding: 0.6em 0;
+  padding: 0.6rem 0;
   box-sizing: border-box;
 
   input[type="checkbox"],
   input[type="radio"] {
     position: absolute !important;
-    height: 1px;
-    width: 1px;
+    height: 0.06rem;
+    width: 0.06rem;
     overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+    clip: rect(0.06rem, 0.06rem, 0.06rem, 0.06rem);
   }
 
   input[type="checkbox"] + div,
   input[type="radio"] + div {
-    border: 2px solid var(--primary-color-light);
-    height: 1.5em;
-    width: 1.5em;
+    border: 0.1rem solid var(--btn-primary-color);
+    height: 1.5rem;
+    width: 1.5rem;
+    min-width: 1.5em;
     box-sizing: border-box;
-    border-radius: 2px;
+    border-radius: var(--default-radius);
     position: relative;
+    box-shadow: var(--box-shadow-default);
   }
 
   input[type="checkbox"] ~ div:last-child,
   input[type="radio"] ~ div:last-child {
-    padding-left: 0.5em;
+    padding-left: 0.5rem;
   }
 
   input[type="radio"] + div {
     border-radius: 50%;
+    box-shadow: var(--box-shadow-default);
 
     &::after {
       content: "";
@@ -53,12 +56,12 @@ export const Container = styled.label`
   input[type="radio"]:focus + div,
   input[type="checkbox"]:active + div,
   input[type="radio"]:active + div {
-    outline: 2px dashed var(--primary-color-light);
-    outline-offset: 2px;
+    outline: 0.12rem dashed var(--primary-color-light);
+    outline-offset: 0.12rem;
   }
 
   input[type="checkbox"]:checked + div {
-    border-color: var(--primary-color);
+    border-color: var(--btn-primary-color);
     transition: border-color 107ms cubic-bezier(0.65, 0.25, 0.56, 0.96);
 
     .mcui-check {
@@ -73,7 +76,7 @@ export const Container = styled.label`
   }
 
   input[type="radio"]:checked + div {
-    border-color: var(--primary-color);
+    border-color: var(--btn-primary-color);
 
     &::after {
       opacity: 1;
@@ -83,13 +86,13 @@ export const Container = styled.label`
 
   input[type="checkbox"]:indeterminate + div::after {
     content: "";
-    height: 4px;
+    height: 0.25rem;
     width: 60%;
     left: 20%;
-    top: calc(50% - 2px);
+    top: calc(50% - 0.125rem);
     position: absolute;
     background: var(--primary-color-light);
-    border-radius: 1px;
+    border-radius: 0.06rem;
   }
 
   input[type="checkbox"]:disabled ~ div,
@@ -113,9 +116,9 @@ export const Container = styled.label`
     polyline {
       fill: none;
       transform-origin: 50% 50%;
-      stroke-width: 5px;
+      stroke-width: 0.3rem;
       stroke-dasharray: 22.771367900227325;
-      stroke: currentcolor;
+      stroke: currentColor;
     }
   }
 

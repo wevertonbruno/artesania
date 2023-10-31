@@ -9,6 +9,7 @@ import {
   BiMoon,
   BiSun,
   BiCog,
+  BiSolidDashboard,
 } from "react-icons/bi";
 
 export const SidebarWrapper = styled.nav`
@@ -21,6 +22,7 @@ export const SidebarWrapper = styled.nav`
   background: var(--sidebar-color);
   z-index: 100;
   transition: var(--tran-05);
+  box-shadow: var(--box-shadow-default);
 
   .text {
     font-size: 16px;
@@ -135,10 +137,6 @@ export const SearchBar = styled(MenuItem)`
     background: var(--primary-color-light);
     transition: var(--tran-03);
     color: var(--text-color);
-
-    &::placeholder {
-      color: var(--sidebar-color);
-    }
   }
 `;
 
@@ -215,4 +213,8 @@ export const MoonIcon = styled(BiMoon)`
 export const SunIcon = styled(BiSun)`
   ${iconStyle}
   transition: var(--tran-03);
+`;
+
+export const DashIcon = styled(BiSolidDashboard)`
+  ${iconStyle}
 `;

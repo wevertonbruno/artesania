@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    dark: boolean;
     colors: {
       bodyColor: string;
       sidebarColor: string;
@@ -9,6 +10,11 @@ declare module "styled-components" {
       primaryColorLight: string;
       toggleColor: string;
       textColor: string;
+      btn: {
+        primary: string;
+        hover: string;
+        text: string;
+      };
     };
   }
 }

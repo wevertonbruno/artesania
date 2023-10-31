@@ -3,7 +3,7 @@ import * as Styled from "./styled";
 import { BiPlus } from "react-icons/bi";
 import iconsMap from "./icons";
 
-interface BtnProps {
+interface BtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   fontSize?: number;
   size?: number;
@@ -25,15 +25,15 @@ function Button({ text, fontSize }: BtnProps) {
 
 function PlusButton(props: BtnProps) {
   return (
-    <Styled.PlusButton {...props}>
+    <Styled.IconButton {...props}>
       <BiPlus />
-    </Styled.PlusButton>
+    </Styled.IconButton>
   );
 }
 
 function IconButton(props: BtnIconProps) {
   return (
-    <Styled.PlusButton {...props}>{iconsMap[props.icon]}</Styled.PlusButton>
+    <Styled.IconButton {...props}>{iconsMap[props.icon]}</Styled.IconButton>
   );
 }
 

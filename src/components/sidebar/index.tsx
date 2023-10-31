@@ -15,6 +15,7 @@ import {
   MoonIcon,
   SunIcon,
   ConfigIcon,
+  DashIcon,
 } from "./styled";
 import SwitchButton from "../switch";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -37,6 +38,11 @@ const menuItems = [
     icon: <ProductIcon />,
     text: "Projetos",
     link: "/projects",
+  },
+  {
+    icon: <DashIcon />,
+    text: "Componentes",
+    link: "/components",
   },
 ] as IMenuItem[];
 

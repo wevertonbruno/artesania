@@ -1,59 +1,62 @@
 import React from "react";
 import * as Styled from "./styled";
 
-function Table() {
+interface ITableColumnDef {
+  key: string;
+  width?: string;
+  name: string;
+}
+
+interface ITableFooter {
+  [key: string]: any;
+}
+
+interface ITableRow {
+  id: string;
+  [key: string]: any;
+}
+
+export interface ITable {
+  id: string;
+  columnsDef: ITableColumnDef[];
+  rows: ITableRow[];
+  footer?: ITableFooter;
+}
+
+function Table({ id, columnsDef, rows, footer }: ITable) {
   return (
     <Styled.Container>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Produto</th>
-            <th>Cliente</th>
-            <th>Status</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Nome do Produto</td>
-            <td>Nome do Cliente</td>
-            <td>Em andamento</td>
-            <td>R$ 100,00</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Nome do Produto</td>
-            <td>Nome do Cliente</td>
-            <td>Em andamento</td>
-            <td>R$ 100,00</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Nome do Produto</td>
-            <td>Nome do Cliente</td>
-            <td>Em andamento</td>
-            <td>R$ 100,00</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Nome do Produto</td>
-            <td>Nome do Cliente</td>
-            <td>Em andamento</td>
-            <td>R$ 100,00</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>R$ 400,00</td>
-          </tr>
-        </tfoot>
-      </table>
+      <div className="t_body">
+        <table id={id}>
+          <thead>
+            <tr>
+              {columnsDef.map((column) => (
+                <Styled.TableHeader key={column.key} width={column.width}>
+                  {column.name}
+                </Styled.TableHeader>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                {columnsDef.map((column) => (
+                  <td key={column.key}>{row[column.key]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            {footer && (
+              <tr>
+                {columnsDef.map((column) => (
+                  <td key={column.key}>{footer[column.key]}</td>
+                ))}
+              </tr>
+            )}
+          </tfoot>
+        </table>
+      </div>
     </Styled.Container>
   );
 }

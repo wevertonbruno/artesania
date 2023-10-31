@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as Styled from "./styled";
+import * as Styled from "../styled";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;

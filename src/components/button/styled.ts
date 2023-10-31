@@ -14,23 +14,25 @@ interface BtnIconProps {
 
 const btn = css`
   position: relative;
-  padding: 0;
+  padding: 0.7rem 1.4rem;
   overflow: hidden;
   border-width: 0;
   outline: none;
-  border-radius: 2px;
+  border-radius: var(--default-radius);
   cursor: pointer;
+  box-shadow: var(--box-shadow-default);
+  min-width: 5rem;
+  display: flex;
 
   background-color: var(--btn-primary-color);
-  color: var(--text-color);
+  color: var(--btn-primary-text);
 
   transition: background-color 0.3s;
 
   span {
     display: block;
-    padding: 12px 24px;
     color: inherit;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   > * {
@@ -39,8 +41,8 @@ const btn = css`
 
   &:hover,
   &:focus {
-    background-color: var(--primary-color);
-    color: var(--sidebar-color);
+    background-color: var(--btn-primary-hover);
+    color: var(--btn-primary-text);
   }
 
   &::before {
@@ -66,7 +68,7 @@ const btn = css`
   }
 
   &:active {
-    background-color: var(--primary-color);
+    background-color: var(--btn-primary-hover);
   }
 
   &:active::before {
@@ -80,19 +82,21 @@ const btn = css`
 export const Container = styled.button<BtnProps>`
   ${btn}
   span {
-    font-size: ${(props) => (props.fontSize ? props.fontSize + "px" : "16px")};
+    font-size: ${(props) => (props.fontSize ? props.fontSize + "rem" : "1rem")};
   }
 `;
 
-export const PlusButton = styled.div<BtnIconProps>`
+export const IconButton = styled.button<BtnIconProps>`
   ${btn}
-  height: ${(props) => (props.size ? props.size + "px" : "40px")};
-  width: ${(props) => (props.size ? props.size + "px" : "40px")};
+  height: ${(props) => (props.size ? props.size + "rem" : "2rem")};
+  width: ${(props) => (props.size ? props.size + "rem" : "2rem")};
+  min-width: ${(props) => (props.size ? props.size + "rem" : "2rem")};
+  padding: 0;
 
   svg {
     height: inherit;
     width: inherit;
-    padding: ${(props) => (props.padding ? props.padding + "px" : "10px")};
+    padding: ${(props) => (props.padding ? props.padding + "rem" : ".3rem")};
   }
 
   border-radius: ${(props) => (props.radius ? props.radius : "50%")};
