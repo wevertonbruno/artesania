@@ -6,15 +6,18 @@ import Globalstyle from "./globalstyle";
 import { ThemeContext } from "./context/ThemeContext";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar";
+import ToastProvider, { ToastContext } from "./context/ToastContext";
 
 function App() {
   const { darkMode } = useContext(ThemeContext);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Globalstyle />
-      <Sidebar />
-      <Outlet />
+      <ToastProvider>
+        <Globalstyle />
+        <Sidebar />
+        <Outlet />
+      </ToastProvider>
     </ThemeProvider>
   );
 }

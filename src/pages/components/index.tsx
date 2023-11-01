@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import * as Styled from "./styled";
 import Btn from "../../components/button";
-import { SidebarContext } from "../../context/SidebarContext";
-import MainSection from "../../components/mainsection";
+import MainSection from "../../components/main-section";
 import Table, { ITable } from "../../components/table";
-import Checkbox from "../../components/checkbutton/checkbox";
-import Radio from "../../components/checkbutton/radio";
+import Checkbox from "../../components/check-button/checkbox";
+import Radio from "../../components/check-button/radio";
+import Toaster from "../../components/toaster";
+import { ToastContext } from "../../context/ToastContext";
 
 const handleClick = () => {
   alert("teste");
@@ -17,7 +18,7 @@ const tableData = {
     {
       key: "id",
       name: "ID",
-      width: "100px",
+      width: "6.25rem",
     },
     {
       key: "name",
@@ -34,7 +35,7 @@ const tableData = {
     {
       key: "actions",
       name: "Actions",
-      width: "100px",
+      width: "6.25rem",
     },
   ],
   rows: [
@@ -47,7 +48,7 @@ const tableData = {
         <Btn.IconButton
           onClick={handleClick}
           size={2}
-          radius="6px"
+          radius="0.375rem"
           icon="code"
         />
       ),
@@ -61,7 +62,7 @@ const tableData = {
         <Btn.IconButton
           onClick={handleClick}
           size={2}
-          radius="6px"
+          radius="0.375rem"
           icon="code"
         />
       ),
@@ -75,7 +76,7 @@ const tableData = {
         <Btn.IconButton
           onClick={handleClick}
           size={2}
-          radius="6px"
+          radius="0.375rem"
           icon="code"
         />
       ),
@@ -88,6 +89,8 @@ const tableData = {
 
 function Components() {
   const [ck, setCk] = useState(true);
+  const { newToast } = useContext(ToastContext);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCk(!ck);
     console.log(ck);
@@ -102,7 +105,12 @@ function Components() {
           <div className="flex">
             <Btn.Button text="primary" />
             <Btn.PlusButton size={2.5} padding={0.2} />
-            <Btn.IconButton size={2.5} padding={0.2} radius="6px" icon="code" />
+            <Btn.IconButton
+              size={2.5}
+              padding={0.2}
+              radius="0.375rem"
+              icon="code"
+            />
           </div>
           <div>
             <Checkbox
@@ -122,6 +130,22 @@ function Components() {
           <div className="flex">
             <Table {...tableData} />
             <Table {...tableData} />
+          </div>
+        </section>
+        <section>
+          <h1>Taster notification</h1>
+          <div>
+            <Btn.Button
+              text="Toast notification"
+              onClick={() => {
+                newToast({
+                  title: "Success",
+                  text: "Your changes has been saved",
+                  type: "success",
+                  duration: "short",
+                });
+              }}
+            />
           </div>
         </section>
       </Styled.Container>

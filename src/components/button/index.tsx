@@ -15,9 +15,9 @@ interface BtnIconProps extends BtnProps {
   radius?: string;
 }
 
-function Button({ text, fontSize }: BtnProps) {
+function Button({ text, fontSize, ...rest }: BtnProps) {
   return (
-    <Styled.Container fontSize={fontSize}>
+    <Styled.Container fontSize={fontSize} {...rest}>
       <span>{text}</span>
     </Styled.Container>
   );
