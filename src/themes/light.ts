@@ -1,7 +1,7 @@
 const lightTheme = {
   dark: false,
   colors: {
-    bodyColor: "##f5f5f5",
+    bodyColor: "#f5f5f5",
     sidebarColor: "#FFF",
     primaryColor: "#701614",
     primaryColorLight: "#f6f1f1",

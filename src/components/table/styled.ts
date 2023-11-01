@@ -6,7 +6,6 @@ interface HeaderProps {
 
 const darkTable = css`
   box-shadow: none;
-  border: 1px solid var(--primary-color-light);
 `;
 
 const lightTable = css`
@@ -16,8 +15,8 @@ const lightTable = css`
 
 export const Container = styled.div`
   ${(props) => (props.theme.dark ? darkTable : lightTable)};
-
-  border-radius: 6px;
+  background: var(--sidebar-color);
+  border-radius: 0.375rem;
   overflow: hidden;
   width: 100%;
 
@@ -52,7 +51,7 @@ export const Container = styled.div`
   }
 
   tfoot {
-    border-top: 1px solid var(--primary-color-light);
+    border-top: 0.0625rem solid var(--primary-color-light);
     font-weight: bold;
   }
 
@@ -65,7 +64,7 @@ export const Container = styled.div`
   }
 
   tbody tr {
-    border-bottom: 1px solid var(--primary-color-light);
+    border-bottom: 0.0625rem solid var(--primary-color-light);
   }
 `;
 

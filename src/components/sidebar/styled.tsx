@@ -17,15 +17,15 @@ export const SidebarWrapper = styled.nav`
   top: 0;
   left: 0;
   height: 100%;
-  width: 250px;
-  padding: 10px 14px;
+  width: 15.625rem;
+  padding: 0.625rem 0.875rem;
   background: var(--sidebar-color);
   z-index: 100;
   transition: var(--tran-05);
   box-shadow: var(--box-shadow-default);
 
   .text {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-color);
     transition: var(--tran-03);
@@ -34,7 +34,7 @@ export const SidebarWrapper = styled.nav`
   }
 
   &.sidebar-closed {
-    width: 88px;
+    width: 5.5rem;
 
     .text {
       opacity: 0;
@@ -45,7 +45,7 @@ export const SidebarWrapper = styled.nav`
     }
 
     .image img {
-      width: 60px;
+      width: 3.75rem;
       transition: var(--tran-03);
     }
   }
@@ -54,13 +54,13 @@ export const SidebarWrapper = styled.nav`
 export const LogoWrapper = styled.header`
   position: relative;
   .image {
-    min-width: 60px;
+    min-width: 3.75rem;
     display: flex;
     align-items: center;
 
     > img {
-      width: 40px;
-      border-radius: 6px;
+      width: 2.5rem;
+      border-radius: 0.375rem;
       transition: var(--tran-03);
     }
   }
@@ -74,7 +74,7 @@ export const LogoWrapper = styled.header`
     }
 
     .description {
-      margin-top: -2px;
+      margin-top: -0.125rem;
     }
   }
 
@@ -85,20 +85,20 @@ export const LogoWrapper = styled.header`
 `;
 
 export const Menubar = styled.nav`
-  height: calc(100% - 50px);
+  height: calc(100% - 3.125rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 5px;
+  padding-bottom: 0.3125rem;
 `;
 
 export const MenuItem = styled.li`
-  height: 50px;
-  margin-top: 10px;
+  height: 3.125rem;
+  margin-top: 0.625rem;
   list-style: none;
   display: flex;
   align-items: center;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   color: var(--text-color);
 
   > a {
@@ -107,7 +107,7 @@ export const MenuItem = styled.li`
     display: flex;
     align-items: center;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     transition: var(--tran-04);
     > * {
       color: var(--text-color);
@@ -125,7 +125,7 @@ export const MenuItem = styled.li`
 
 export const SearchBar = styled(MenuItem)`
   background: var(--primary-color-light);
-  border-radius: 6px;
+  border-radius: 0.375rem;
   transition: var(--tran-03);
 
   input {
@@ -133,7 +133,7 @@ export const SearchBar = styled(MenuItem)`
     width: 100%;
     outline: none;
     border: none;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     background: var(--primary-color-light);
     transition: var(--tran-03);
     color: var(--text-color);
@@ -147,8 +147,8 @@ export const ModeWrapper = styled(MenuItem)`
   background: var(--primary-color-light);
 
   .moon-sun {
-    height: 50px;
-    width: 60px;
+    height: 3.125rem;
+    width: 3.75rem;
     display: flex;
     align-items: center;
 
@@ -161,17 +161,17 @@ export const ModeWrapper = styled(MenuItem)`
 export const ToggleButton = styled(BiChevronRight)`
   position: absolute;
   top: 50%;
-  right: -30px;
+  right: -1.875rem;
   transform: translateY(-50%);
-  height: 25px;
-  width: 25px;
+  height: 1.5625rem;
+  width: 1.5625rem;
   background-color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   color: var(--sidebar-color);
-  font-size: 22px;
+  font-size: 1.375rem;
   transform: translateY(-50%) rotate(180deg);
   transition: var(--tran-03);
 `;
@@ -181,8 +181,8 @@ const iconStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  min-width: 60px;
+  font-size: 1.25rem;
+  min-width: 3.75rem;
   color: var(--text-color);
 `;
 export const HomeIcon = styled(BiHome)`

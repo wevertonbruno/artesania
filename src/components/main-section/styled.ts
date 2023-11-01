@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   position: relative;
-  left: 250px;
+  left: 15.625rem;
   height: 100vh;
-  padding: 10px 40px;
-  width: calc(100% - 250px);
+  padding: 0.625rem 2.5rem;
+  width: calc(100% - 15.625rem);
   background-color: var(--body-color);
   transition: var(--tran-05);
 
   &.closed {
-    left: 88px;
-    width: calc(100% - 88px);
+    left: 5.5rem;
+    width: calc(100% - 5.5rem);
   }
 `;

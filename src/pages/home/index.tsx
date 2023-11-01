@@ -1,5 +1,5 @@
 import React from "react";
-import MainSection from "../../components/mainsection";
+import MainSection from "../../components/main-section";
 
 function Home() {
   return (
