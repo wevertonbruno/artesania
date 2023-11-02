@@ -31,6 +31,8 @@ export const SidebarWrapper = styled.nav`
     transition: var(--tran-03);
     white-space: nowrap;
     opacity: 1;
+    transform: scaleX(1);
+    transform-origin: 0%;
   }
 
   &.sidebar-closed {
@@ -38,6 +40,7 @@ export const SidebarWrapper = styled.nav`
 
     .text {
       opacity: 0;
+      transform: scaleX(0);
     }
 
     .toggle-sidebar {

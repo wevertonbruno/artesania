@@ -30,6 +30,12 @@ export default createGlobalStyle`
         --tran-05: all 0.5s ease;
         --bezier: cubic-bezier(0.65, 0.25, 0.56, 0.96);
         --tran-toast: all 0.5s cubic-bezier(0.68, -.55, 0.265, 1.35);
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
     }
 
     body.dark-mode {

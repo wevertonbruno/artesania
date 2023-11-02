@@ -8,6 +8,7 @@ import Radio from "../../components/check-button/radio";
 import Toaster from "../../components/toaster";
 import { ToastContext } from "../../context/ToastContext";
 import * as Form from "../../components/form";
+import Select from "../../components/select";
 
 const handleClick = () => {
   alert("teste");
@@ -124,6 +125,7 @@ function Components() {
             <Radio label="Checked" checked name="check" onChange={onChange} />
             <Radio label="Unchecked" name="check" onChange={onChange} />
           </div>
+          <Select />
         </section>
 
         <section>

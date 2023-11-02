@@ -1,18 +1,17 @@
 import React from "react";
 import * as Styled from "./styled";
 
-function index() {
+function Select() {
   return (
     <Styled.Container className="select">
       <div className="category-select">
         <label>Category</label>
-        <input type="checkbox" />
 
         <div className="select-button">
-          <div>Select category</div>
+          <input className="selected-value" placeholder="Select Category" />
           <div className="chevrons">
-            <Styled.ChevronUpIcon />
-            <Styled.ChevronDownIcon />
+            <Styled.ChevronUpIcon className="up" />
+            <Styled.ChevronDownIcon className="down" />
           </div>
         </div>
       </div>
@@ -20,4 +19,4 @@ function index() {
   );
 }
 
-export default index;
+export default Select;
