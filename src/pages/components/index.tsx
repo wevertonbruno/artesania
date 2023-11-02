@@ -119,9 +119,9 @@ function Components() {
               name="check"
               checked={ck}
             />
-            <Checkbox label="unchecked" name="unchecked" />
-            <Radio label="Checked" checked name="check" />
-            <Radio label="Unchecked" name="check" />
+            <Checkbox label="unchecked" name="unchecked" onChange={onChange} />
+            <Radio label="Checked" checked name="check" onChange={onChange} />
+            <Radio label="Unchecked" name="check" onChange={onChange} />
           </div>
         </section>
 
@@ -136,13 +136,37 @@ function Components() {
           <h1>Taster notification</h1>
           <div>
             <Btn.Button
-              text="Toast notification"
+              text="Toast short"
               onClick={() => {
                 newToast({
                   title: "Success",
                   text: "Your changes has been saved",
                   type: "success",
                   duration: "short",
+                });
+              }}
+            />
+
+            <Btn.Button
+              text="Toast medium"
+              onClick={() => {
+                newToast({
+                  title: "Success",
+                  text: "Your changes has been saved",
+                  type: "success",
+                  duration: "medium",
+                });
+              }}
+            />
+
+            <Btn.Button
+              text="Toast long"
+              onClick={() => {
+                newToast({
+                  title: "Success",
+                  text: "Your changes has been saved",
+                  type: "success",
+                  duration: "long",
                 });
               }}
             />

@@ -50,6 +50,23 @@ export default createGlobalStyle`
         width: 100vw;
         background: var(--body-color);
         color: var(--text-color);
-        overflow: hidden;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 0.3rem;
+            height: 0.3rem;
+            opacity: .3;
+        }
+
+         &::-webkit-scrollbar-thumb {
+            border-radius: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            opacity: .3;
+            visibility: hidden;
+        }
+
+         &:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
     }
 `;

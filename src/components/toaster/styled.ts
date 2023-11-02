@@ -67,8 +67,16 @@ export const ProgressBar = styled.span`
     background: var(--success-color);
   }
 
-  &.active:before {
+  &.active.short:before {
     animation: progress 3s linear forwards;
+  }
+
+  &.active.medium:before {
+    animation: progress 5s linear forwards;
+  }
+
+  &.active.long:before {
+    animation: progress 10s linear forwards;
   }
 
   @keyframes progress {

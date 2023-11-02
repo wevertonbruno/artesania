@@ -1,19 +1,28 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Styled from "./styled";
 
 type Props = {
-  close: () => void;
+  hidden: boolean;
+  duration: "short" | "medium" | "long";
 };
 
-function Toast({}: Props) {
-  const activeRef = useRef<boolean>(false);
+function Toast({ hidden, duration }: Props) {
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const progressBarActive = useRef<boolean>(false);
 
-  setTimeout(() => {
-    activeRef.current = true;
-  });
+  useEffect(() => {
+    setIsActive(true);
+    progressBarActive.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (hidden) {
+      setIsActive(false);
+    }
+  }, [hidden]);
 
   return (
-    <Styled.Toast className={activeRef.current ? "active" : ""}>
+    <Styled.Toast className={isActive ? `active ${duration}` : `${duration}`}>
       <div className="content">
         <Styled.SuccessIcon />
         <div className="message">
@@ -21,8 +30,12 @@ function Toast({}: Props) {
           <span className="text">Your changes has been saved</span>
         </div>
       </div>
-      <Styled.CloseIcon onClick={() => (activeRef.current = false)} />
-      <Styled.ProgressBar className={activeRef.current ? "active" : ""} />
+      <Styled.CloseIcon onClick={() => setIsActive(false)} />
+      <Styled.ProgressBar
+        className={
+          progressBarActive.current ? `active ${duration}` : `${duration}`
+        }
+      />
     </Styled.Toast>
   );
 }

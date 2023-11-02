@@ -11,8 +11,8 @@ interface IToast {
     title: string;
     text: string;
     type: "success" | "error" | "warning" | "info";
-    duration?: "short" | "medium" | "long";
-    active: boolean;
+    duration: "short" | "medium" | "long";
+    hidden: boolean;
   };
 }
 
@@ -20,7 +20,7 @@ interface IToastCreate {
   title: string;
   text: string;
   type: "success" | "error" | "warning" | "info";
-  duration?: "short" | "medium" | "long";
+  duration: "short" | "medium" | "long";
 }
 
 interface IToastContext {
@@ -43,7 +43,7 @@ function ToastProvider({ children }: Props) {
     const created = {
       id: Date.now().toString(),
       ...toast,
-      active: false,
+      hidden: false,
     };
 
     setToasts((prev) => ({
@@ -51,21 +51,9 @@ function ToastProvider({ children }: Props) {
       [created.id]: created,
     }));
 
-    showToast(created.id);
-  };
-
-  const showToast = (id: string) => {
-    setToasts((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        active: true,
-      },
-    }));
-
     setTimeout(() => {
-      hideToast(id);
-    }, durationMap[toasts[id]?.duration || "short"]);
+      hideToast(created.id);
+    }, durationMap[created.duration]);
   };
 
   const hideToast = (id: string) => {
@@ -73,7 +61,7 @@ function ToastProvider({ children }: Props) {
       ...prev,
       [id]: {
         ...prev[id],
-        active: false,
+        hidden: true,
       },
     }));
   };
@@ -83,7 +71,11 @@ function ToastProvider({ children }: Props) {
       {children}
       <div className="toast-container">
         {Object.values(toasts).map((toast) => (
-          <Toast key={toast.id} close={() => hideToast(toast.id)} />
+          <Toast
+            key={toast.id}
+            hidden={toast.hidden}
+            duration={toast.duration}
+          />
         ))}
       </div>
     </ToastContext.Provider>
