@@ -2,29 +2,35 @@ import React from "react";
 import * as Styled from "./styled";
 import Btn from "../button";
 
-interface InputFieldProps {
+interface InputProps {
   label: string;
   type: string;
   placeholder: string;
   required?: boolean;
 }
 
-interface FieldsProps {
+interface Nested {
+  children: React.ReactNode | JSX.Element | JSX.Element[];
+}
+
+interface FieldsProps extends Nested {
   columns: number;
-  children: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-interface FormSectionProps {
+interface SectionProps extends Nested {
   title?: string;
-  children: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-interface FormActionProps {
+interface ActionBarProps extends Nested {
   align: "left" | "center" | "right";
-  children: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-export const InputField = ({ label, ...inputProps }: InputFieldProps) => {
+interface FormProps extends Nested {
+  title: string;
+}
+
+// TODO: Add style for required inputs
+export const Input = ({ label, ...inputProps }: InputProps) => {
   return (
     <Styled.InputField className="input-field">
       <label>{`${label}${inputProps.required ? "*" : ""}`}</label>
@@ -41,7 +47,7 @@ export const Fields = ({ columns, children }: FieldsProps) => {
   );
 };
 
-export const FormSection = ({ title, children }: FormSectionProps) => {
+export const Section = ({ title, children }: SectionProps) => {
   return (
     <Styled.FormSection className="form-section">
       {title && <span className="title">{title}</span>}
@@ -50,7 +56,7 @@ export const FormSection = ({ title, children }: FormSectionProps) => {
   );
 };
 
-export const FormActions = ({ align, children }: FormActionProps) => {
+export const ActionBar = ({ align, children }: ActionBarProps) => {
   return (
     <Styled.FormActions className="form-action" $align={align}>
       {children}
@@ -58,95 +64,11 @@ export const FormActions = ({ align, children }: FormActionProps) => {
   );
 };
 
-export const Form = () => {
+export const Container = ({ title, children }: FormProps) => {
   return (
     <Styled.FormContainer>
-      <header>Registration</header>
-      <form action="#">
-        <FormSection title="Project Info">
-          <Fields columns={3}>
-            <InputField
-              label="First Name"
-              type="text"
-              placeholder="Enter your first name"
-            />
-            <InputField
-              label="Data of Birth"
-              type="date"
-              placeholder="Enter your birth date"
-            />
-            <InputField
-              label="Email"
-              type="text"
-              placeholder="Enter your e-mail"
-            />
-
-            <InputField
-              label="First Name"
-              type="text"
-              placeholder="Enter your first name"
-            />
-            <InputField
-              label="Data of Birth"
-              type="date"
-              placeholder="Enter your birth date"
-            />
-            <InputField
-              label="Email"
-              type="text"
-              placeholder="Enter your e-mail"
-            />
-          </Fields>
-        </FormSection>
-
-        <FormSection title="Client Info">
-          <Fields columns={3}>
-            <InputField
-              label="First Name"
-              type="text"
-              placeholder="Enter your first name"
-              required
-            />
-            <InputField
-              label="Data of Birth"
-              type="date"
-              placeholder="Enter your birth date"
-            />
-            <InputField
-              label="Email"
-              type="text"
-              placeholder="Enter your e-mail"
-              required
-            />
-          </Fields>
-          <Fields columns={2}>
-            <InputField
-              label="Email"
-              type="text"
-              placeholder="Enter your e-mail"
-            />
-            <InputField
-              label="Age"
-              type="number"
-              placeholder="Enter your first name"
-            />
-            <InputField
-              label="Data of Birth"
-              type="date"
-              placeholder="Enter your birth date"
-            />
-            <InputField
-              label="Email"
-              type="text"
-              placeholder="Enter your e-mail"
-              required
-            />
-          </Fields>
-        </FormSection>
-        <FormActions align="right">
-          <Btn.Button text="Submit" />
-        </FormActions>
-      </form>
+      <header>{title}</header>
+      <form action="#">{children}</form>
     </Styled.FormContainer>
   );
 };

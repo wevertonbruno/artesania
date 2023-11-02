@@ -7,7 +7,7 @@ import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
 import Toaster from "../../components/toaster";
 import { ToastContext } from "../../context/ToastContext";
-import { Form } from "../../components/form";
+import * as Form from "../../components/form";
 
 const handleClick = () => {
   alert("teste");
@@ -186,7 +186,91 @@ function Components() {
           </div>
         </section>
         <section>
-          <Form></Form>
+          <Form.Container title="Registration">
+            <Form.Section title="Project Info">
+              <Form.Fields columns={4}>
+                <Form.Input
+                  label="First Name"
+                  type="text"
+                  placeholder="Enter your first name"
+                />
+                <Form.Input
+                  label="Data of Birth"
+                  type="date"
+                  placeholder="Enter your birth date"
+                />
+                <Form.Input
+                  label="Email"
+                  type="text"
+                  placeholder="Enter your e-mail"
+                />
+
+                <Form.Input
+                  label="First Name"
+                  type="text"
+                  placeholder="Enter your first name"
+                />
+                <Form.Input
+                  label="Data of Birth"
+                  type="date"
+                  placeholder="Enter your birth date"
+                />
+                <Form.Input
+                  label="Email"
+                  type="text"
+                  placeholder="Enter your e-mail"
+                />
+              </Form.Fields>
+            </Form.Section>
+
+            <Form.Section title="Client Info">
+              <Form.Fields columns={3}>
+                <Form.Input
+                  label="First Name"
+                  type="text"
+                  placeholder="Enter your first name"
+                  required
+                />
+                <Form.Input
+                  label="Data of Birth"
+                  type="date"
+                  placeholder="Enter your birth date"
+                />
+                <Form.Input
+                  label="Email"
+                  type="text"
+                  placeholder="Enter your e-mail"
+                  required
+                />
+              </Form.Fields>
+              <Form.Fields columns={2}>
+                <Form.Input
+                  label="Email"
+                  type="text"
+                  placeholder="Enter your e-mail"
+                />
+                <Form.Input
+                  label="Age"
+                  type="number"
+                  placeholder="Enter your first name"
+                />
+                <Form.Input
+                  label="Data of Birth"
+                  type="date"
+                  placeholder="Enter your birth date"
+                />
+                <Form.Input
+                  label="Email"
+                  type="text"
+                  placeholder="Enter your e-mail"
+                  required
+                />
+              </Form.Fields>
+            </Form.Section>
+            <Form.ActionBar align="left">
+              <Btn.Button text="Submit" />
+            </Form.ActionBar>
+          </Form.Container>
         </section>
       </Styled.Container>
     </MainSection>
