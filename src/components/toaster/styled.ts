@@ -11,7 +11,7 @@ export const Toast = styled.div`
   padding: 1.25rem 2.1rem 1.25rem 1.5rem;
   box-shadow: 0 0.3rem 0.625rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transform: translateX(calc(100% + 2rem)) scaleY(0);
+  transform: translateX(calc(100% + 2rem));
   transition: var(--tran-toast);
   border-left: 0.375rem solid var(--primary-color);
   opacity: 0.9;
@@ -37,7 +37,7 @@ export const Toast = styled.div`
   }
 
   &.active {
-    transform: translateX(0) scaleY(1);
+    transform: translateX(0);
   }
 
   .content {
