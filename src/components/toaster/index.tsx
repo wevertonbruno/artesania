@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Styled from "./styled";
+import { IToast } from "toaster";
 
-type Props = {
-  hidden: boolean;
-  duration: "short" | "medium" | "long";
+const iconMap = {
+  success: <Styled.SuccessIcon />,
+  error: <Styled.ErrorIcon />,
+  warning: <Styled.WarningIcon />,
+  info: <Styled.InfoIcon />,
 };
 
-function Toast({ hidden, duration }: Props) {
+function Toast({ hidden, duration, type, title, text }: IToast) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const progressBarActive = useRef<boolean>(false);
+  const containerClass = `${duration} ${type} ${isActive && "active"}`;
+  const progressClass = `${duration} ${type} ${
+    progressBarActive.current && "active"
+  }`;
 
   useEffect(() => {
     setIsActive(true);
@@ -22,20 +29,16 @@ function Toast({ hidden, duration }: Props) {
   }, [hidden]);
 
   return (
-    <Styled.Toast className={isActive ? `active ${duration}` : `${duration}`}>
+    <Styled.Toast className={containerClass}>
       <div className="content">
-        <Styled.SuccessIcon />
+        {iconMap[type]}
         <div className="message">
-          <span className="title">Success</span>
-          <span className="text">Your changes has been saved</span>
+          <span className="title">{title}</span>
+          <span className="text">{text}</span>
         </div>
       </div>
       <Styled.CloseIcon onClick={() => setIsActive(false)} />
-      <Styled.ProgressBar
-        className={
-          progressBarActive.current ? `active ${duration}` : `${duration}`
-        }
-      />
+      <Styled.ProgressBar className={progressClass} />
     </Styled.Toast>
   );
 }

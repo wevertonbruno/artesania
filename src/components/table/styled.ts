@@ -59,7 +59,7 @@ export const Container = styled.div`
   th,
   td {
     border-collapse: collapse;
-    padding: 1rem;
+    padding: 0.7rem;
     text-align: left;
   }
 

@@ -7,6 +7,7 @@ import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
 import Toaster from "../../components/toaster";
 import { ToastContext } from "../../context/ToastContext";
+import { Form } from "../../components/form";
 
 const handleClick = () => {
   alert("teste");
@@ -47,7 +48,7 @@ const tableData = {
       actions: (
         <Btn.IconButton
           onClick={handleClick}
-          size={2}
+          size={1.5}
           radius="0.375rem"
           icon="code"
         />
@@ -61,7 +62,7 @@ const tableData = {
       actions: (
         <Btn.IconButton
           onClick={handleClick}
-          size={2}
+          size={1.5}
           radius="0.375rem"
           icon="code"
         />
@@ -75,7 +76,7 @@ const tableData = {
       actions: (
         <Btn.IconButton
           onClick={handleClick}
-          size={2}
+          size={1.5}
           radius="0.375rem"
           icon="code"
         />
@@ -102,7 +103,7 @@ function Components() {
       <Styled.Container>
         <section>
           <h1>Botoes</h1>
-          <div className="flex">
+          <div>
             <Btn.Button text="primary" />
             <Btn.PlusButton size={2.5} padding={0.2} />
             <Btn.IconButton
@@ -136,7 +137,7 @@ function Components() {
           <h1>Taster notification</h1>
           <div>
             <Btn.Button
-              text="Toast short"
+              text="Toast Sucess"
               onClick={() => {
                 newToast({
                   title: "Success",
@@ -148,29 +149,44 @@ function Components() {
             />
 
             <Btn.Button
-              text="Toast medium"
+              text="Toast Error"
               onClick={() => {
                 newToast({
-                  title: "Success",
-                  text: "Your changes has been saved",
-                  type: "success",
-                  duration: "medium",
+                  title: "Error",
+                  text: "Error to save your changes",
+                  type: "error",
+                  duration: "short",
                 });
               }}
             />
 
             <Btn.Button
-              text="Toast long"
+              text="Toast Warning"
               onClick={() => {
                 newToast({
-                  title: "Success",
-                  text: "Your changes has been saved",
-                  type: "success",
-                  duration: "long",
+                  title: "Warning",
+                  text: "Your changes has not been saved",
+                  type: "warning",
+                  duration: "short",
+                });
+              }}
+            />
+
+            <Btn.Button
+              text="Toast Info"
+              onClick={() => {
+                newToast({
+                  title: "Info",
+                  text: "Your changes has not been saved",
+                  type: "info",
+                  duration: "short",
                 });
               }}
             />
           </div>
+        </section>
+        <section>
+          <Form></Form>
         </section>
       </Styled.Container>
     </MainSection>

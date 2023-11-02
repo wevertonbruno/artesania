@@ -15,6 +15,9 @@ export default createGlobalStyle`
         --btn-primary-text:  ${(props) => props.theme.colors.btn.text};
 
         --success-color: #2ecc71;
+        --error-color: #e74c3c;
+        --warning-color: #f1c40f;
+        --info-color: #3498db;
 
         --default-radius: .2rem;
 

@@ -14,15 +14,13 @@ interface BtnIconProps {
 
 const btn = css`
   position: relative;
-  padding: 0.7rem 1.4rem;
+  padding: 0.5rem 1.2rem;
   overflow: hidden;
   border-width: 0;
   outline: none;
   border-radius: var(--default-radius);
   cursor: pointer;
   box-shadow: var(--box-shadow-default);
-  min-width: 5rem;
-  display: flex;
 
   background-color: var(--btn-primary-color);
   color: var(--btn-primary-text);
@@ -33,10 +31,6 @@ const btn = css`
     display: block;
     color: inherit;
     font-size: 1rem;
-  }
-
-  > * {
-    position: relative;
   }
 
   &:hover,

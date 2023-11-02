@@ -1,23 +1,43 @@
-import { BiCheck, BiX } from "react-icons/bi";
-import styled from "styled-components";
-
-export const Toaster = styled.div``;
+import { BiCheck, BiErrorCircle, BiInfoCircle, BiX } from "react-icons/bi";
+import styled, { css } from "styled-components";
 
 export const Toast = styled.div`
   background: var(--sidebar-color);
   border-radius: var(--default-radius);
-  position: absolute;
+  position: relative;
   top: 1.5rem;
   right: 2rem;
+  margin-bottom: 1rem;
   padding: 1.25rem 2.1rem 1.25rem 1.5rem;
   box-shadow: 0 0.3rem 0.625rem rgba(0, 0, 0, 0.1);
-  border-left: 0.375rem solid var(--success-color);
   overflow: hidden;
-  transform: translateX(calc(100% + 2rem));
+  transform: translateX(calc(100% + 2rem)) scaleY(0);
   transition: var(--tran-toast);
+  border-left: 0.375rem solid var(--primary-color);
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.success {
+    border-left-color: var(--success-color);
+  }
+
+  &.error {
+    border-left-color: var(--error-color);
+  }
+
+  &.warning {
+    border-left-color: var(--warning-color);
+  }
+
+  &.info {
+    border-left-color: var(--info-color);
+  }
 
   &.active {
-    transform: translateX(0);
+    transform: translateX(0) scaleY(1);
   }
 
   .content {
@@ -37,6 +57,7 @@ export const Toast = styled.div`
       }
 
       .title {
+        opacity: inherit;
         font-weight: 600;
         color: var(--text-color);
         margin-bottom: 0.1rem;
@@ -67,6 +88,22 @@ export const ProgressBar = styled.span`
     background: var(--success-color);
   }
 
+  &.success:before {
+    background: var(--success-color);
+  }
+
+  &.error:before {
+    background: var(--error-color);
+  }
+
+  &.warning:before {
+    background: var(--warning-color);
+  }
+
+  &.info:before {
+    background: var(--info-color);
+  }
+
   &.active.short:before {
     animation: progress 3s linear forwards;
   }
@@ -86,7 +123,7 @@ export const ProgressBar = styled.span`
   }
 `;
 
-export const SuccessIcon = styled(BiCheck)`
+const iconStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,6 +133,26 @@ export const SuccessIcon = styled(BiCheck)`
   color: var(--sidebar-color);
   font-size: 1.25rem;
   border-radius: 50%;
+`;
+
+export const SuccessIcon = styled(BiCheck)`
+  ${iconStyle}
+  background-color: var(--success-color);
+`;
+
+export const ErrorIcon = styled(BiX)`
+  ${iconStyle}
+  background-color: var(--error-color);
+`;
+
+export const WarningIcon = styled(BiErrorCircle)`
+  ${iconStyle}
+  background-color: var(--warning-color);
+`;
+
+export const InfoIcon = styled(BiInfoCircle)`
+  ${iconStyle}
+  background-color: var(--info-color);
 `;
 
 export const CloseIcon = styled(BiX)`

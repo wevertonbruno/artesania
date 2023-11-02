@@ -1,30 +1,24 @@
 import { createContext, useEffect, useState } from "react";
 import Toast from "../components/toaster";
+import { IToast, IToastCreate } from "toaster";
+import styled from "styled-components";
+
+const ToastContainer = styled.section`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30rem;
+`;
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
-interface IToast {
-  [key: string]: {
-    id: string;
-    title: string;
-    text: string;
-    type: "success" | "error" | "warning" | "info";
-    duration: "short" | "medium" | "long";
-    hidden: boolean;
-  };
-}
-
-interface IToastCreate {
-  title: string;
-  text: string;
-  type: "success" | "error" | "warning" | "info";
-  duration: "short" | "medium" | "long";
+interface IToastMap {
+  [key: string]: IToast;
 }
 
 interface IToastContext {
-  toasts: IToast;
   newToast: (toast: IToastCreate) => void;
 }
 
@@ -37,7 +31,7 @@ const durationMap = {
 export const ToastContext = createContext({} as IToastContext);
 
 function ToastProvider({ children }: Props) {
-  const [toasts, setToasts] = useState<IToast>({});
+  const [toasts, setToasts] = useState<IToastMap>({});
 
   const newToast = (toast: IToastCreate) => {
     const created = {
@@ -64,20 +58,28 @@ function ToastProvider({ children }: Props) {
         hidden: true,
       },
     }));
+
+    setTimeout(() => {
+      removeToast(id);
+    }, 500);
+  };
+
+  const removeToast = (id: string) => {
+    setToasts((prev) => {
+      const newToasts = { ...prev };
+      delete newToasts[id];
+      return newToasts;
+    });
   };
 
   return (
-    <ToastContext.Provider value={{ toasts, newToast }}>
+    <ToastContext.Provider value={{ newToast }}>
       {children}
-      <div className="toast-container">
+      <ToastContainer>
         {Object.values(toasts).map((toast) => (
-          <Toast
-            key={toast.id}
-            hidden={toast.hidden}
-            duration={toast.duration}
-          />
+          <Toast key={toast.id} {...toast} />
         ))}
-      </div>
+      </ToastContainer>
     </ToastContext.Provider>
   );
 }
