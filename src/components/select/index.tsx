@@ -6,9 +6,10 @@ function Select() {
     <Styled.Container className="select">
       <div className="category-select">
         <label>Category</label>
+        <input type="checkbox" className="select-control" />
 
         <div className="select-button">
-          <input className="selected-value" placeholder="Select Category" />
+          <span className="selected-value">Select category</span>
           <div className="chevrons">
             <Styled.ChevronUpIcon className="up" />
             <Styled.ChevronDownIcon className="down" />

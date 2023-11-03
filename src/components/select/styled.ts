@@ -10,13 +10,14 @@ export const Container = styled.div`
   }
 
   .category-select {
+    position: relative;
     font-size: 0.75rem;
     letter-spacing: 0.0225rem;
     position: relative;
   }
 
-  .selected-value {
-    &:focus ~ .select-button .chevrons {
+  .select-control {
+    &:checked + .select-button .chevrons {
       .down {
         display: none;
       }
@@ -24,6 +25,12 @@ export const Container = styled.div`
         display: block;
       }
     }
+
+    all: unset;
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    z-index: 3;
   }
 
   .select-button {
