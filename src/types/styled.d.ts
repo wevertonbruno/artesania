@@ -10,6 +10,7 @@ declare module "styled-components" {
       primaryColorLight: string;
       toggleColor: string;
       textColor: string;
+      borderColor: string;
       btn: {
         primary: string;
         hover: string;

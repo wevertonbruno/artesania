@@ -1,4 +1,6 @@
-const lightTheme = {
+import { DefaultTheme } from "styled-components";
+
+const lightTheme: DefaultTheme = {
   dark: false,
   colors: {
     bodyColor: "#f5f5f5",
@@ -7,6 +9,7 @@ const lightTheme = {
     primaryColorLight: "#f6f1f1",
     toggleColor: "#701614",
     textColor: "#707070",
+    borderColor: "rgba(0,0,0,0.2)",
     btn: {
       primary: "#701614",
       hover: "#57100e",

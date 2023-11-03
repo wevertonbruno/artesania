@@ -85,7 +85,7 @@ export const InputField = styled.div`
   input {
     outline: none;
     padding: 0 0.9rem;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--default-radius);
     height: 2.625rem;
     margin: 0.5rem 0;

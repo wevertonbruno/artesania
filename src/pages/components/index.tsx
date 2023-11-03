@@ -125,7 +125,28 @@ function Components() {
             <Radio label="Checked" checked name="check" onChange={onChange} />
             <Radio label="Unchecked" name="check" onChange={onChange} />
           </div>
-          <Select />
+          <Select
+            placeholder="Selecione uma opção"
+            options={[
+              {
+                value: "1",
+                text: "Option 1",
+              },
+              {
+                value: "2",
+                text: "Option 2",
+              },
+              {
+                value: "3",
+                text: "Option 3",
+              },
+              {
+                value: "4",
+                text: "Option 4",
+              },
+            ]}
+            onChange={() => {}}
+          />
         </section>
 
         <section>

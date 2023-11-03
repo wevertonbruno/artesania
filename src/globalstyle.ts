@@ -9,6 +9,7 @@ export default createGlobalStyle`
           props.theme.colors.primaryColorLight};
         --toggle-color: ${(props) => props.theme.colors.toggleColor};
         --text-color: ${(props) => props.theme.colors.textColor};
+        --border-color: ${(props) => props.theme.colors.borderColor};
 
         --btn-primary-color: ${(props) => props.theme.colors.btn.primary};
         --btn-primary-hover: ${(props) => props.theme.colors.btn.hover};

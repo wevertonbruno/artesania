@@ -7,6 +7,7 @@ const darkTheme = {
     primaryColorLight: "#2b2424",
     toggleColor: "#C8BEAF",
     textColor: "#fefefe",
+    borderColor: "rgba(0,0,0,0.2)",
     btn: {
       primary: "#2b2424",
       hover: "#1f1919",
