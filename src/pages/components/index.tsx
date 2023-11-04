@@ -14,6 +14,25 @@ const handleClick = () => {
   alert("teste");
 };
 
+const selectOptions = [
+  {
+    value: "1",
+    text: "Option 1",
+  },
+  {
+    value: "2",
+    text: "Option 2",
+  },
+  {
+    value: "3",
+    text: "Option 3",
+  },
+  {
+    value: "4",
+    text: "Option 4",
+  },
+];
+
 const tableData = {
   id: "example-table",
   columnsDef: [
@@ -114,39 +133,6 @@ function Components() {
               icon="code"
             />
           </div>
-          <div>
-            <Checkbox
-              label="Checked"
-              onChange={onChange}
-              name="check"
-              checked={ck}
-            />
-            <Checkbox label="unchecked" name="unchecked" onChange={onChange} />
-            <Radio label="Checked" checked name="check" onChange={onChange} />
-            <Radio label="Unchecked" name="check" onChange={onChange} />
-          </div>
-          <Select
-            placeholder="Selecione uma opção"
-            options={[
-              {
-                value: "1",
-                text: "Option 1",
-              },
-              {
-                value: "2",
-                text: "Option 2",
-              },
-              {
-                value: "3",
-                text: "Option 3",
-              },
-              {
-                value: "4",
-                text: "Option 4",
-              },
-            ]}
-            onChange={() => {}}
-          />
         </section>
 
         <section>
@@ -213,33 +199,34 @@ function Components() {
             <Form.Section title="Project Info">
               <Form.Fields columns={4}>
                 <Form.Input
-                  label="First Name"
+                  title="First Name"
                   type="text"
                   placeholder="Enter your first name"
                 />
                 <Form.Input
-                  label="Data of Birth"
+                  title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
                 <Form.Input
-                  label="Email"
+                  title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                 />
 
-                <Form.Input
-                  label="First Name"
-                  type="text"
-                  placeholder="Enter your first name"
+                <Select
+                  title="Categoria"
+                  placeholder="Selecione uma opção"
+                  options={selectOptions}
+                  onChange={() => {}}
                 />
                 <Form.Input
-                  label="Data of Birth"
+                  title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
                 <Form.Input
-                  label="Email"
+                  title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                 />
@@ -249,18 +236,18 @@ function Components() {
             <Form.Section title="Client Info">
               <Form.Fields columns={3}>
                 <Form.Input
-                  label="First Name"
+                  title="First Name"
                   type="text"
                   placeholder="Enter your first name"
                   required
                 />
                 <Form.Input
-                  label="Data of Birth"
+                  title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
                 <Form.Input
-                  label="Email"
+                  title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                   required
@@ -268,26 +255,45 @@ function Components() {
               </Form.Fields>
               <Form.Fields columns={2}>
                 <Form.Input
-                  label="Email"
+                  title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                 />
                 <Form.Input
-                  label="Age"
+                  title="Age"
                   type="number"
                   placeholder="Enter your first name"
                 />
                 <Form.Input
-                  label="Data of Birth"
+                  title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
                 <Form.Input
-                  label="Email"
+                  title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                   required
                 />
+              </Form.Fields>
+            </Form.Section>
+            <Form.Section title="Personal info">
+              <Form.Fields columns={2}>
+                <Checkbox
+                  label="Checked"
+                  onChange={onChange}
+                  name="check"
+                  checked={ck}
+                />
+                <Checkbox
+                  label="unchecked"
+                  name="unchecked"
+                  onChange={onChange}
+                />
+              </Form.Fields>
+              <Form.Fields columns={2}>
+                <Radio label="Male" name="gender" onChange={onChange} />
+                <Radio label="Female" name="gender" onChange={onChange} />
               </Form.Fields>
             </Form.Section>
             <Form.ActionBar align="left">

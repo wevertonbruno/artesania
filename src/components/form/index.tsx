@@ -3,7 +3,7 @@ import * as Styled from "./styled";
 import Btn from "../button";
 
 interface InputProps {
-  label: string;
+  title?: string;
   type: string;
   placeholder: string;
   required?: boolean;
@@ -30,10 +30,10 @@ interface FormProps extends Nested {
 }
 
 // TODO: Add style for required inputs
-export const Input = ({ label, ...inputProps }: InputProps) => {
+export const Input = ({ title, ...inputProps }: InputProps) => {
   return (
     <Styled.InputField className="input-field">
-      <label>{`${label}${inputProps.required ? "*" : ""}`}</label>
+      {title && <label>{`${title}${inputProps.required ? "*" : ""}`}</label>}
       <input {...inputProps} />
     </Styled.InputField>
   );

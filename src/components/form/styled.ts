@@ -73,6 +73,7 @@ export const Fields = styled.div<FieldProps>`
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: end;
   margin: 0.25rem 0;
 
   label {
