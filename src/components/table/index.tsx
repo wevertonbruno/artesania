@@ -28,7 +28,7 @@ function Table({ id, columnsDef, rows, footer }: ITable) {
     <Styled.Container>
       <div className="t_body">
         <table id={id}>
-          <thead>
+          <thead className="text-disabled">
             <tr>
               {columnsDef.map((column) => (
                 <Styled.TableHeader key={column.key} width={column.width}>

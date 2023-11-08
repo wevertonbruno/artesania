@@ -16,9 +16,15 @@ export const Container = styled.section`
 
   .page-title {
     padding: 1rem 0;
+    font-size: 2rem;
   }
 
   .section-content {
     margin: 0.5rem 0;
   }
+`;
+
+export const Cover = styled.img`
+  height: 15rem;
+  object-fit: cover;
 `;

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import gridCss from "./gridStyle";
 
 export default createGlobalStyle`    
     :root {
@@ -9,6 +10,7 @@ export default createGlobalStyle`
           props.theme.colors.primaryColorLight};
         --toggle-color: ${(props) => props.theme.colors.toggleColor};
         --text-color: ${(props) => props.theme.colors.textColor};
+        --text-disabled-color: rgb(181, 181, 181);
         --border-color: ${(props) => props.theme.colors.borderColor};
 
         --btn-primary-color: ${(props) => props.theme.colors.btn.primary};
@@ -22,8 +24,8 @@ export default createGlobalStyle`
 
         --default-radius: .2rem;
 
-        --box-shadow-default: rgba(0, 0, 0, 0.1) 0rem 0.25rem 0.375rem -0.0625rem,
-    rgba(0, 0, 0, 0.06) 0rem 0.125rem 0.25rem -0.0625rem;
+        --box-shadow-default: 0 2px 5px -1px rgba(50, 50, 93, 0.02),
+            0 1px 3px -1px rgba(0, 0, 0, 0.05);
 
         --tran-02: all 0.2s ease;
         --tran-03: all 0.3s ease;
@@ -79,4 +81,44 @@ export default createGlobalStyle`
             visibility: visible;
         }
     }
+
+    .row {
+        --cui-gutter-x: 1.5rem;
+        --cui-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: calc(var(--cui-gutter-x)*-.5);
+        margin-right: calc(var(--cui-gutter-x)*-.5);
+        margin-top: calc(var(--cui-gutter-y)*-1);
+
+        > * {
+            flex-shrink: 0;
+            margin-top: var(--cui-gutter-y);
+            max-width: 100%;
+            padding-left: calc(var(--cui-gutter-x)*.5);
+            padding-right: calc(var(--cui-gutter-x)*.5);
+            width: 100%;
+        }
+    }
+            
+    ${gridCss()}
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+        color: var(--text-color);
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: .5rem;
+        margin-top: 0;
+    }
+
+    tbody, td, tfoot, th, thead, tr {
+        border: 0 solid;
+        border-color: inherit;
+    }
+
+    .text-disabled {
+        color: var(--text-disabled-color);
+    }
+
 `;

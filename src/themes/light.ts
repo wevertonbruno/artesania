@@ -9,7 +9,7 @@ const lightTheme: DefaultTheme = {
     primaryColorLight: "#f6f1f1",
     toggleColor: "#701614",
     textColor: "#707070",
-    borderColor: "rgba(0,0,0,0.2)",
+    borderColor: "#ebedef",
     btn: {
       primary: "#701614",
       hover: "#57100e",

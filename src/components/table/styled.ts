@@ -4,22 +4,11 @@ interface HeaderProps {
   width?: string;
 }
 
-const darkTable = css`
-  box-shadow: none;
-`;
-
-const lightTable = css`
-  box-shadow: var(--box-shadow-default);
-  border: none;
-`;
-
 export const Container = styled.div`
-  ${(props) => (props.theme.dark ? darkTable : lightTable)};
   background: var(--sidebar-color);
-  border-radius: 0.375rem;
+  border-radius: var(--default-radius);
   overflow: hidden;
   width: 100%;
-
   .t_body {
     overflow: auto;
 
@@ -41,17 +30,32 @@ export const Container = styled.div`
 
   table {
     width: 100%;
+    border-color: var(--border-color);
+
+    > :not(caption, :last-child) > * > * {
+      border-bottom-width: 1px;
+      padding: 0.75rem;
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: var(--sidebar-color);
+      transition: background-color 0.3s ease;
+    }
+
+    tr:hover {
+      background-color: var(--border-color);
+    }
   }
 
   thead {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: var(--primary-color-light);
   }
 
   tfoot {
-    border-top: 0.0625rem solid var(--primary-color-light);
     font-weight: bold;
   }
 
@@ -61,10 +65,6 @@ export const Container = styled.div`
     border-collapse: collapse;
     padding: 0.7rem;
     text-align: left;
-  }
-
-  tbody tr {
-    border-bottom: 0.0625rem solid var(--primary-color-light);
   }
 `;
 
