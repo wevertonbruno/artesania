@@ -6,7 +6,7 @@ import Btn from "../../components/button";
 import { Link } from "react-router-dom";
 
 const projectTableData: ITable = {
-  id: "projects",
+  id: "products",
   columnsDef: [
     {
       key: "id",
@@ -24,58 +24,58 @@ const projectTableData: ITable = {
       width: "auto",
     },
     {
-      key: "client",
-      name: "Cliente",
+      key: "factory",
+      name: "Fabricante",
       width: "auto",
     },
     {
-      key: "status",
-      name: "Status",
-      width: "auto",
+      key: "qte",
+      name: "QTD",
+      width: "1.5rem",
     },
   ],
   rows: [
     {
       id: "1",
-      name: "Projeto 1",
-      description: "Descrição do projeto 1",
-      client: "Client 1",
-      status: "Em andamento",
+      name: "Produto 1",
+      description: "Descrição do produto 1",
+      factory: "Tramontina",
+      qte: "10",
     },
     {
       id: "2",
-      name: "Projeto 2",
-      description: "Descrição do projeto 2",
-      client: "Client 1",
-      status: "Concluído",
+      name: "Produto 2",
+      description: "Descrição do produto 2",
+      factory: "Tramontina",
+      qte: "10",
     },
     {
       id: "3",
-      name: "Projeto 3",
-      description: "Descrição do projeto 3",
-      client: "Client 2",
-      status: "Em andamento",
+      name: "Produto 3",
+      description: "Descrição do produto 3",
+      factory: "Tramontina",
+      qte: "10",
     },
     {
       id: "4",
-      name: "Projeto 4",
-      description: "Descrição do projeto 4",
-      client: "Client 3",
-      status: "Concluído",
+      name: "Produto 4",
+      description: "Descrição do produto 4",
+      factory: "Tramontina",
+      qte: "10",
     },
   ],
   footer: {
-    client: "Em andamento",
-    status: "2",
+    factory: "Total",
+    qte: "40",
   },
 };
 
-function Projects() {
+function Products() {
   return (
-    <MainSection title="Projetos">
+    <MainSection title="Produtos">
       <Container>
         <Table {...projectTableData} />
-        <Link to="/projects/new">
+        <Link to="/products/new">
           <Btn.PlusButton className="new-btn" size={3} />
         </Link>
       </Container>
@@ -83,4 +83,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default Products;

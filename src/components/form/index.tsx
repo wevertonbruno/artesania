@@ -1,6 +1,5 @@
 import React from "react";
 import * as Styled from "./styled";
-import Btn from "../button";
 
 interface InputProps {
   title?: string;

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import Toast from "../components/toaster";
 import { IToast, IToastCreate } from "toaster";
 import styled from "styled-components";

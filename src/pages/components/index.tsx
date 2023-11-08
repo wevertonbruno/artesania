@@ -5,7 +5,6 @@ import MainSection from "../../components/main-section";
 import Table, { ITable } from "../../components/table";
 import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
-import Toaster from "../../components/toaster";
 import { ToastContext } from "../../context/ToastContext";
 import * as Form from "../../components/form";
 import Select from "../../components/select";
@@ -118,8 +117,7 @@ function Components() {
   };
 
   return (
-    <MainSection>
-      <h1>Dashboard</h1>
+    <MainSection title="Components">
       <Styled.Container>
         <section>
           <h1>Botoes</h1>

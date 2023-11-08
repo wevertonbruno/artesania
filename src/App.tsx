@@ -6,7 +6,7 @@ import Globalstyle from "./globalstyle";
 import { ThemeContext } from "./context/ThemeContext";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar";
-import ToastProvider, { ToastContext } from "./context/ToastContext";
+import ToastProvider from "./context/ToastContext";
 
 function App() {
   const { darkMode } = useContext(ThemeContext);

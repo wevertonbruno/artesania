@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Styled from "../styled";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {

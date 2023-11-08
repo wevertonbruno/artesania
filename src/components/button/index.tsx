@@ -37,8 +37,10 @@ function IconButton(props: BtnIconProps) {
   );
 }
 
-export default {
+const module = {
   Button,
   PlusButton,
   IconButton,
 };
+
+export default module;

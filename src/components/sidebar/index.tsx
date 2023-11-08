@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   SidebarWrapper,
   LogoWrapper,
@@ -38,6 +38,11 @@ const menuItems = [
     icon: <ProductIcon />,
     text: "Projetos",
     link: "/projects",
+  },
+  {
+    icon: <ProductIcon />,
+    text: "Produtos",
+    link: "/products",
   },
   {
     icon: <DashIcon />,
@@ -86,13 +91,13 @@ function Sidebar() {
         </div>
         <MenuFooter>
           <MenuItem>
-            <a href="">
+            <Link to="/config">
               <ConfigIcon />
               <span className="text">Configuraçao</span>
-            </a>
+            </Link>
           </MenuItem>
           <MenuItem>
-            <a href="">
+            <a>
               <LogoutIcon />
               <span className="text">Sair</span>
             </a>

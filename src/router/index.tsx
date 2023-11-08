@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/home";
 import Projects from "../pages/projects";
 import Components from "../pages/components";
+import Products from "../pages/products";
 
 export default createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export default createBrowserRouter([
       {
         path: "/projects",
         element: <Projects />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
       },
       {
         path: "/components",

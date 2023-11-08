@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { BiPlus } from "react-icons/bi";
-import { IconType } from "react-icons";
 
 interface BtnProps {
   fontSize?: number;

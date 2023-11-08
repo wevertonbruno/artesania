@@ -3,14 +3,16 @@ import * as Styled from "./styled";
 import { SidebarContext } from "../../context/SidebarContext";
 
 interface Props {
-  children: JSX.Element | JSX.Element[];
+  title: string;
+  children?: JSX.Element | JSX.Element[];
 }
 
-function MainSection({ children }: Props) {
+function MainSection({ children, title }: Props) {
   const { isOpen } = useContext(SidebarContext);
 
   return (
     <Styled.Container className={isOpen ? "" : "closed"}>
+      <h1 className="page-title">{title}</h1>
       {children}
     </Styled.Container>
   );

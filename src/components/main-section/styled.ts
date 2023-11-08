@@ -13,4 +13,12 @@ export const Container = styled.section`
     left: 5.5rem;
     width: calc(100% - 5.5rem);
   }
+
+  .page-title {
+    padding: 1rem 0;
+  }
+
+  .section-content {
+    margin: 0.5rem 0;
+  }
 `;

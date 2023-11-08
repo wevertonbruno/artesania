@@ -1,4 +1,4 @@
-import { BiAccessibility, BiSend } from "react-icons/bi";
+import { BiSend } from "react-icons/bi";
 import styled from "styled-components";
 
 type FieldProps = {
