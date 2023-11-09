@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as Styled from "./styled";
 import { useOutsideClick } from "../../hooks";
+import DotMenu from "../dotmenu";
+import { MenuProps } from "dotmenu";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -8,13 +10,8 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-interface BodyMenu {
-  name: string;
-  onClick: () => void;
-}
-
 interface BodyProps extends Props {
-  menu?: BodyMenu[];
+  menu?: MenuProps;
 }
 
 export const CardHeader = ({ children, ...props }: Props) => {
@@ -28,31 +25,13 @@ export const CardBody = ({
   menu,
   ...props
 }: BodyProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const ref = useOutsideClick(() => {
-    setOpen(false);
-  });
-
   return (
     <Styled.Body {...props}>
       {title && <Styled.Title>{title}</Styled.Title>}
       {subtitle && (
         <Styled.SubTitle className="text-disabled">{subtitle}</Styled.SubTitle>
       )}
-      {menu && (
-        <Styled.MenuWrapper ref={ref}>
-          <Styled.MenuIcon onClick={() => setOpen(!open)} />
-          <Styled.Menu className={open ? "open" : ""}>
-            <ul>
-              {menu.map((item) => (
-                <li key={item.name} onClick={item.onClick}>
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-          </Styled.Menu>
-        </Styled.MenuWrapper>
-      )}
+      {menu && <DotMenu options={menu.options} position={{ x: 1.5, y: 1.5 }} />}
       {children}
     </Styled.Body>
   );

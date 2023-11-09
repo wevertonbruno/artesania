@@ -121,4 +121,10 @@ export default createGlobalStyle`
         color: var(--text-disabled-color);
     }
 
+    .status {
+        padding: 0.25rem 0.5rem;
+        border-radius: var(--default-radius);
+        background-color: #f1c40f;
+        font-size: .7rem;
+    }
 `;
