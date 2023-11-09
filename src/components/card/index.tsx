@@ -18,6 +18,18 @@ export const CardHeader = ({ children, ...props }: Props) => {
   return <Styled.Header {...props}>{children}</Styled.Header>;
 };
 
+export const CardTitle = ({ children, ...props }: Props) => {
+  return <Styled.Title {...props}>{children}</Styled.Title>;
+};
+
+export const CardSubTitle = ({ children, ...props }: Props) => {
+  return (
+    <Styled.SubTitle className="text-disabled" {...props}>
+      {children}
+    </Styled.SubTitle>
+  );
+};
+
 export const CardBody = ({
   children,
   title,
@@ -27,10 +39,6 @@ export const CardBody = ({
 }: BodyProps) => {
   return (
     <Styled.Body {...props}>
-      {title && <Styled.Title>{title}</Styled.Title>}
-      {subtitle && (
-        <Styled.SubTitle className="text-disabled">{subtitle}</Styled.SubTitle>
-      )}
       {menu && <DotMenu options={menu.options} position={{ x: 1.5, y: 1.5 }} />}
       {children}
     </Styled.Body>

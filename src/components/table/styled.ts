@@ -7,11 +7,8 @@ interface HeaderProps {
 export const Container = styled.div`
   background: var(--sidebar-color);
   border-radius: var(--default-radius);
-  overflow: hidden;
   width: 100%;
   .t_body {
-    overflow: auto;
-
     &::-webkit-scrollbar {
       width: 0.3rem;
       height: 0.3rem;

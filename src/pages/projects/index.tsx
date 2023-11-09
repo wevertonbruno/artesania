@@ -1,6 +1,7 @@
 import MainSection from "../../components/main-section";
 import Table, { ITable, ITableRow } from "../../components/table";
-import { Card, CardBody } from "../../components/card";
+import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
+import Btn from "../../components/button";
 
 const projectTableData: ITable = {
   id: "projects",
@@ -41,14 +42,26 @@ const projectTableData: ITable = {
       width: "auto",
     },
   ],
-  rowActions: [
-    {
-      name: "Visualizar tarefas",
-      onClick: (row: ITableRow) => {
-        alert(row.id + row.name);
+  rowActions: {
+    options: [
+      {
+        name: "Visualizar tarefas",
+        icon: "eye",
+        onClick: (row: ITableRow) => {
+          alert(row.id + row.name);
+        },
       },
-    },
-  ],
+    ],
+    riskOptions: [
+      {
+        name: "Apagar Projeto",
+        icon: "trash",
+        onClick: (row: ITableRow) => {
+          alert(row.id + row.name);
+        },
+      },
+    ],
+  },
   rows: [
     {
       id: "1",
@@ -89,17 +102,6 @@ const projectTableData: ITable = {
   ],
 };
 
-const menu = {
-  options: [
-    {
-      name: "Novo Projeto",
-      onClick: () => {
-        alert("Novo Projeto");
-      },
-    },
-  ],
-};
-
 function Projects() {
   return (
     <MainSection
@@ -120,10 +122,17 @@ function Projects() {
         </div>
         <div className="col-xl-9">
           <Card className="mb-4">
-            <CardBody
-              title="Resumo de Projetos"
-              subtitle={"Total de Projetos: 4"}
-            >
+            <CardBody>
+              <CardTitle
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                Resumo de Projetos <Btn.PlusButton title="Novo Projeto" />
+              </CardTitle>
+              <CardSubTitle>Total de Projetos: 4</CardSubTitle>
               <Table {...projectTableData} />
             </CardBody>
           </Card>

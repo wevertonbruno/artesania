@@ -1,7 +1,7 @@
 import React from "react";
 import * as Styled from "./styled";
 import DotMenu from "../dotmenu";
-import { MenuProps } from "dotmenu";
+import { Icon } from "my-icons";
 
 interface ITableColumnDef {
   key: string;
@@ -20,6 +20,7 @@ export interface ITableRow {
 
 interface ITableRowAction {
   name: string;
+  icon: Icon;
   onClick: (row: ITableRow) => void;
 }
 
@@ -27,7 +28,10 @@ export interface ITable {
   id: string;
   columnsDef: ITableColumnDef[];
   rows: ITableRow[];
-  rowActions?: ITableRowAction[];
+  rowActions?: {
+    options: ITableRowAction[];
+    riskOptions?: ITableRowAction[];
+  };
   footer?: ITableFooter;
 }
 
@@ -55,8 +59,12 @@ function Table({ id, columnsDef, rows, rowActions, footer }: ITable) {
                 {rowActions && (
                   <td>
                     <DotMenu
-                      options={rowActions.map((action) => ({
-                        name: action.name,
+                      riskOptions={rowActions.riskOptions?.map((action) => ({
+                        ...action,
+                        onClick: () => action.onClick(row),
+                      }))}
+                      options={rowActions.options.map((action) => ({
+                        ...action,
                         onClick: () => action.onClick(row),
                       }))}
                     />

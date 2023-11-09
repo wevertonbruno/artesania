@@ -92,7 +92,8 @@ export const IconButton = styled.button<BtnIconProps>`
     padding: ${(props) => (props.padding ? props.padding + "rem" : ".3rem")};
   }
 
-  border-radius: ${(props) => (props.radius ? props.radius : "50%")};
+  border-radius: ${(props) =>
+    props.radius ? props.radius : "var(--default-radius)"};
 `;
 
 export const PlusIcon = styled(BiPlus)``;

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import * as Styled from "./styled";
 import { useOutsideClick } from "../../hooks";
 import { MenuProps } from "dotmenu";
+import { IconMap } from "../myicons";
 
-function DotMenu({ options, position }: MenuProps) {
+function DotMenu({ options, riskOptions, position }: MenuProps) {
   const [open, setOpen] = useState<boolean>(false);
   const ref = useOutsideClick(() => {
     setOpen(false);
@@ -17,9 +18,18 @@ function DotMenu({ options, position }: MenuProps) {
           <ul>
             {options.map((item) => (
               <li key={item.name} onClick={item.onClick}>
+                {IconMap.get(item.icon)}
                 {item.name}
               </li>
             ))}
+            {riskOptions && <hr className="risk-separator"></hr>}
+            {riskOptions &&
+              riskOptions.map((item) => (
+                <li className="risk" key={item.name} onClick={item.onClick}>
+                  {IconMap.get(item.icon)}
+                  {item.name}
+                </li>
+              ))}
           </ul>
         </Styled.Menu>
       </div>
