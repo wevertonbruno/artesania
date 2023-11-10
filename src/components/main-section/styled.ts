@@ -28,4 +28,5 @@ export const Title = styled.div`
 export const Cover = styled.img`
   height: 15rem;
   object-fit: cover;
+  border-radius: var(--default-radius);
 `;

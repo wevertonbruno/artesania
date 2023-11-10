@@ -12,7 +12,8 @@ declare module "my-icons" {
     | "code"
     | "share"
     | "eye"
-    | "task";
+    | "task"
+    | "windowOpen";
 
   export type MyIconsMap = Map<Icon, JSX.Element>;
 }

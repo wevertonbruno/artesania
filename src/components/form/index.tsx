@@ -1,12 +1,7 @@
 import React from "react";
 import * as Styled from "./styled";
 
-interface InputProps {
-  title?: string;
-  type: string;
-  placeholder: string;
-  required?: boolean;
-}
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 interface Nested {
   children: React.ReactNode | JSX.Element | JSX.Element[];
@@ -25,11 +20,11 @@ interface ActionBarProps extends Nested {
 }
 
 interface FormProps extends Nested {
-  title: string;
+  title?: string;
 }
 
 // TODO: Add style for required inputs
-export const Input = ({ title, ...inputProps }: InputProps) => {
+const Input = ({ title, ...inputProps }: InputProps) => {
   return (
     <Styled.InputField className="input-field">
       {title && <label>{`${title}${inputProps.required ? "*" : ""}`}</label>}
@@ -38,7 +33,7 @@ export const Input = ({ title, ...inputProps }: InputProps) => {
   );
 };
 
-export const Fields = ({ columns, children }: FieldsProps) => {
+const Fields = ({ columns, children }: FieldsProps) => {
   return (
     <Styled.Fields className="fields" $columns={columns}>
       {children}
@@ -46,7 +41,11 @@ export const Fields = ({ columns, children }: FieldsProps) => {
   );
 };
 
-export const Section = ({ title, children }: SectionProps) => {
+const Title = ({ children }: SectionProps) => {
+  return <header>{children}</header>;
+};
+
+const Section = ({ title, children }: SectionProps) => {
   return (
     <Styled.FormSection className="form-section">
       {title && <span className="title">{title}</span>}
@@ -55,7 +54,7 @@ export const Section = ({ title, children }: SectionProps) => {
   );
 };
 
-export const ActionBar = ({ align, children }: ActionBarProps) => {
+const ActionBar = ({ align, children }: ActionBarProps) => {
   return (
     <Styled.FormActions className="form-action" $align={align}>
       {children}
@@ -63,11 +62,24 @@ export const ActionBar = ({ align, children }: ActionBarProps) => {
   );
 };
 
-export const Container = ({ title, children }: FormProps) => {
+const Container = ({ title, children }: FormProps) => {
   return (
     <Styled.FormContainer>
-      <header>{title}</header>
-      <form action="#">{children}</form>
+      <form action="#">
+        {title && <Title>{title}</Title>}
+        {children}
+      </form>
     </Styled.FormContainer>
   );
 };
+
+const Form = {
+  Input,
+  Fields,
+  Section,
+  ActionBar,
+  Container,
+  Title,
+};
+
+export default Form;

@@ -6,108 +6,118 @@ import {
 import Table, { ITable, ITableRow } from "../../components/table";
 import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import Btn from "../../components/button";
-
-const projectTableData: ITable = {
-  id: "projects",
-  columnsDef: [
-    {
-      key: "id",
-      name: "ID",
-      width: "1.5rem",
-    },
-    {
-      key: "name",
-      name: "Nome",
-      width: "auto",
-    },
-    {
-      key: "client",
-      name: "Cliente",
-      width: "auto",
-    },
-    {
-      key: "delivery_date",
-      name: "Data de Entrega",
-      width: "auto",
-    },
-    {
-      key: "amount",
-      name: "Valor",
-      width: "auto",
-    },
-    {
-      key: "project_status",
-      name: "Status de Projeto",
-      nowrap: true,
-      width: "auto",
-    },
-    {
-      key: "payment_status",
-      name: "Status de Pagamento",
-      width: "auto",
-    },
-  ],
-  rowActions: {
-    options: [
-      {
-        name: "Visualizar tarefas",
-        icon: "task",
-        onClick: (row: ITableRow) => {
-          alert(row.id + row.name);
-        },
-      },
-    ],
-    riskOptions: [
-      {
-        name: "Apagar Projeto",
-        icon: "trash",
-        onClick: (row: ITableRow) => {
-          alert(row.id + row.name);
-        },
-      },
-    ],
-  },
-  rows: [
-    {
-      id: "1",
-      name: "Projeto 1",
-      client: "Cliente 1",
-      delivery_date: "01/01/2022",
-      amount: "R$ 100,00",
-      project_status: <span className="status">Em Andamento</span>,
-      payment_status: <span className="status">Pendente</span>,
-    },
-    {
-      id: "2",
-      name: "Projeto 2",
-      client: "Cliente 2",
-      delivery_date: "01/01/2022",
-      amount: "R$ 200,00",
-      project_status: <span className="status">Em Andamento</span>,
-      payment_status: <span className="status">Pendente</span>,
-    },
-    {
-      id: "3",
-      name: "Projeto 3",
-      client: "Cliente 3",
-      delivery_date: "01/01/2022",
-      amount: "R$ 300,00",
-      project_status: <span className="status">Em Andamento</span>,
-      payment_status: <span className="status">Pendente</span>,
-    },
-    {
-      id: "4",
-      name: "Projeto 4",
-      client: "Cliente 4",
-      delivery_date: "01/01/2022",
-      amount: "R$ 400,00",
-      project_status: <span className="status">Em Andamento</span>,
-      payment_status: <span className="status">Pendente</span>,
-    },
-  ],
-};
+import { useNavigate } from "react-router-dom";
 
 function Projects() {
+  const navigate = useNavigate();
+
+  const projectTableData: ITable = {
+    id: "projects",
+    columnsDef: [
+      {
+        key: "id",
+        name: "ID",
+        width: "1.5rem",
+      },
+      {
+        key: "name",
+        name: "Nome",
+        width: "auto",
+      },
+      {
+        key: "client",
+        name: "Cliente",
+        width: "auto",
+      },
+      {
+        key: "delivery_date",
+        name: "Data de Entrega",
+        width: "auto",
+      },
+      {
+        key: "amount",
+        name: "Valor",
+        width: "auto",
+      },
+      {
+        key: "project_status",
+        name: "Status de Projeto",
+        nowrap: true,
+        width: "auto",
+      },
+      {
+        key: "payment_status",
+        name: "Status de Pagamento",
+        width: "auto",
+      },
+    ],
+    rowActions: {
+      options: [
+        {
+          name: "Abrir Projeto",
+          icon: "windowOpen",
+          onClick: (row: ITableRow) => {
+            navigate("/projetos/" + row.id);
+          },
+        },
+        {
+          name: "Visualizar tarefas",
+          icon: "task",
+          onClick: (row: ITableRow) => {
+            alert(row.id + row.name);
+          },
+        },
+      ],
+      riskOptions: [
+        {
+          name: "Apagar Projeto",
+          icon: "trash",
+          onClick: (row: ITableRow) => {
+            alert(row.id + row.name);
+          },
+        },
+      ],
+    },
+    rows: [
+      {
+        id: "1",
+        name: "Projeto 1",
+        client: "Cliente 1",
+        delivery_date: "01/01/2022",
+        amount: "R$ 100,00",
+        project_status: <span className="status">Em Andamento</span>,
+        payment_status: <span className="status">Pendente</span>,
+      },
+      {
+        id: "2",
+        name: "Projeto 2",
+        client: "Cliente 2",
+        delivery_date: "01/01/2022",
+        amount: "R$ 200,00",
+        project_status: <span className="status">Em Andamento</span>,
+        payment_status: <span className="status">Pendente</span>,
+      },
+      {
+        id: "3",
+        name: "Projeto 3",
+        client: "Cliente 3",
+        delivery_date: "01/01/2022",
+        amount: "R$ 300,00",
+        project_status: <span className="status">Em Andamento</span>,
+        payment_status: <span className="status">Pendente</span>,
+      },
+      {
+        id: "4",
+        name: "Projeto 4",
+        client: "Cliente 4",
+        delivery_date: "01/01/2022",
+        amount: "R$ 400,00",
+        project_status: <span className="status">Em Andamento</span>,
+        payment_status: <span className="status">Pendente</span>,
+      },
+    ],
+  };
+
   return (
     <MainSection>
       <SectionTitle>
@@ -136,7 +146,11 @@ function Projects() {
                   alignItems: "center",
                 }}
               >
-                Resumo de Projetos <Btn.PlusButton title="Novo Projeto" />
+                Resumo de Projetos{" "}
+                <Btn.PlusButton
+                  title="Novo Projeto"
+                  onClick={() => navigate("/projetos/novo-projeto")}
+                />
               </CardTitle>
               <CardSubTitle>Total de Projetos: 4</CardSubTitle>
               <Table {...projectTableData} />

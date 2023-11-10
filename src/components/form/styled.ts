@@ -13,10 +13,7 @@ export const FormContainer = styled.section`
   position: relative;
   width: 100%;
   border-radius: var(--default-radius);
-  padding: 1.9rem;
-  margin: 0 1rem;
   background-color: var(--sidebar-color);
-  box-shadow: var(--box-shadow-default);
 
   header {
     position: relative;
@@ -38,7 +35,6 @@ export const FormContainer = styled.section`
 
   form {
     position: relative;
-    margin-top: 1.5rem;
     background-color: var(--sidebar-color);
 
     > .form-section:not(:first-child) {

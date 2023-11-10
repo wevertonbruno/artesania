@@ -6,7 +6,7 @@ import Table, { ITable } from "../../components/table";
 import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
 import { ToastContext } from "../../context/ToastContext";
-import * as Form from "../../components/form";
+import Form from "../../components/form";
 import Select from "../../components/select";
 
 const handleClick = () => {
@@ -219,6 +219,7 @@ function Components() {
                   title="Categoria"
                   placeholder="Selecione uma opção"
                   options={selectOptions}
+                  selectedValue={null}
                   onChange={() => {}}
                 />
                 <Form.Input

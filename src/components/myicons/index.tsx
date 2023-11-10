@@ -11,6 +11,7 @@ import {
   BiSolidEyedropper,
   BiTask,
   BiTrash,
+  BiWindowOpen,
 } from "react-icons/bi";
 
 export const IconMap: MyIconsMap = new Map<Icon, JSX.Element>();
@@ -25,3 +26,4 @@ IconMap.set("share", <BiShare />);
 IconMap.set("eye", <BiSolidEyedropper />);
 IconMap.set("trash", <BiTrash />);
 IconMap.set("task", <BiTask />);
+IconMap.set("windowOpen", <BiWindowOpen />);

@@ -18,12 +18,3 @@ export const TitleWrapper = styled.div`
     margin-bottom: 0.5rem;
   }
 `;
-
-export const Input = styled.input`
-  font-size: inherit;
-  background: none;
-
-  resize: horizontal;
-  min-width: 100px;
-  width: 100%;
-`;

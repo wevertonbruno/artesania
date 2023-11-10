@@ -10,7 +10,7 @@ export const Container = styled.div`
   min-width: 0;
   position: relative;
   box-shadow: var(--box-shadow-default);
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const Body = styled.div`

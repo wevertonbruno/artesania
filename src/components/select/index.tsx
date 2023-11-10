@@ -11,19 +11,31 @@ interface ISelectProps {
   title?: string;
   options: IOptionItem[];
   placeholder?: string;
+  required?: boolean;
+  selectedValue: string | null;
   onChange: (value: string) => void;
 }
 
 //TODO - ADD TITLE
 
-function Select({ options, placeholder, title, onChange }: ISelectProps) {
+function Select({
+  options,
+  placeholder,
+  title,
+  onChange,
+  required,
+  selectedValue,
+}: ISelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
-  const [selectedValue, setSelectedValue] = useState<IOptionItem | null>(null);
   const [search, setSearch] = useState<string>("");
 
   const selectRef = useOutsideClick(() => {
     setExpanded(false);
   });
+
+  const optionsMap = new Map<string, string>(
+    options.map((obj) => [obj.value, obj.text])
+  );
 
   const filteredOptions = options.filter(
     (option) =>
@@ -31,7 +43,6 @@ function Select({ options, placeholder, title, onChange }: ISelectProps) {
   );
 
   const onClickHandler = (selected: IOptionItem | null) => {
-    setSelectedValue(selected);
     onChange(selected ? selected.value : "");
     setExpanded(false);
   };
@@ -46,7 +57,7 @@ function Select({ options, placeholder, title, onChange }: ISelectProps) {
       />
       <div className="dropdown-select">
         <span className={`selected-value ${selectedValue ? "is-select" : ""}`}>
-          {selectedValue ? selectedValue.text : placeholder}
+          {selectedValue ? optionsMap.get(selectedValue) : placeholder}
         </span>
         {expanded ? (
           <Styled.ChevronUpIcon className="dropdown-arrow" />
@@ -72,7 +83,7 @@ function Select({ options, placeholder, title, onChange }: ISelectProps) {
             <div
               key={option.value}
               className={`dropdown-menu-item ${
-                selectedValue?.value === option.value ? "is-select" : ""
+                selectedValue === option.value ? "is-select" : ""
               }`}
               data-value={option.value}
               onClick={() => onClickHandler(option)}

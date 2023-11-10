@@ -31,23 +31,23 @@ interface IMenuItem {
 const menuItems = [
   {
     icon: <HomeIcon />,
-    text: "Dashboard",
+    text: "Home",
     link: "/",
   },
   {
     icon: <ProductIcon />,
     text: "Projetos",
-    link: "/projects",
+    link: "/projetos",
   },
   {
     icon: <ProductIcon />,
     text: "Produtos",
-    link: "/products",
+    link: "/produtos",
   },
   {
     icon: <DashIcon />,
     text: "Componentes",
-    link: "/components",
+    link: "/componentes",
   },
 ] as IMenuItem[];
 
