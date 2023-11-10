@@ -1,5 +1,5 @@
 import React from "react";
-import MainSection from "../../components/main-section";
+import { MainSection, SectionTitle } from "../../components/main-section";
 import { Container } from "./styled";
 import Table, { ITable } from "../../components/table";
 import Btn from "../../components/button";
@@ -72,7 +72,10 @@ const projectTableData: ITable = {
 
 function Products() {
   return (
-    <MainSection title="Produtos">
+    <MainSection>
+      <SectionTitle>
+        <h1>Produtos</h1>
+      </SectionTitle>
       <Container>
         <Table {...projectTableData} />
         <Link to="/products/new">

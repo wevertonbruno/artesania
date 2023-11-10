@@ -6,6 +6,7 @@ import { Icon } from "my-icons";
 interface ITableColumnDef {
   key: string;
   width?: string;
+  nowrap?: boolean;
   name: string;
 }
 
@@ -43,7 +44,11 @@ function Table({ id, columnsDef, rows, rowActions, footer }: ITable) {
           <thead className="text-disabled">
             <tr>
               {columnsDef.map((column) => (
-                <Styled.TableHeader key={column.key} width={column.width}>
+                <Styled.TableHeader
+                  key={column.key}
+                  width={column.width}
+                  style={{ whiteSpace: column.nowrap ? "nowrap" : "normal" }}
+                >
                   {column.name}
                 </Styled.TableHeader>
               ))}

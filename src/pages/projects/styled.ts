@@ -7,3 +7,23 @@ export const Container = styled.section`
     right: 1.5rem;
   }
 `;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  > * {
+    font-size: inherit;
+    margin-bottom: 0.5rem;
+  }
+`;
+
+export const Input = styled.input`
+  font-size: inherit;
+  background: none;
+
+  resize: horizontal;
+  min-width: 100px;
+  width: 100%;
+`;

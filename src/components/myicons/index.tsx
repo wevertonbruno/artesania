@@ -9,6 +9,7 @@ import {
   BiSearch,
   BiShare,
   BiSolidEyedropper,
+  BiTask,
   BiTrash,
 } from "react-icons/bi";
 
@@ -23,3 +24,4 @@ IconMap.set("code", <BiCode />);
 IconMap.set("share", <BiShare />);
 IconMap.set("eye", <BiSolidEyedropper />);
 IconMap.set("trash", <BiTrash />);
+IconMap.set("task", <BiTask />);

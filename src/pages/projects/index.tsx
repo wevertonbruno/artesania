@@ -1,4 +1,8 @@
-import MainSection from "../../components/main-section";
+import {
+  MainSection,
+  SectionCover,
+  SectionTitle,
+} from "../../components/main-section";
 import Table, { ITable, ITableRow } from "../../components/table";
 import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import Btn from "../../components/button";
@@ -34,6 +38,7 @@ const projectTableData: ITable = {
     {
       key: "project_status",
       name: "Status de Projeto",
+      nowrap: true,
       width: "auto",
     },
     {
@@ -46,7 +51,7 @@ const projectTableData: ITable = {
     options: [
       {
         name: "Visualizar tarefas",
-        icon: "eye",
+        icon: "task",
         onClick: (row: ITableRow) => {
           alert(row.id + row.name);
         },
@@ -104,10 +109,11 @@ const projectTableData: ITable = {
 
 function Projects() {
   return (
-    <MainSection
-      title="Projetos"
-      cover={{ src: "/project-cover.webp", alt: "Projetos Capa" }}
-    >
+    <MainSection>
+      <SectionTitle>
+        <h1>Projetos</h1>
+      </SectionTitle>
+      <SectionCover src="/project-cover.webp" alt="Projetos Capa" />
       <div className="row">
         <div className="col-xl-3">
           <div className="row">

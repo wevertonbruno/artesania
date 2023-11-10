@@ -4,6 +4,7 @@ import Home from "../pages/home";
 import Projects from "../pages/projects";
 import Components from "../pages/components";
 import Products from "../pages/products";
+import Project from "../pages/projects/project";
 
 export default createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export default createBrowserRouter([
       {
         path: "/projects",
         element: <Projects />,
+      },
+      {
+        path: "/projects/:id",
+        element: <Project />,
       },
       {
         path: "/products",

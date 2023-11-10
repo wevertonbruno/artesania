@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import * as Styled from "./styled";
 import Btn from "../../components/button";
-import MainSection from "../../components/main-section";
+import { MainSection, SectionTitle } from "../../components/main-section";
 import Table, { ITable } from "../../components/table";
 import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
@@ -117,7 +117,10 @@ function Components() {
   };
 
   return (
-    <MainSection title="Components">
+    <MainSection>
+      <SectionTitle>
+        <h1>Componentes</h1>
+      </SectionTitle>
       <Styled.Container>
         <section>
           <h1>Botoes</h1>

@@ -11,19 +11,8 @@ declare module "my-icons" {
     | "minus"
     | "code"
     | "share"
-    | "eye";
+    | "eye"
+    | "task";
 
-  export type MyIconsMap = Map<
-    | "trash"
-    | "edit"
-    | "copy"
-    | "download"
-    | "search"
-    | "plus"
-    | "minus"
-    | "code"
-    | "share"
-    | "eye",
-    JSX.Element
-  >;
+  export type MyIconsMap = Map<Icon, JSX.Element>;
 }

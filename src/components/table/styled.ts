@@ -8,7 +8,10 @@ export const Container = styled.div`
   background: var(--sidebar-color);
   border-radius: var(--default-radius);
   width: 100%;
+  position: relative;
   .t_body {
+    overflow: auto;
+
     &::-webkit-scrollbar {
       width: 0.3rem;
       height: 0.3rem;
@@ -47,6 +50,8 @@ export const Container = styled.div`
   }
 
   thead {
+    background-color: var(--sidebar-color);
+    z-index: 1;
     position: sticky;
     top: 0;
     left: 0;
