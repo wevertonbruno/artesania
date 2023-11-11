@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import {
   MainSection,
@@ -7,7 +7,7 @@ import {
 } from "../../components/main-section";
 import * as Styled from "./styled";
 import Form from "../../components/form";
-import Select from "../../components/select";
+import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
 
 const clientes = [
@@ -25,9 +25,29 @@ const clientes = [
   },
 ];
 
+interface FormData {
+  cliente_id: string;
+  title: string;
+  nome_projeto: string;
+  data_entrega: string;
+  endereco_entrega: string;
+  cliente_nome?: string;
+  cliente_cep?: string;
+  cliente_email?: string;
+}
+
 function ProjectNew() {
-  const [client, setClient] = useState<string | null>(null);
   const [title, setTitle] = useState<string>("Novo projeto sem título");
+  const [formData, setFormData] = useState<FormData>({
+    cliente_id: "",
+    title: "",
+    nome_projeto: "",
+    data_entrega: "",
+    endereco_entrega: "",
+    cliente_nome: "",
+    cliente_cep: "",
+    cliente_email: "",
+  });
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -35,9 +55,18 @@ function ProjectNew() {
   };
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setTitle(value);
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
+
+  const handleSelectChange = (e: SelectEvent) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   return (
     <MainSection>
@@ -64,9 +93,6 @@ function ProjectNew() {
         <div className="col-xl-9">
           <Card className="mb-4">
             <CardBody>
-              <CardTitle>
-                <div style={{ position: "absolute", right: 0, top: 0 }}>+</div>
-              </CardTitle>
               <Form.Container>
                 <Form.Title>
                   <div
@@ -87,29 +113,33 @@ function ProjectNew() {
                       type="text"
                       placeholder="projeto..."
                       name="nome_projeto"
+                      onChange={handlerChange}
                     />
                     <Form.Input
                       title="Data de entrega"
                       type="date"
                       name="data_entrega"
                       placeholder="Enter your birth date"
+                      onChange={handlerChange}
                     />
                     <Form.Input
                       title="Endereço de entrega"
                       type="text"
                       placeholder="projeto..."
                       name="endereco_entrega"
+                      onChange={handlerChange}
                     />
                     <Select
                       title="Cliente"
                       options={clientes}
-                      selectedValue={client}
+                      value={formData.cliente_id}
                       placeholder="Novo cliente..."
-                      onChange={(value) => setClient(value)}
+                      name="cliente_id"
+                      onChange={handleSelectChange}
                     />
                   </Form.Fields>
                 </Form.Section>
-                {!client && (
+                {!formData.cliente_id && (
                   <Form.Section title="Cadastro do cliente">
                     <Form.Fields columns={3}>
                       <Form.Input
@@ -117,6 +147,7 @@ function ProjectNew() {
                         type="text"
                         placeholder="Nome do cliente..."
                         name="cliente_nome"
+                        onChange={handlerChange}
                         required
                       />
                       <Form.Input
@@ -124,12 +155,14 @@ function ProjectNew() {
                         type="text"
                         placeholder="Email do cliente"
                         name="cliente_email"
+                        onChange={handlerChange}
                       />
                       <Form.Input
                         title="CEP"
                         type="text"
                         placeholder="CEP..."
                         name="cliente_cep"
+                        onChange={handlerChange}
                         required
                       />
                     </Form.Fields>

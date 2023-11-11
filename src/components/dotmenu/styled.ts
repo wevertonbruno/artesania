@@ -24,10 +24,10 @@ export const MenuWrapper = styled.div<DotMenuProps>`
 export const Menu = styled.div`
   position: absolute;
   right: 1.5rem;
-  top: 0.25rem;
+  top: 0;
+  bottom: auto;
   padding: 0.3rem;
   border-radius: var(--default-radius);
-  overflow: hidden;
   font-size: 0.875rem;
   z-index: 3;
   /* background: var(--sidebar-color); */
@@ -37,8 +37,14 @@ export const Menu = styled.div`
 
   opacity: 0;
   transform: scale(0);
-  transform-origin: 176px 0px;
+  transform-origin: top right;
   transition: opacity 0.2s ease, transform 0.4s ease;
+
+  &.dropdown-bottom {
+    bottom: 0;
+    top: auto;
+    transform-origin: bottom right;
+  }
 
   &.open {
     transform: scale(1);

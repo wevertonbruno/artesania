@@ -214,14 +214,6 @@ function Components() {
                   type="text"
                   placeholder="Enter your e-mail"
                 />
-
-                <Select
-                  title="Categoria"
-                  placeholder="Selecione uma opção"
-                  options={selectOptions}
-                  selectedValue={null}
-                  onChange={() => {}}
-                />
                 <Form.Input
                   title="Data of Birth"
                   type="date"

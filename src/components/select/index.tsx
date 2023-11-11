@@ -12,8 +12,16 @@ interface ISelectProps {
   options: IOptionItem[];
   placeholder?: string;
   required?: boolean;
-  selectedValue: string | null;
-  onChange: (value: string) => void;
+  value: string;
+  name?: string;
+  onChange: (e: SelectEvent) => void;
+}
+
+export interface SelectEvent {
+  target: {
+    name: string;
+    value: string;
+  };
 }
 
 //TODO - ADD TITLE
@@ -23,14 +31,16 @@ function Select({
   placeholder,
   title,
   onChange,
+  name,
   required,
-  selectedValue,
+  value,
 }: ISelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
 
   const selectRef = useOutsideClick(() => {
     setExpanded(false);
+    setSearch("");
   });
 
   const optionsMap = new Map<string, string>(
@@ -43,8 +53,14 @@ function Select({
   );
 
   const onClickHandler = (selected: IOptionItem | null) => {
-    onChange(selected ? selected.value : "");
+    onChange({
+      target: {
+        name: name || "",
+        value: selected ? selected.value : "",
+      },
+    });
     setExpanded(false);
+    setSearch("");
   };
 
   return (
@@ -56,8 +72,8 @@ function Select({
         onClick={() => setExpanded(!expanded)}
       />
       <div className="dropdown-select">
-        <span className={`selected-value ${selectedValue ? "is-select" : ""}`}>
-          {selectedValue ? optionsMap.get(selectedValue) : placeholder}
+        <span className={`selected-value ${value ? "is-select" : ""}`}>
+          {value ? optionsMap.get(value) : placeholder}
         </span>
         {expanded ? (
           <Styled.ChevronUpIcon className="dropdown-arrow" />
@@ -70,6 +86,7 @@ function Select({
           placeholder="Search..."
           type="text"
           className="dropdown-menu-search"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="dropdown-menu-inner">
@@ -83,7 +100,7 @@ function Select({
             <div
               key={option.value}
               className={`dropdown-menu-item ${
-                selectedValue === option.value ? "is-select" : ""
+                value === option.value ? "is-select" : ""
               }`}
               data-value={option.value}
               onClick={() => onClickHandler(option)}

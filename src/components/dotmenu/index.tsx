@@ -5,9 +5,10 @@ import { MenuProps } from "dotmenu";
 import { IconMap } from "../myicons";
 
 function DotMenu({ options, riskOptions, position, containerRef }: MenuProps) {
-  const [top, setTop] = useState<string | number>("auto");
-  const [bottom, setBottom] = useState<string | number>("auto");
   const [open, setOpen] = useState<boolean>(false);
+  const [positionClass, setPositionClass] = useState<
+    "dropdown-top" | "dropdown-bottom"
+  >("dropdown-top");
 
   const menuRef = useOutsideClick(() => {
     setOpen(false);
@@ -15,31 +16,21 @@ function DotMenu({ options, riskOptions, position, containerRef }: MenuProps) {
 
   const handleClick = () => {
     if (containerRef) {
-      const dropdown = menuRef.current?.querySelector<HTMLDivElement>(
-        ".dropdown"
-      );
-      const toggle = menuRef.current?.querySelector<HTMLDivElement>(
-        ".menu-toogle"
-      );
+      const dropdown =
+        menuRef.current?.querySelector<HTMLDivElement>(".dropdown");
+      const toggle =
+        menuRef.current?.querySelector<HTMLDivElement>(".menu-toogle");
       const containerHeight = containerRef.current?.offsetHeight;
       const dropdownHeight = dropdown?.offsetHeight;
       const toggleOffset = toggle?.getBoundingClientRect().top;
       const containerOffset = containerRef.current?.getBoundingClientRect().top;
       const toggleOffsetFromContainer = toggleOffset! - containerOffset!;
-      console.log(
-        containerHeight,
-        dropdownHeight,
-        toggleOffset,
-        toggleOffsetFromContainer
-      );
 
       if (containerHeight && dropdownHeight && toggleOffsetFromContainer) {
         if (toggleOffsetFromContainer + dropdownHeight > containerHeight) {
-          setBottom(0);
-          setTop("auto");
+          setPositionClass("dropdown-bottom");
         } else {
-          setBottom("auto");
-          setTop(0);
+          setPositionClass("dropdown-top");
         }
       }
     }
@@ -51,8 +42,7 @@ function DotMenu({ options, riskOptions, position, containerRef }: MenuProps) {
       <div>
         <Styled.MenuIcon onClick={handleClick} className="menu-toogle" />
         <Styled.Menu
-          className={`dropdown ${open ? "open" : ""}`}
-          style={{ top, bottom }}
+          className={`dropdown ${positionClass} ${open ? "open" : ""}`}
         >
           <ul>
             {options.map((item) => (
