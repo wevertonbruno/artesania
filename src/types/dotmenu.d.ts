@@ -8,6 +8,7 @@ declare module "dotmenu" {
   }
 
   export interface MenuProps {
+    containerRef?: React.RefObject<HTMLDivElement>;
     options: MenuOptionProps[];
     riskOptions?: MenuOptionProps[];
     position?: {

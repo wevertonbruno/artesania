@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import * as Styled from "./styled";
 import DotMenu from "../dotmenu";
 import { Icon } from "my-icons";
@@ -37,9 +37,11 @@ export interface ITable {
 }
 
 function Table({ id, columnsDef, rows, rowActions, footer }: ITable) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   return (
     <Styled.Container>
-      <div className="t_body">
+      <div className="t_body" ref={containerRef}>
         <table id={id}>
           <thead className="text-disabled">
             <tr>
@@ -64,6 +66,7 @@ function Table({ id, columnsDef, rows, rowActions, footer }: ITable) {
                 {rowActions && (
                   <td>
                     <DotMenu
+                      containerRef={containerRef}
                       riskOptions={rowActions.riskOptions?.map((action) => ({
                         ...action,
                         onClick: () => action.onClick(row),
