@@ -76,6 +76,27 @@ const gridCss = () => {
             .m-${i} {
                 margin: ${0.25 * i}rem !important;
             }
+
+            .p-${i} {
+                padding: ${0.25 * i}rem !important;
+            }
+
+            .px-${i} {
+                padding-left: ${0.25 * i}rem !important;
+                padding-right: ${0.25 * i}rem !important;
+            }
+
+            .py-${i} {
+                padding-top: ${0.25 * i}rem !important;
+            }
+
+            .pb-${i} {
+                padding-bottom: ${0.25 * i}rem !important;
+            }
+
+            .pt-${i} {
+                padding-top: ${0.25 * i}rem !important;
+            }
         `;
   }
 

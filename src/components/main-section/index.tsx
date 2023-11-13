@@ -33,7 +33,7 @@ export function MainSection({ children }: ChildrenProps) {
 
   return (
     <Styled.Container className={isOpen ? "" : "closed"}>
-      <div className="container-lg">{children}</div>
+      <div className="container-lg pb-4">{children}</div>
     </Styled.Container>
   );
 }

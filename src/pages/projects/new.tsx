@@ -34,10 +34,10 @@ interface FormData {
   cliente_nome?: string;
   cliente_cep?: string;
   cliente_email?: string;
+  orcamento_title?: string[];
 }
 
 function ProjectNew() {
-  const [title, setTitle] = useState<string>("Novo projeto sem título");
   const [formData, setFormData] = useState<FormData>({
     cliente_id: "",
     title: "",
@@ -47,11 +47,12 @@ function ProjectNew() {
     cliente_nome: "",
     cliente_cep: "",
     cliente_email: "",
+    orcamento_title: [],
   });
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setTitle(value || "Novo projeto sem título");
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleChange = (
@@ -86,7 +87,8 @@ function ProjectNew() {
                       defaultValue="Novo projeto sem título"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      value={title}
+                      value={formData.title}
+                      name="title"
                     />
                   </div>
                 </Form.Title>
@@ -127,7 +129,7 @@ function ProjectNew() {
                   <Form.Section title="Cadastro do cliente">
                     <Form.Fields columns={3}>
                       <Form.Input
-                        title="Nome do cliente"
+                        title="Nome"
                         type="text"
                         placeholder="Nome do cliente..."
                         name="cliente_nome"
@@ -149,9 +151,63 @@ function ProjectNew() {
                         onChange={handleChange}
                         required
                       />
+                      <Form.Input
+                        title="Endereço"
+                        type="text"
+                        placeholder="Rua manoel cle..."
+                        name="cliente_endereco"
+                        onChange={handleChange}
+                      />
+                      <Form.Input
+                        title="Telefone"
+                        type="text"
+                        placeholder="(87) 99999-9999"
+                        name="cliente_telefone"
+                        onChange={handleChange}
+                      />
                     </Form.Fields>
                   </Form.Section>
                 )}
+              </Form.Container>
+            </CardBody>
+          </Card>
+          <Card>
+            <CardBody>
+              <Form.Container>
+                <Form.Title>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <EditableText
+                      defaultValue="Orçamento 1"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      name="orcamento_title[]"
+                    />
+                  </div>
+                </Form.Title>
+                <Form.Section title="Items">
+                  <Form.Fields columns={3}>
+                    <Form.Input
+                      title="Quantidade"
+                      type="number"
+                      name="orcamento_quantidade[]"
+                      onChange={handleChange}
+                    />
+                    <Form.Input
+                      title="Valor"
+                      type="number"
+                      name="orcamento_valor[]"
+                      onChange={handleChange}
+                    />
+                    <Form.Input
+                      title="Total"
+                      type="number"
+                      name="orcamento_total[]"
+                      onChange={handleChange}
+                    />
+                  </Form.Fields>
+                </Form.Section>
               </Form.Container>
             </CardBody>
           </Card>
