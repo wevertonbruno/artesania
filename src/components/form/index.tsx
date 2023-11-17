@@ -1,15 +1,19 @@
 import React from "react";
 import * as Styled from "./styled";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  columnSize?: number;
+  columnLg?: number;
+  columnMd?: number;
+  columnXl?: number;
+  columnSm?: number;
+}
 
 interface Nested {
   children: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-interface FieldsProps extends Nested {
-  columns: number;
-}
+interface FieldsProps extends Nested {}
 
 interface SectionProps extends Nested {
   title?: string;
@@ -24,21 +28,29 @@ interface FormProps extends Nested {
 }
 
 // TODO: Add style for required inputs
-const Input = ({ title, ...inputProps }: InputProps) => {
+const Input = ({
+  title,
+  columnSize,
+  columnLg: lg,
+  columnMd: md,
+  columnXl: xl,
+  columnSm: sm,
+  ...inputProps
+}: InputProps) => {
+  const gridClass = `${xl && `col-xl-${xl}`}${lg && `col-lg-${lg}`}${
+    md && `col-md-${md}`
+  }${sm && `col-sm-${sm}`}`;
+
   return (
-    <Styled.InputField className="input-field">
+    <Styled.InputField className={gridClass}>
       {title && <label>{`${title}${inputProps.required ? "*" : ""}`}</label>}
       <input {...inputProps} />
     </Styled.InputField>
   );
 };
 
-const Fields = ({ columns, children }: FieldsProps) => {
-  return (
-    <Styled.Fields className="fields" $columns={columns}>
-      {children}
-    </Styled.Fields>
-  );
+const Fields = ({ children }: FieldsProps) => {
+  return <Styled.Fields className="row">{children}</Styled.Fields>;
 };
 
 const Title = ({ children }: SectionProps) => {

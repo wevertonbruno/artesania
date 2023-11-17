@@ -1,9 +1,9 @@
 import { BiSend } from "react-icons/bi";
 import styled from "styled-components";
 
-type FieldProps = {
-  $columns?: number;
-};
+// type FieldProps = {
+//   $columns?: number;
+// };
 
 type FormActionsProps = {
   $align: "left" | "center" | "right";
@@ -56,21 +56,19 @@ export const FormSection = styled.div`
   }
 `;
 
-export const Fields = styled.div<FieldProps>`
-  display: flex;
+/* display: flex;
   gap: 0.91rem;
   flex-wrap: wrap;
 
   .input-field {
     flex: 1 1 calc(100% / ${(props) => props.$columns} - 0.91rem);
-  }
-`;
+  } */
+export const Fields = styled.div``;
 
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: end;
-  margin: 0.25rem 0;
 
   label {
     font-size: 0.75rem;

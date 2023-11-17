@@ -198,7 +198,7 @@ function Components() {
         <section>
           <Form.Container title="Registration">
             <Form.Section title="Project Info">
-              <Form.Fields columns={4}>
+              <Form.Fields>
                 <Form.Input
                   title="First Name"
                   type="text"
@@ -228,7 +228,7 @@ function Components() {
             </Form.Section>
 
             <Form.Section title="Client Info">
-              <Form.Fields columns={3}>
+              <Form.Fields>
                 <Form.Input
                   title="First Name"
                   type="text"
@@ -247,7 +247,7 @@ function Components() {
                   required
                 />
               </Form.Fields>
-              <Form.Fields columns={2}>
+              <Form.Fields>
                 <Form.Input
                   title="Email"
                   type="text"
@@ -272,7 +272,7 @@ function Components() {
               </Form.Fields>
             </Form.Section>
             <Form.Section title="Personal info">
-              <Form.Fields columns={2}>
+              <Form.Fields>
                 <Checkbox
                   label="Checked"
                   onChange={onChange}
@@ -285,7 +285,7 @@ function Components() {
                   onChange={onChange}
                 />
               </Form.Fields>
-              <Form.Fields columns={2}>
+              <Form.Fields>
                 <Radio label="Male" name="gender" onChange={onChange} />
                 <Radio label="Female" name="gender" onChange={onChange} />
               </Form.Fields>

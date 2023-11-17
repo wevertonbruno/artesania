@@ -93,8 +93,9 @@ function ProjectNew() {
                   </div>
                 </Form.Title>
                 <Form.Section title="Informações de contrato">
-                  <Form.Fields columns={2}>
+                  <Form.Fields>
                     <Form.Input
+                      columnSize={6}
                       title="Nome do projeto"
                       type="text"
                       placeholder="projeto..."
@@ -102,6 +103,7 @@ function ProjectNew() {
                       onChange={handleChange}
                     />
                     <Form.Input
+                      columnSize={6}
                       title="Data de entrega"
                       type="date"
                       name="data_entrega"
@@ -109,6 +111,7 @@ function ProjectNew() {
                       onChange={handleChange}
                     />
                     <Form.Input
+                      columnSize={6}
                       title="Endereço de entrega"
                       type="text"
                       placeholder="projeto..."
@@ -127,8 +130,9 @@ function ProjectNew() {
                 </Form.Section>
                 {!formData.cliente_id && (
                   <Form.Section title="Cadastro do cliente">
-                    <Form.Fields columns={3}>
+                    <Form.Fields>
                       <Form.Input
+                        columnSize={3}
                         title="Nome"
                         type="text"
                         placeholder="Nome do cliente..."
@@ -137,6 +141,7 @@ function ProjectNew() {
                         required
                       />
                       <Form.Input
+                        columnSize={3}
                         title="Email"
                         type="text"
                         placeholder="Email do cliente"
@@ -144,6 +149,7 @@ function ProjectNew() {
                         onChange={handleChange}
                       />
                       <Form.Input
+                        columnSize={3}
                         title="CEP"
                         type="text"
                         placeholder="CEP..."
@@ -152,6 +158,7 @@ function ProjectNew() {
                         required
                       />
                       <Form.Input
+                        columnSize={3}
                         title="Endereço"
                         type="text"
                         placeholder="Rua manoel cle..."
@@ -159,6 +166,7 @@ function ProjectNew() {
                         onChange={handleChange}
                       />
                       <Form.Input
+                        columnSize={3}
                         title="Telefone"
                         type="text"
                         placeholder="(87) 99999-9999"
@@ -187,20 +195,23 @@ function ProjectNew() {
                   </div>
                 </Form.Title>
                 <Form.Section title="Items">
-                  <Form.Fields columns={3}>
+                  <Form.Fields>
                     <Form.Input
+                      columnSize={4}
                       title="Quantidade"
                       type="number"
                       name="orcamento_quantidade[]"
                       onChange={handleChange}
                     />
                     <Form.Input
+                      columnSize={4}
                       title="Valor"
                       type="number"
                       name="orcamento_valor[]"
                       onChange={handleChange}
                     />
                     <Form.Input
+                      columnSize={4}
                       title="Total"
                       type="number"
                       name="orcamento_total[]"
