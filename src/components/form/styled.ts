@@ -63,7 +63,11 @@ export const FormSection = styled.div`
   .input-field {
     flex: 1 1 calc(100% / ${(props) => props.$columns} - 0.91rem);
   } */
-export const Fields = styled.div``;
+export const Fields = styled.div`
+  > * {
+    margin-bottom: 1rem;
+  }
+`;
 
 export const InputField = styled.div`
   display: flex;

@@ -14,6 +14,10 @@ interface ISelectProps {
   required?: boolean;
   value: string;
   name?: string;
+  columnLg?: number;
+  columnMd?: number;
+  columnXl?: number;
+  columnSm?: number;
   onChange: (e: SelectEvent) => void;
 }
 
@@ -24,6 +28,10 @@ export interface SelectEvent {
   };
 }
 
+function getGrid(type: string, size?: number): string {
+  return size ? ` col-${type}-${size}` : "";
+}
+
 //TODO - ADD TITLE
 
 function Select({
@@ -32,11 +40,21 @@ function Select({
   title,
   onChange,
   name,
+  columnLg: lg,
+  columnMd: md,
+  columnXl: xl,
+  columnSm: sm,
   required,
   value,
 }: ISelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
+  const gridClass =
+    getGrid("lg", lg) +
+    getGrid("md", md) +
+    getGrid("xl", xl) +
+    getGrid("sm", sm) +
+    " col-12";
 
   const selectRef = useOutsideClick(() => {
     setExpanded(false);
@@ -64,7 +82,10 @@ function Select({
   };
 
   return (
-    <Styled.Container className="dropdown input-field" ref={selectRef}>
+    <Styled.Container
+      className={`dropdown input-field ${gridClass}`}
+      ref={selectRef}
+    >
       {title && <label className="dropdown-title">{title}</label>}
       <input
         type="checkbox"

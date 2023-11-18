@@ -54,31 +54,31 @@ function ProjectView() {
                 <Form.Section title="Project Info">
                   <Form.Fields>
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="First Name"
                       type="text"
                       placeholder="Enter your first name"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Data of Birth"
                       type="date"
                       placeholder="Enter your birth date"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Email"
                       type="text"
                       placeholder="Enter your e-mail"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Data of Birth"
                       type="date"
                       placeholder="Enter your birth date"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Email"
                       type="text"
                       placeholder="Enter your e-mail"
@@ -89,20 +89,20 @@ function ProjectView() {
                 <Form.Section title="Client Info">
                   <Form.Fields>
                     <Form.Input
-                      columnSize={4}
+                      columnXl={4}
                       title="First Name"
                       type="text"
                       placeholder="Enter your first name"
                       required
                     />
                     <Form.Input
-                      columnSize={4}
+                      columnXl={4}
                       title="Data of Birth"
                       type="date"
                       placeholder="Enter your birth date"
                     />
                     <Form.Input
-                      columnSize={4}
+                      columnXl={4}
                       title="Email"
                       type="text"
                       placeholder="Enter your e-mail"
@@ -111,25 +111,25 @@ function ProjectView() {
                   </Form.Fields>
                   <Form.Fields>
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Email"
                       type="text"
                       placeholder="Enter your e-mail"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Age"
                       type="number"
                       placeholder="Enter your first name"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Data of Birth"
                       type="date"
                       placeholder="Enter your birth date"
                     />
                     <Form.Input
-                      columnSize={3}
+                      columnXl={3}
                       title="Email"
                       type="text"
                       placeholder="Enter your e-mail"

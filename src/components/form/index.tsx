@@ -2,7 +2,6 @@ import React from "react";
 import * as Styled from "./styled";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  columnSize?: number;
   columnLg?: number;
   columnMd?: number;
   columnXl?: number;
@@ -27,19 +26,25 @@ interface FormProps extends Nested {
   title?: string;
 }
 
+function getGrid(type: string, size?: number): string {
+  return size ? ` col-${type}-${size}` : "";
+}
+
 // TODO: Add style for required inputs
 const Input = ({
   title,
-  columnSize,
   columnLg: lg,
   columnMd: md,
   columnXl: xl,
   columnSm: sm,
   ...inputProps
 }: InputProps) => {
-  const gridClass = `${xl && `col-xl-${xl}`}${lg && `col-lg-${lg}`}${
-    md && `col-md-${md}`
-  }${sm && `col-sm-${sm}`}`;
+  const gridClass =
+    getGrid("lg", lg) +
+    getGrid("md", md) +
+    getGrid("xl", xl) +
+    getGrid("sm", sm) +
+    " col-12";
 
   return (
     <Styled.InputField className={gridClass}>

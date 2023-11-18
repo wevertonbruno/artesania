@@ -6,7 +6,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: end;
-  margin: 0.25rem 0;
 
   label {
     font-size: 0.75rem;
@@ -58,8 +57,8 @@ export const Container = styled.div`
     transform: scaleY(0);
     transform-origin: top;
     top: 100%;
-    left: 0;
-    width: 100%;
+    left: calc(1.5rem * 0.5);
+    width: calc(100% - 1.5rem);
     z-index: 10;
     border-radius: 0.25rem;
     border-top-left-radius: 0;

@@ -9,6 +9,7 @@ import * as Styled from "./styled";
 import Form from "../../components/form";
 import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
+import Modal from "../../components/modal";
 
 const clientes = [
   {
@@ -38,6 +39,7 @@ interface FormData {
 }
 
 function ProjectNew() {
+  const [expanded, setExpanded] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     cliente_id: "",
     title: "",
@@ -74,10 +76,14 @@ function ProjectNew() {
         </Styled.TitleWrapper>
       </SectionTitle>
       <SectionCover src="/project-cover.webp" alt="Projetos Capa" />
+      <Modal isOpen={expanded} onClose={() => setExpanded(false)}>
+        Olá
+      </Modal>
       <div className="row">
         <div className="col-xl-9">
           <Card className="mb-4">
             <CardBody>
+              <button onClick={() => setExpanded(true)}>modal</button>
               <Form.Container>
                 <Form.Title>
                   <div
@@ -95,7 +101,7 @@ function ProjectNew() {
                 <Form.Section title="Informações de contrato">
                   <Form.Fields>
                     <Form.Input
-                      columnSize={6}
+                      columnXl={6}
                       title="Nome do projeto"
                       type="text"
                       placeholder="projeto..."
@@ -103,7 +109,7 @@ function ProjectNew() {
                       onChange={handleChange}
                     />
                     <Form.Input
-                      columnSize={6}
+                      columnXl={6}
                       title="Data de entrega"
                       type="date"
                       name="data_entrega"
@@ -111,7 +117,7 @@ function ProjectNew() {
                       onChange={handleChange}
                     />
                     <Form.Input
-                      columnSize={6}
+                      columnXl={6}
                       title="Endereço de entrega"
                       type="text"
                       placeholder="projeto..."
@@ -119,6 +125,7 @@ function ProjectNew() {
                       onChange={handleChange}
                     />
                     <Select
+                      columnXl={6}
                       title="Cliente"
                       options={clientes}
                       value={formData.cliente_id}
@@ -132,7 +139,7 @@ function ProjectNew() {
                   <Form.Section title="Cadastro do cliente">
                     <Form.Fields>
                       <Form.Input
-                        columnSize={3}
+                        columnXl={3}
                         title="Nome"
                         type="text"
                         placeholder="Nome do cliente..."
@@ -141,7 +148,7 @@ function ProjectNew() {
                         required
                       />
                       <Form.Input
-                        columnSize={3}
+                        columnXl={3}
                         title="Email"
                         type="text"
                         placeholder="Email do cliente"
@@ -149,7 +156,7 @@ function ProjectNew() {
                         onChange={handleChange}
                       />
                       <Form.Input
-                        columnSize={3}
+                        columnXl={3}
                         title="CEP"
                         type="text"
                         placeholder="CEP..."
@@ -158,7 +165,7 @@ function ProjectNew() {
                         required
                       />
                       <Form.Input
-                        columnSize={3}
+                        columnXl={3}
                         title="Endereço"
                         type="text"
                         placeholder="Rua manoel cle..."
@@ -166,7 +173,7 @@ function ProjectNew() {
                         onChange={handleChange}
                       />
                       <Form.Input
-                        columnSize={3}
+                        columnXl={3}
                         title="Telefone"
                         type="text"
                         placeholder="(87) 99999-9999"
@@ -197,24 +204,24 @@ function ProjectNew() {
                 <Form.Section title="Items">
                   <Form.Fields>
                     <Form.Input
-                      columnSize={4}
+                      columnXl={4}
+                      title="Descrição"
+                      type="text"
+                      name="descricao"
+                      onChange={handleChange}
+                    />
+                    <Form.Input
+                      columnXl={2}
                       title="Quantidade"
                       type="number"
                       name="orcamento_quantidade[]"
                       onChange={handleChange}
                     />
                     <Form.Input
-                      columnSize={4}
+                      columnXl={4}
                       title="Valor"
                       type="number"
                       name="orcamento_valor[]"
-                      onChange={handleChange}
-                    />
-                    <Form.Input
-                      columnSize={4}
-                      title="Total"
-                      type="number"
-                      name="orcamento_total[]"
                       onChange={handleChange}
                     />
                   </Form.Fields>
