@@ -7,30 +7,11 @@ import Checkbox from "../../components/check-button/checkbox";
 import Radio from "../../components/check-button/radio";
 import { ToastContext } from "../../context/ToastContext";
 import Form from "../../components/form";
-import Select from "../../components/select";
+import Input from "../../components/input";
 
 const handleClick = () => {
   alert("teste");
 };
-
-const selectOptions = [
-  {
-    value: "1",
-    text: "Option 1",
-  },
-  {
-    value: "2",
-    text: "Option 2",
-  },
-  {
-    value: "3",
-    text: "Option 3",
-  },
-  {
-    value: "4",
-    text: "Option 4",
-  },
-];
 
 const tableData = {
   id: "example-table",
@@ -198,81 +179,37 @@ function Components() {
         <section>
           <Form.Container title="Registration">
             <Form.Section title="Project Info">
-              <Form.Fields>
-                <Form.Input
+              <div className="row">
+                <Input
                   title="First Name"
                   type="text"
                   placeholder="Enter your first name"
                 />
-                <Form.Input
+                <Input
                   title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
-                <Form.Input
+                <Input
                   title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                 />
-                <Form.Input
+                <Input
                   title="Data of Birth"
                   type="date"
                   placeholder="Enter your birth date"
                 />
-                <Form.Input
+                <Input
                   title="Email"
                   type="text"
                   placeholder="Enter your e-mail"
                 />
-              </Form.Fields>
+              </div>
             </Form.Section>
 
-            <Form.Section title="Client Info">
-              <Form.Fields>
-                <Form.Input
-                  title="First Name"
-                  type="text"
-                  placeholder="Enter your first name"
-                  required
-                />
-                <Form.Input
-                  title="Data of Birth"
-                  type="date"
-                  placeholder="Enter your birth date"
-                />
-                <Form.Input
-                  title="Email"
-                  type="text"
-                  placeholder="Enter your e-mail"
-                  required
-                />
-              </Form.Fields>
-              <Form.Fields>
-                <Form.Input
-                  title="Email"
-                  type="text"
-                  placeholder="Enter your e-mail"
-                />
-                <Form.Input
-                  title="Age"
-                  type="number"
-                  placeholder="Enter your first name"
-                />
-                <Form.Input
-                  title="Data of Birth"
-                  type="date"
-                  placeholder="Enter your birth date"
-                />
-                <Form.Input
-                  title="Email"
-                  type="text"
-                  placeholder="Enter your e-mail"
-                  required
-                />
-              </Form.Fields>
-            </Form.Section>
             <Form.Section title="Personal info">
-              <Form.Fields>
+              <div className="row">
                 <Checkbox
                   label="Checked"
                   onChange={onChange}
@@ -284,11 +221,11 @@ function Components() {
                   name="unchecked"
                   onChange={onChange}
                 />
-              </Form.Fields>
-              <Form.Fields>
+              </div>
+              <div className="row">
                 <Radio label="Male" name="gender" onChange={onChange} />
                 <Radio label="Female" name="gender" onChange={onChange} />
-              </Form.Fields>
+              </div>
             </Form.Section>
             <Form.ActionBar align="left">
               <Btn.Button text="Submit" />

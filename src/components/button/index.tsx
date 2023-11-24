@@ -11,19 +11,19 @@ interface BtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 interface BtnIconProps extends BtnProps {
-  icon: "code" | "plus" | "minus";
+  icon: "code" | "plus" | "minus" | "trash";
   radius?: string;
 }
 
-function Button({ text, fontSize, ...rest }: BtnProps) {
+export function Button({ text, fontSize, ...rest }: BtnProps) {
   return (
-    <Styled.Container fontSize={fontSize} {...rest}>
+    <Styled.ButtonPrimary {...rest}>
       <span>{text}</span>
-    </Styled.Container>
+    </Styled.ButtonPrimary>
   );
 }
 
-function PlusButton(props: BtnProps) {
+export function PlusButton(props: BtnProps) {
   return (
     <Styled.IconButton {...props}>
       <BiPlus />
@@ -31,7 +31,7 @@ function PlusButton(props: BtnProps) {
   );
 }
 
-function IconButton(props: BtnIconProps) {
+export function IconButton(props: BtnIconProps) {
   return (
     <Styled.IconButton {...props}>{iconsMap[props.icon]}</Styled.IconButton>
   );

@@ -10,6 +10,9 @@ import Form from "../../components/form";
 import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
 import Modal from "../../components/modal";
+import { Button, IconButton } from "../../components/button";
+import Input from "../../components/input";
+import ModalNewItem from "./modal-new-item";
 
 const clientes = [
   {
@@ -76,14 +79,10 @@ function ProjectNew() {
         </Styled.TitleWrapper>
       </SectionTitle>
       <SectionCover src="/project-cover.webp" alt="Projetos Capa" />
-      <Modal isOpen={expanded} onClose={() => setExpanded(false)}>
-        Olá
-      </Modal>
       <div className="row">
         <div className="col-xl-9">
           <Card className="mb-4">
             <CardBody>
-              <button onClick={() => setExpanded(true)}>modal</button>
               <Form.Container>
                 <Form.Title>
                   <div
@@ -99,88 +98,98 @@ function ProjectNew() {
                   </div>
                 </Form.Title>
                 <Form.Section title="Informações de contrato">
-                  <Form.Fields>
-                    <Form.Input
-                      columnXl={6}
-                      title="Nome do projeto"
-                      type="text"
-                      placeholder="projeto..."
-                      name="nome_projeto"
-                      onChange={handleChange}
-                    />
-                    <Form.Input
-                      columnXl={6}
-                      title="Data de entrega"
-                      type="date"
-                      name="data_entrega"
-                      placeholder="Enter your birth date"
-                      onChange={handleChange}
-                    />
-                    <Form.Input
-                      columnXl={6}
-                      title="Endereço de entrega"
-                      type="text"
-                      placeholder="projeto..."
-                      name="endereco_entrega"
-                      onChange={handleChange}
-                    />
-                    <Select
-                      columnXl={6}
-                      title="Cliente"
-                      options={clientes}
-                      value={formData.cliente_id}
-                      placeholder="Novo cliente..."
-                      name="cliente_id"
-                      onChange={handleChange}
-                    />
-                  </Form.Fields>
+                  <div className="row">
+                    <div className="col-xl-6">
+                      <Input
+                        title="Nome do projeto"
+                        type="text"
+                        placeholder="projeto..."
+                        name="nome_projeto"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col-xl-6">
+                      <Input
+                        title="Data de entrega"
+                        type="date"
+                        name="data_entrega"
+                        placeholder="Enter your birth date"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col-xl-6">
+                      <Input
+                        title="Endereço de entrega"
+                        type="text"
+                        placeholder="projeto..."
+                        name="endereco_entrega"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col-xl-6">
+                      <Select
+                        title="Cliente"
+                        options={clientes}
+                        value={formData.cliente_id}
+                        placeholder="Novo cliente..."
+                        name="cliente_id"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
                 </Form.Section>
                 {!formData.cliente_id && (
                   <Form.Section title="Cadastro do cliente">
-                    <Form.Fields>
-                      <Form.Input
-                        columnXl={3}
-                        title="Nome"
-                        type="text"
-                        placeholder="Nome do cliente..."
-                        name="cliente_nome"
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Input
-                        columnXl={3}
-                        title="Email"
-                        type="text"
-                        placeholder="Email do cliente"
-                        name="cliente_email"
-                        onChange={handleChange}
-                      />
-                      <Form.Input
-                        columnXl={3}
-                        title="CEP"
-                        type="text"
-                        placeholder="CEP..."
-                        name="cliente_cep"
-                        onChange={handleChange}
-                        required
-                      />
-                      <Form.Input
-                        columnXl={3}
-                        title="Endereço"
-                        type="text"
-                        placeholder="Rua manoel cle..."
-                        name="cliente_endereco"
-                        onChange={handleChange}
-                      />
-                      <Form.Input
-                        columnXl={3}
-                        title="Telefone"
-                        type="text"
-                        placeholder="(87) 99999-9999"
-                        name="cliente_telefone"
-                        onChange={handleChange}
-                      />
-                    </Form.Fields>
+                    <div className="row">
+                      <div className="col-xl-6">
+                        <Input
+                          title="Nome"
+                          type="text"
+                          placeholder="Nome do cliente..."
+                          name="cliente_nome"
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="col-xl-6">
+                        <Input
+                          title="Email"
+                          type="text"
+                          placeholder="Email do cliente"
+                          name="cliente_email"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="col-xl-4">
+                        <Input
+                          title="CEP"
+                          type="text"
+                          placeholder="CEP..."
+                          name="cliente_cep"
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+
+                      <div className="col-xl-4">
+                        <Input
+                          title="Endereço"
+                          type="text"
+                          placeholder="Rua manoel cle..."
+                          name="cliente_endereco"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="col-xl-4">
+                        <Input
+                          title="Telefone"
+                          type="text"
+                          placeholder="(87) 99999-9999"
+                          name="cliente_telefone"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
                   </Form.Section>
                 )}
               </Form.Container>
@@ -199,33 +208,13 @@ function ProjectNew() {
                       onChange={handleChange}
                       name="orcamento_title[]"
                     />
+                    <Button
+                      onClick={() => setExpanded(true)}
+                      text="+ Add Item"
+                    />
                   </div>
                 </Form.Title>
-                <Form.Section title="Items">
-                  <Form.Fields>
-                    <Form.Input
-                      columnXl={4}
-                      title="Descrição"
-                      type="text"
-                      name="descricao"
-                      onChange={handleChange}
-                    />
-                    <Form.Input
-                      columnXl={2}
-                      title="Quantidade"
-                      type="number"
-                      name="orcamento_quantidade[]"
-                      onChange={handleChange}
-                    />
-                    <Form.Input
-                      columnXl={4}
-                      title="Valor"
-                      type="number"
-                      name="orcamento_valor[]"
-                      onChange={handleChange}
-                    />
-                  </Form.Fields>
-                </Form.Section>
+                <span className="mt-3">Nenhum item adicionado</span>
               </Form.Container>
             </CardBody>
           </Card>
@@ -244,6 +233,11 @@ function ProjectNew() {
           </div>
         </div>
       </div>
+      <ModalNewItem
+        expanded={expanded}
+        setExpanded={setExpanded}
+        handleChange={handleChange}
+      />
     </MainSection>
   );
 }

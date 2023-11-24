@@ -14,10 +14,6 @@ interface ISelectProps {
   required?: boolean;
   value: string;
   name?: string;
-  columnLg?: number;
-  columnMd?: number;
-  columnXl?: number;
-  columnSm?: number;
   onChange: (e: SelectEvent) => void;
 }
 
@@ -28,10 +24,6 @@ export interface SelectEvent {
   };
 }
 
-function getGrid(type: string, size?: number): string {
-  return size ? ` col-${type}-${size}` : "";
-}
-
 //TODO - ADD TITLE
 
 function Select({
@@ -40,23 +32,13 @@ function Select({
   title,
   onChange,
   name,
-  columnLg: lg,
-  columnMd: md,
-  columnXl: xl,
-  columnSm: sm,
   required,
   value,
 }: ISelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-  const gridClass =
-    getGrid("lg", lg) +
-    getGrid("md", md) +
-    getGrid("xl", xl) +
-    getGrid("sm", sm) +
-    " col-12";
 
-  const selectRef = useOutsideClick(() => {
+  const selectRef = useOutsideClick<HTMLDivElement>(() => {
     setExpanded(false);
     setSearch("");
   });
@@ -82,10 +64,7 @@ function Select({
   };
 
   return (
-    <Styled.Container
-      className={`dropdown input-field ${gridClass}`}
-      ref={selectRef}
-    >
+    <Styled.Container className={`dropdown input-field`} ref={selectRef}>
       {title && <label className="dropdown-title">{title}</label>}
       <input
         type="checkbox"
@@ -103,19 +82,24 @@ function Select({
         )}
       </div>
       <div className={`dropdown-menu ${expanded ? "active" : ""}`}>
-        <input
-          placeholder="Search..."
-          type="text"
-          className="dropdown-menu-search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="dropdown-menu-search">
+          <input
+            placeholder="Search..."
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Styled.SearchIcon />
+        </div>
+        <hr />
         <div className="dropdown-menu-inner">
           <div
             className="dropdown-menu-item selected"
             onClick={() => onClickHandler(null)}
           >
-            {placeholder ? placeholder : "Nenhum"}
+            <i className="text-disabled">
+              {placeholder ? placeholder : "Nenhum"}
+            </i>
           </div>
           {filteredOptions.map((option) => (
             <div

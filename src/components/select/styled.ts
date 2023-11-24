@@ -1,4 +1,4 @@
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp, BiSearch } from "react-icons/bi";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -61,8 +61,7 @@ export const Container = styled.div`
     width: calc(100% - 1.5rem);
     z-index: 10;
     border-radius: 0.25rem;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
     background-color: var(--sidebar-color);
     /* box-shadow: var(--box-shadow-default); */
     border: 1px solid var(--border-color);
@@ -112,20 +111,36 @@ export const Container = styled.div`
       }
     }
 
+    hr {
+      margin: 4px 0px;
+      border-width: 0px 0px thin;
+      border-color: rgba(145, 158, 171, 0.2);
+      border-style: dashed;
+    }
+
     &-search {
-      display: block;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      width: 100%;
-      height: auto;
-      padding: 0.65rem 1.25rem;
-      border: none;
-      outline: none;
-      color: var(--text-color);
-      background-clip: padding-box;
-      background-color: var(--primary-color-light);
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin: 0.65rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--default-radius);
+
+      svg {
+        position: absolute;
+        left: 1rem;
+        height: 1rem;
+        width: 1rem;
+      }
+
+      input {
+        height: 2rem;
+        width: 100%;
+        font-size: 1rem;
+        padding: 0 1rem 0 3rem;
+        outline: none;
+        border: none;
+      }
     }
   }
 `;
@@ -139,3 +154,5 @@ export const ChevronDownIcon = styled(BiChevronDown)`
   width: 1.5rem;
   height: 1.5rem;
 `;
+
+export const SearchIcon = styled(BiSearch)``;

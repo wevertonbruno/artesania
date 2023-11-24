@@ -4,9 +4,8 @@ import Home from "../pages/home";
 import Projects from "../pages/projects";
 import Components from "../pages/components";
 import Products from "../pages/products";
-import Project from "../pages/projects/new";
-import ProjectNew from "../pages/projects/new";
-import ProjectView from "../pages/projects/view";
+import ProjectNew from "../pages/projects/new-project";
+import ProjectView from "../pages/projects/view-project";
 
 export default createBrowserRouter([
   {

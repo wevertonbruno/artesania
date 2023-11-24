@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import * as Styled from "./styled";
 import { useOutsideClick } from "../../hooks";
 import { MenuProps } from "dotmenu";
@@ -10,16 +10,18 @@ function DotMenu({ options, riskOptions, position, containerRef }: MenuProps) {
     "dropdown-top" | "dropdown-bottom"
   >("dropdown-top");
 
-  const menuRef = useOutsideClick(() => {
+  const menuRef = useOutsideClick<HTMLDivElement>(() => {
     setOpen(false);
   });
 
   const handleClick = () => {
     if (containerRef) {
-      const dropdown =
-        menuRef.current?.querySelector<HTMLDivElement>(".dropdown");
-      const toggle =
-        menuRef.current?.querySelector<HTMLDivElement>(".menu-toogle");
+      const dropdown = menuRef.current?.querySelector<HTMLDivElement>(
+        ".dropdown"
+      );
+      const toggle = menuRef.current?.querySelector<HTMLDivElement>(
+        ".menu-toogle"
+      );
       const containerHeight = containerRef.current?.offsetHeight;
       const dropdownHeight = dropdown?.offsetHeight;
       const toggleOffset = toggle?.getBoundingClientRect().top;

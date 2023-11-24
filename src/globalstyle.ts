@@ -18,7 +18,7 @@ export default createGlobalStyle`
         --btn-primary-text:  ${(props) => props.theme.colors.btn.text};
 
         --success-color: #2ecc71;
-        --error-color: #e74c3c;
+        --error-color: #d93025;
         --warning-color: #f1c40f;
         --info-color: #3498db;
 
@@ -51,7 +51,8 @@ export default createGlobalStyle`
     }
 
     * {
-        font-family: 'Josefin Sans', sans-serif;
+        /* font-family: 'Josefin Sans', sans-serif; */
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -126,5 +127,23 @@ export default createGlobalStyle`
         border-radius: var(--default-radius);
         background-color: #f1c40f;
         font-size: .7rem;
+    }
+
+    .form-control {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        button {
+            margin: 0.5rem 0;
+            height: 2.625rem;
+            min-width: 2.625rem;;
+        }
+    }
+
+    hr.dashed {
+      margin: 4px 0px;
+      border-width: 0px 0px thin;
+      border-color: rgba(145, 158, 171, 0.2);
+      border-style: dashed;
     }
 `;
