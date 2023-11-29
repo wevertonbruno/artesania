@@ -19,7 +19,6 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm();
 
   const [output, setOutput] = useState<{
@@ -131,17 +130,24 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
                       ]}
                       name={`produtos.${index}.produto_id`}
                       register={register}
-                      setValue={setValue}
                     />
                   </div>
                   <div className="form-control col-xl-4">
                     <Select
                       title=""
                       placeholder="Selecione o extra..."
-                      options={[]}
+                      options={[
+                        {
+                          value: "1",
+                          text: "Nome da Pessoa",
+                        },
+                        {
+                          value: "2",
+                          text: "Mini-Coração",
+                        },
+                      ]}
                       name={`produtos.${index}.extra_id`}
                       register={register}
-                      setValue={setValue}
                     />
                   </div>
                   <div className="form-control col-xl-1">

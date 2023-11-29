@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
+import React, { useImperativeHandle, useRef, useState } from "react";
 import * as Styled from "./styled";
 import useOutsideClick from "../../hooks/use-outside-click";
 import {
@@ -6,7 +6,6 @@ import {
   FieldValues,
   RegisterOptions,
   UseFormRegister,
-  UseFormSetValue,
 } from "react-hook-form";
 
 interface Option {
@@ -18,7 +17,6 @@ interface SelectProps extends React.InputHTMLAttributes<HTMLSelectElement> {
   options: Option[];
   name: string;
   register: UseFormRegister<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
   schema?: RegisterOptions<FieldValues, string>;
   errors?: FieldErrors<FieldValues>;
 }
@@ -39,24 +37,23 @@ function Select({
   placeholder,
   title,
   register,
-  setValue,
   schema,
   ...selectProps
 }: SelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [selected, setSelected] = useState<string>(value as string);
+  const { ref, ...registerAttr } = register(name, schema);
 
   const selectRef = useRef<HTMLDivElement>(null);
+  const selectHtmlRef = useRef<HTMLSelectElement>(null);
+
+  useImperativeHandle(ref, () => selectHtmlRef.current);
 
   useOutsideClick<HTMLDivElement>(selectRef, () => {
     setExpanded(false);
     setSearch("");
   });
-
-  useEffect(() => {
-    setValue(name, selected);
-  }, [selected]);
 
   const optionsMap = new Map<string, string>(
     options.map((obj) => [obj.value, obj.text])
@@ -67,8 +64,18 @@ function Select({
       search === "" || option.text.toLowerCase().includes(search.toLowerCase())
   );
 
+  const setSelectValue = (val: string) => {
+    if (selectHtmlRef.current) {
+      selectHtmlRef.current.value = val;
+      selectHtmlRef.current.dispatchEvent(
+        new Event("change", { bubbles: true })
+      );
+    }
+  };
+
   const handleSelect = (val: string) => {
     setSelected(val);
+    setSelectValue(val);
     setExpanded(false);
     setSearch("");
   };
@@ -79,11 +86,8 @@ function Select({
 
   return (
     <Styled.Container className={`dropdown input-field`}>
-      <select
-        {...register(name, schema)}
-        {...selectProps}
-        style={{ display: "none" }}
-      >
+      <select {...registerAttr} ref={selectHtmlRef} style={{ display: "none" }}>
+        <option value="" />
         {options.map((item) => (
           <option key={item.value} value={item.value}>
             {item.text}

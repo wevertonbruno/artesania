@@ -55,7 +55,7 @@ function ProjectNew() {
     orcamento_title: [],
   });
 
-  const { register, setValue } = useForm();
+  const { register } = useForm();
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -137,7 +137,6 @@ function ProjectNew() {
                         placeholder="Novo cliente..."
                         name="cliente_id"
                         register={register}
-                        setValue={setValue}
                       />
                     </div>
                   </div>
