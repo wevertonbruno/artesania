@@ -15,11 +15,11 @@ function Modal({ isOpen, onClose, children, size }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const bodyRef = useOutsideClick<HTMLDivElement>(() => {
-    if (!open) {
-      return;
-    }
-    setOpen(false);
-    onClose();
+    // if (!open) {
+    //   return;
+    // }
+    // setOpen(false);
+    // onClose();
   });
 
   const handleClose = () => {

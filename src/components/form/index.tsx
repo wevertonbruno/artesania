@@ -9,23 +9,17 @@ interface SectionProps extends Nested {
   title?: string;
 }
 
-interface ActionBarProps extends Nested {
-  align: "left" | "center" | "right";
-}
-
 interface FormProps extends Nested {
   title?: string;
+  action?: string;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-function getGrid(type: string, size?: number): string {
-  return size ? ` col-${type}-${size}` : "";
-}
-
-const Title = ({ children }: SectionProps) => {
+export const FormTitle = ({ children }: SectionProps) => {
   return <header>{children}</header>;
 };
 
-const Section = ({ title, children }: SectionProps) => {
+export const FormSection = ({ title, children }: SectionProps) => {
   return (
     <Styled.FormSection className="form-section">
       {title && <span className="title">{title}</span>}
@@ -34,30 +28,22 @@ const Section = ({ title, children }: SectionProps) => {
   );
 };
 
-const ActionBar = ({ align, children }: ActionBarProps) => {
-  return (
-    <Styled.FormActions className="form-action" $align={align}>
-      {children}
-    </Styled.FormActions>
-  );
+const defaultSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 };
 
-const Container = ({ title, children }: FormProps) => {
+export const Form = ({
+  title,
+  children,
+  action,
+  onSubmit = defaultSubmit,
+}: FormProps) => {
   return (
     <Styled.FormContainer>
-      <form action="#">
-        {title && <Title>{title}</Title>}
+      <form action={action} onSubmit={onSubmit}>
+        {title && <FormTitle>{title}</FormTitle>}
         {children}
       </form>
     </Styled.FormContainer>
   );
 };
-
-const Form = {
-  Section,
-  ActionBar,
-  Container,
-  Title,
-};
-
-export default Form;

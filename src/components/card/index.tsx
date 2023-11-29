@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Styled from "./styled";
-import { useOutsideClick } from "../../hooks";
 import DotMenu from "../dotmenu";
 import { MenuProps } from "dotmenu";
 

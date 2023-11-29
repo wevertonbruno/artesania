@@ -6,13 +6,13 @@ import {
   SectionTitle,
 } from "../../components/main-section";
 import * as Styled from "./styled";
-import Form from "../../components/form";
+import { Form, FormSection, FormTitle } from "../../components/form";
 import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
-import Modal from "../../components/modal";
-import { Button, IconButton } from "../../components/button";
+import { Button } from "../../components/button";
 import Input from "../../components/input";
 import ModalNewItem from "./modal-new-item";
+import { useForm } from "react-hook-form";
 
 const clientes = [
   {
@@ -55,6 +55,8 @@ function ProjectNew() {
     orcamento_title: [],
   });
 
+  const { register } = useForm();
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -83,8 +85,8 @@ function ProjectNew() {
         <div className="col-xl-9">
           <Card className="mb-4">
             <CardBody>
-              <Form.Container>
-                <Form.Title>
+              <Form>
+                <FormTitle>
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -96,8 +98,8 @@ function ProjectNew() {
                       name="title"
                     />
                   </div>
-                </Form.Title>
-                <Form.Section title="Informações de contrato">
+                </FormTitle>
+                <FormSection title="Informações de contrato">
                   <div className="row">
                     <div className="col-xl-6">
                       <Input
@@ -105,6 +107,7 @@ function ProjectNew() {
                         type="text"
                         placeholder="projeto..."
                         name="nome_projeto"
+                        register={register}
                         onChange={handleChange}
                       />
                     </div>
@@ -114,6 +117,7 @@ function ProjectNew() {
                         type="date"
                         name="data_entrega"
                         placeholder="Enter your birth date"
+                        register={register}
                         onChange={handleChange}
                       />
                     </div>
@@ -123,6 +127,7 @@ function ProjectNew() {
                         type="text"
                         placeholder="projeto..."
                         name="endereco_entrega"
+                        register={register}
                         onChange={handleChange}
                       />
                     </div>
@@ -137,9 +142,9 @@ function ProjectNew() {
                       />
                     </div>
                   </div>
-                </Form.Section>
+                </FormSection>
                 {!formData.cliente_id && (
-                  <Form.Section title="Cadastro do cliente">
+                  <FormSection title="Cadastro do cliente">
                     <div className="row">
                       <div className="col-xl-6">
                         <Input
@@ -148,6 +153,7 @@ function ProjectNew() {
                           placeholder="Nome do cliente..."
                           name="cliente_nome"
                           onChange={handleChange}
+                          register={register}
                           required
                         />
                       </div>
@@ -157,6 +163,7 @@ function ProjectNew() {
                           type="text"
                           placeholder="Email do cliente"
                           name="cliente_email"
+                          register={register}
                           onChange={handleChange}
                         />
                       </div>
@@ -166,6 +173,7 @@ function ProjectNew() {
                           type="text"
                           placeholder="CEP..."
                           name="cliente_cep"
+                          register={register}
                           onChange={handleChange}
                           required
                         />
@@ -175,6 +183,7 @@ function ProjectNew() {
                         <Input
                           title="Endereço"
                           type="text"
+                          register={register}
                           placeholder="Rua manoel cle..."
                           name="cliente_endereco"
                           onChange={handleChange}
@@ -184,21 +193,22 @@ function ProjectNew() {
                         <Input
                           title="Telefone"
                           type="text"
+                          register={register}
                           placeholder="(87) 99999-9999"
                           name="cliente_telefone"
                           onChange={handleChange}
                         />
                       </div>
                     </div>
-                  </Form.Section>
+                  </FormSection>
                 )}
-              </Form.Container>
+              </Form>
             </CardBody>
           </Card>
           <Card>
             <CardBody>
-              <Form.Container>
-                <Form.Title>
+              <Form>
+                <FormTitle>
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -213,9 +223,9 @@ function ProjectNew() {
                       text="+ Add Item"
                     />
                   </div>
-                </Form.Title>
+                </FormTitle>
                 <span className="mt-3">Nenhum item adicionado</span>
-              </Form.Container>
+              </Form>
             </CardBody>
           </Card>
         </div>

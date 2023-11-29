@@ -5,7 +5,6 @@ import {
   SectionTitle,
 } from "../../components/main-section";
 import * as Styled from "./styled";
-import Form from "../../components/form";
 
 function ProjectView() {
   return (

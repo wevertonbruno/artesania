@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.dialog`
   background: none;
   overflow: auto;
+  height: 100%;
+
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
   }
