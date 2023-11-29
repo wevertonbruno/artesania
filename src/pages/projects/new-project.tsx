@@ -6,13 +6,12 @@ import {
   SectionTitle,
 } from "../../components/main-section";
 import * as Styled from "./styled";
-import { Form, FormSection, FormTitle } from "../../components/form";
 import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
 import { Button } from "../../components/button";
-import Input from "../../components/input";
 import ModalNewItem from "./modal-new-item";
 import { useForm } from "react-hook-form";
+import { Form } from "../../components/form";
 
 const clientes = [
   {
@@ -55,7 +54,7 @@ function ProjectNew() {
     orcamento_title: [],
   });
 
-  const { register } = useForm();
+  const methods = useForm();
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -81,12 +80,12 @@ function ProjectNew() {
         </Styled.TitleWrapper>
       </SectionTitle>
       <SectionCover src="/project-cover.webp" alt="Projetos Capa" />
-      <div className="row">
-        <div className="col-xl-9">
+      <div className="grid lg:grid-cols-3 gap-4">
+        <div className="col-span-2">
           <Card className="mb-4">
             <CardBody>
-              <Form>
-                <FormTitle>
+              <Form.Root methods={methods} onSubmit={() => {}}>
+                <Form.Header>
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -98,115 +97,103 @@ function ProjectNew() {
                       name="title"
                     />
                   </div>
-                </FormTitle>
-                <FormSection title="Informações de contrato">
-                  <div className="row">
-                    <div className="col-xl-6">
-                      <Input
-                        title="Nome do projeto"
+                </Form.Header>
+                <Form.Section title="Informações de contrato">
+                  <div className="grid lg:grid-cols-4 gap-4">
+                    <Form.Field>
+                      <Form.Label>Nome do Projeto:</Form.Label>
+                      <Form.Input
                         type="text"
                         placeholder="projeto..."
                         name="nome_projeto"
-                        register={register}
                         onChange={handleChange}
                       />
-                    </div>
-                    <div className="col-xl-6">
-                      <Input
-                        title="Data de entrega"
+                    </Form.Field>
+                    <Form.Field>
+                      <Form.Label>Data de entrega:</Form.Label>
+                      <Form.Input
                         type="date"
                         name="data_entrega"
                         placeholder="Enter your birth date"
-                        register={register}
                         onChange={handleChange}
                       />
-                    </div>
-                    <div className="col-xl-6">
-                      <Input
-                        title="Endereço de entrega"
+                    </Form.Field>
+                    <Form.Field>
+                      <Form.Label>Endereço de entrega:</Form.Label>
+                      <Form.Input
                         type="text"
                         placeholder="projeto..."
                         name="endereco_entrega"
-                        register={register}
                       />
-                    </div>
-                    <div className="col-xl-6">
+                    </Form.Field>
+                    <Form.Field>
                       <Select
                         title="Cliente"
                         options={clientes}
                         placeholder="Novo cliente..."
                         name="cliente_id"
-                        register={register}
                       />
-                    </div>
+                    </Form.Field>
                   </div>
-                </FormSection>
+                </Form.Section>
                 {!formData.cliente_id && (
-                  <FormSection title="Cadastro do cliente">
-                    <div className="row">
-                      <div className="col-xl-6">
-                        <Input
-                          title="Nome"
+                  <Form.Section title="Cadastro do cliente">
+                    <div className="grid lg:grid-cols-6 gap-4">
+                      <div className="col-span-3">
+                        <Form.Label>Nome do cliente:</Form.Label>
+                        <Form.Input
                           type="text"
                           placeholder="Nome do cliente..."
                           name="cliente_nome"
-                          onChange={handleChange}
-                          register={register}
                           required
                         />
                       </div>
-                      <div className="col-xl-6">
-                        <Input
-                          title="Email"
+                      <div className="col-span-3">
+                        <Form.Label>Email do cliente:</Form.Label>
+                        <Form.Input
                           type="text"
                           placeholder="Email do cliente"
                           name="cliente_email"
-                          register={register}
-                          onChange={handleChange}
                         />
                       </div>
-                      <div className="col-xl-4">
-                        <Input
-                          title="CEP"
+                      <div className="col-span-2">
+                        <Form.Label>CEP:</Form.Label>
+                        <Form.Input
                           type="text"
                           placeholder="CEP..."
                           name="cliente_cep"
-                          register={register}
-                          onChange={handleChange}
                           required
                         />
                       </div>
 
-                      <div className="col-xl-4">
-                        <Input
-                          title="Endereço"
+                      <div className="col-span-2">
+                        <Form.Label>Endereço:</Form.Label>
+                        <Form.Input
                           type="text"
-                          register={register}
                           placeholder="Rua manoel cle..."
                           name="cliente_endereco"
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="col-xl-4">
-                        <Input
-                          title="Telefone"
+                      <div className="col-span-2">
+                        <Form.Label>Telefone:</Form.Label>
+                        <Form.Input
                           type="text"
-                          register={register}
                           placeholder="(87) 99999-9999"
                           name="cliente_telefone"
                           onChange={handleChange}
                         />
                       </div>
                     </div>
-                  </FormSection>
+                  </Form.Section>
                 )}
-              </Form>
+              </Form.Root>
             </CardBody>
           </Card>
           <Card>
             <CardBody>
-              <Form>
-                <FormTitle>
+              <Form.Root methods={methods} onSubmit={() => {}}>
+                <Form.Header>
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -221,24 +208,20 @@ function ProjectNew() {
                       text="+ Add Item"
                     />
                   </div>
-                </FormTitle>
+                </Form.Header>
                 <span className="mt-3">Nenhum item adicionado</span>
-              </Form>
+              </Form.Root>
             </CardBody>
           </Card>
         </div>
-        <div className="col-xl-3">
-          <div className="row">
-            <div className="col-xl-12">
-              <Card className="mb-4">
-                <CardBody>
-                  <CardTitle>Tarefas</CardTitle>
-                  <CardSubTitle>concluídas: 4</CardSubTitle>
-                  Lorem ipsum dolor sit.
-                </CardBody>
-              </Card>
-            </div>
-          </div>
+        <div className="">
+          <Card className="mb-4">
+            <CardBody>
+              <CardTitle>Tarefas</CardTitle>
+              <CardSubTitle>concluídas: 4</CardSubTitle>
+              Lorem ipsum dolor sit.
+            </CardBody>
+          </Card>
         </div>
       </div>
       <ModalNewItem

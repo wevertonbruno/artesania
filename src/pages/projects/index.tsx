@@ -124,8 +124,8 @@ function Projects() {
         <h1>Projetos</h1>
       </SectionTitle>
       <SectionCover src="/project-cover.webp" alt="Projetos Capa" />
-      <div className="row">
-        <div className="col-xl-3">
+      <div className="grid lg:grid-cols-3 gap-2">
+        <div className="">
           <div className="row">
             <div className="col-xl-12">
               <Card className="mb-4">
@@ -136,7 +136,7 @@ function Projects() {
             </div>
           </div>
         </div>
-        <div className="col-xl-9">
+        <div className="col-span-2">
           <Card className="mb-4">
             <CardBody>
               <CardTitle

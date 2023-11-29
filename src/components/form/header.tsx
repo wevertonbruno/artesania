@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
 // TODO - style this component
-export const Header = (props: HTMLAttributes<HTMLDivElement>) => {
+export const FormHeader = (props: HTMLAttributes<HTMLDivElement>) => {
   return <header {...props} />;
 };

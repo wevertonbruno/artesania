@@ -5,7 +5,7 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
 }
 
-export function Section({ title, children }: SectionProps) {
+export function FormSection({ title, children }: SectionProps) {
   return (
     <Styled.FormSection className="form-section">
       {title && <span className="title">{title}</span>}

@@ -1,12 +1,11 @@
 import Modal from "../../components/modal";
 import Input from "../../components/input";
 import Select, { SelectEvent } from "../../components/select";
-import { FormSection } from "../../components/form";
 import { IconButton } from "../../components/button";
 import { useState } from "react";
-import { Form } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ButtonPrimary } from "../../components/button/styled";
+import { Form } from "../../components/form";
 
 interface NewItemProps {
   expanded: boolean;
@@ -15,11 +14,7 @@ interface NewItemProps {
 }
 
 function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const methods = useForm();
 
   const [output, setOutput] = useState<{
     descricao: string;
@@ -68,29 +63,21 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
 
   return (
     <Modal isOpen={expanded} onClose={clearAndClose} size="xl">
-      <Form onSubmit={handleSubmit(submit)}>
-        <FormSection title="Adicionar Item">
+      <Form.Root onSubmit={submit} methods={methods}>
+        <Form.Section title="Adicionar Item">
           <div className="row">
-            <div className="col-xl-10">
-              <Input
+            <Form.Field>
+              <Form.Label>Descriçao:</Form.Label>
+              <Form.Input
                 placeholder="Descricão do item..."
                 type="text"
-                register={register}
                 name="descricao"
-                schema={{
-                  required: "Descricão obrigatória",
-                }}
-                errors={errors}
               />
-            </div>
-            <div className="col-xl-1">
-              <Input
-                placeholder="QTD"
-                type="number"
-                name="quantidade"
-                register={register}
-              />
-            </div>
+            </Form.Field>
+            <Form.Field>
+              <Form.Label>Qtd.:</Form.Label>
+              <Form.Input placeholder="QTD" type="number" name="quantidade" />
+            </Form.Field>
             <div className="form-control col-xl-1">
               <IconButton
                 type="button"
@@ -112,76 +99,69 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
           <hr className="dashed" />
           <div className="row">
             {produtos.map((product, index) => (
-              <FormSection key={index}>
-                <div className="row">
-                  <div className="form-control col-xl-4">
-                    <Select
-                      title={`Produto ${index + 1}`}
-                      placeholder="Selecione o produto..."
-                      options={[
-                        {
-                          value: "1",
-                          text: "Xícara 1/2",
-                        },
-                        {
-                          value: "2",
-                          text: "Xicara Completa",
-                        },
-                      ]}
-                      name={`produtos.${index}.produto_id`}
-                      register={register}
-                    />
-                  </div>
-                  <div className="form-control col-xl-4">
-                    <Select
-                      title=""
-                      placeholder="Selecione o extra..."
-                      options={[
-                        {
-                          value: "1",
-                          text: "Nome da Pessoa",
-                        },
-                        {
-                          value: "2",
-                          text: "Mini-Coração",
-                        },
-                      ]}
-                      name={`produtos.${index}.extra_id`}
-                      register={register}
-                    />
-                  </div>
-                  <div className="form-control col-xl-1">
-                    <Input
-                      placeholder="QTD"
-                      type="number"
-                      name={`produtos.${index}.quantidade`}
-                      register={register}
-                    />
-                  </div>
-                  <div className="form-control col-xl-2">
-                    <Input
-                      placeholder="Valor"
-                      type="number"
-                      name={`produtos.${index}.valor`}
-                      register={register}
-                    />
-                  </div>
-                  <div className="form-control col-xl-1">
-                    <IconButton
-                      icon="trash"
-                      onClick={() => removeProduct(index)}
-                      type="button"
-                    />
-                  </div>
+              <div className="row" key={index}>
+                <div className="form-control col-xl-4">
+                  <Form.Select
+                    title={`Produto ${index + 1}`}
+                    placeholder="Selecione o produto..."
+                    options={[
+                      {
+                        value: "1",
+                        text: "Xícara 1/2",
+                      },
+                      {
+                        value: "2",
+                        text: "Xicara Completa",
+                      },
+                    ]}
+                    name={`produtos.${index}.produto_id`}
+                  />
                 </div>
-              </FormSection>
+                <div className="form-control col-xl-4">
+                  <Form.Select
+                    title=""
+                    placeholder="Selecione o extra..."
+                    options={[
+                      {
+                        value: "1",
+                        text: "Nome da Pessoa",
+                      },
+                      {
+                        value: "2",
+                        text: "Mini-Coração",
+                      },
+                    ]}
+                    name={`produtos.${index}.extra_id`}
+                  />
+                </div>
+                <div className="form-control col-xl-1">
+                  <Form.Input
+                    placeholder="QTD"
+                    type="number"
+                    name={`produtos.${index}.quantidade`}
+                  />
+                </div>
+                <div className="form-control col-xl-2">
+                  <Form.Input
+                    placeholder="Valor"
+                    type="number"
+                    name={`produtos.${index}.valor`}
+                  />
+                </div>
+                <div className="form-control col-xl-1">
+                  <IconButton
+                    icon="trash"
+                    onClick={() => removeProduct(index)}
+                    type="button"
+                  />
+                </div>
+              </div>
             ))}
           </div>
-        </FormSection>
-        <FormSection>
-          <ButtonPrimary type="submit">Adicionar</ButtonPrimary>
-        </FormSection>
-      </Form>
+        </Form.Section>
+
+        <ButtonPrimary type="submit">Adicionar</ButtonPrimary>
+      </Form.Root>
     </Modal>
   );
 }

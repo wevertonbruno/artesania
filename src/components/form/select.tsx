@@ -1,24 +1,22 @@
-import React, { useImperativeHandle, useRef, useState } from "react";
+import React, {
+  SelectHTMLAttributes,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import * as Styled from "./styled";
 import useOutsideClick from "../../hooks/use-outside-click";
-import {
-  FieldErrors,
-  FieldValues,
-  RegisterOptions,
-  UseFormRegister,
-} from "react-hook-form";
+import { BiChevronDown, BiChevronUp, BiSearch } from "react-icons/bi";
+import { useFormContext } from "react-hook-form";
 
 interface Option {
   value: string;
   text: string;
 }
 
-interface SelectProps extends React.InputHTMLAttributes<HTMLSelectElement> {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Option[];
   name: string;
-  register?: UseFormRegister<FieldValues>;
-  schema?: RegisterOptions<FieldValues, string>;
-  errors?: FieldErrors<FieldValues>;
 }
 
 export interface SelectEvent {
@@ -36,19 +34,17 @@ function Select({
   value = "",
   placeholder,
   title,
-  register,
-  schema,
-  ...selectProps
 }: SelectProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [selected, setSelected] = useState<string>(value as string);
-  // const { ref, ...registerAttr } = register(name, schema);
+  const { register } = useFormContext();
+  const { ref, ...registerAttr } = register(name);
 
   const selectRef = useRef<HTMLDivElement>(null);
   const selectHtmlRef = useRef<HTMLSelectElement>(null);
 
-  // useImperativeHandle(ref, () => selectHtmlRef.current);
+  useImperativeHandle(ref, () => selectHtmlRef.current);
 
   useOutsideClick<HTMLDivElement>(selectRef, () => {
     setExpanded(false);
@@ -85,12 +81,8 @@ function Select({
   };
 
   return (
-    <Styled.Container className={`dropdown input-field`}>
-      <select
-        // {...registerAttr}
-        ref={selectHtmlRef}
-        style={{ display: "none" }}
-      >
+    <div className={`dropdown input-field`}>
+      <select {...registerAttr} ref={selectHtmlRef} style={{ display: "none" }}>
         <option value="" />
         {options.map((item) => (
           <option key={item.value} value={item.value}>
@@ -105,9 +97,9 @@ function Select({
             {selected ? optionsMap.get(selected) : placeholder}
           </span>
           {expanded ? (
-            <Styled.ChevronUpIcon className="dropdown-arrow" />
+            <BiChevronUp className="dropdown-arrow" />
           ) : (
-            <Styled.ChevronDownIcon className="dropdown-arrow" />
+            <BiChevronDown className="dropdown-arrow" />
           )}
         </div>
         <div className={`dropdown-menu ${expanded ? "active" : ""}`}>
@@ -118,7 +110,7 @@ function Select({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Styled.SearchIcon />
+            <BiSearch />
           </div>
           <hr />
           <div className="dropdown-menu-inner">
@@ -145,7 +137,7 @@ function Select({
           </div>
         </div>
       </div>
-    </Styled.Container>
+    </div>
   );
 }
 

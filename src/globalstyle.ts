@@ -33,12 +33,6 @@ export default createGlobalStyle`
         --tran-05: all 0.5s ease;
         --bezier: cubic-bezier(0.65, 0.25, 0.56, 0.96);
         --tran-toast: all 0.5s cubic-bezier(0.68, -.55, 0.265, 1.35);
-
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-text-size-adjust: 100%;
     }
 
     body.dark-mode {
@@ -52,17 +46,13 @@ export default createGlobalStyle`
 
     * {
         /* font-family: 'Josefin Sans', sans-serif; */
-        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";;
+        /* font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";; */
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
     body {
-        height: 100vh;
-        width: 100vw;
-        background: var(--body-color);
-        color: var(--text-color);
         overflow-x: hidden;
 
         &::-webkit-scrollbar {
@@ -100,22 +90,6 @@ export default createGlobalStyle`
             padding-right: calc(var(--cui-gutter-x)*.5);
             width: 100%;
         }
-    }
-            
-    ${gridCss()}
-
-    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        color: inherit;
-        color: var(--text-color);
-        font-weight: 500;
-        line-height: 1.2;
-        margin-bottom: .5rem;
-        margin-top: 0;
-    }
-
-    tbody, td, tfoot, th, thead, tr {
-        border: 0 solid;
-        border-color: inherit;
     }
 
     .text-disabled {

@@ -12,7 +12,7 @@ interface SidebarContextType {
 export const SidebarContext = createContext({} as SidebarContextType);
 
 export function SidebarProvider({ children }: Props) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
