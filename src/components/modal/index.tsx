@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Styled from "./styled";
 import { Card, CardBody } from "../card";
-import { useOutsideClick } from "../../hooks";
+import useOutsideClick from "../../hooks/use-outside-click";
 
 interface ModalProps {
   isOpen: boolean;
@@ -13,8 +13,9 @@ interface ModalProps {
 function Modal({ isOpen, onClose, children, size }: ModalProps) {
   const [open, setOpen] = useState<boolean>(isOpen);
   const modalRef = useRef<HTMLDialogElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
-  const bodyRef = useOutsideClick<HTMLDivElement>(() => {
+  useOutsideClick<HTMLDivElement>(bodyRef, () => {
     // if (!open) {
     //   return;
     // }

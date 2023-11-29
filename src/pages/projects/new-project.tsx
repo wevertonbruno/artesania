@@ -55,7 +55,7 @@ function ProjectNew() {
     orcamento_title: [],
   });
 
-  const { register } = useForm();
+  const { register, setValue } = useForm();
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -128,17 +128,16 @@ function ProjectNew() {
                         placeholder="projeto..."
                         name="endereco_entrega"
                         register={register}
-                        onChange={handleChange}
                       />
                     </div>
                     <div className="col-xl-6">
                       <Select
                         title="Cliente"
                         options={clientes}
-                        value={formData.cliente_id}
                         placeholder="Novo cliente..."
                         name="cliente_id"
-                        onChange={handleChange}
+                        register={register}
+                        setValue={setValue}
                       />
                     </div>
                   </div>

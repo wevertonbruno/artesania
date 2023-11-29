@@ -19,6 +19,7 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const [output, setOutput] = useState<{
@@ -60,6 +61,7 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
   };
 
   const submit = (data: any) => {
+    console.log(data);
     setOutput({
       ...data,
     });
@@ -117,9 +119,19 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
                     <Select
                       title={`Produto ${index + 1}`}
                       placeholder="Selecione o produto..."
-                      options={[]}
-                      value=""
-                      onChange={handleChange}
+                      options={[
+                        {
+                          value: "1",
+                          text: "Xícara 1/2",
+                        },
+                        {
+                          value: "2",
+                          text: "Xicara Completa",
+                        },
+                      ]}
+                      name={`produtos.${index}.produto_id`}
+                      register={register}
+                      setValue={setValue}
                     />
                   </div>
                   <div className="form-control col-xl-4">
@@ -127,8 +139,9 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
                       title=""
                       placeholder="Selecione o extra..."
                       options={[]}
-                      value=""
-                      onChange={handleChange}
+                      name={`produtos.${index}.extra_id`}
+                      register={register}
+                      setValue={setValue}
                     />
                   </div>
                   <div className="form-control col-xl-1">

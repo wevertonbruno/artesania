@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as Styled from "./styled";
-import { useOutsideClick } from "../../hooks";
+import useOutsideClick from "../../hooks/use-outside-click";
 import { MenuProps } from "dotmenu";
 import { IconMap } from "../myicons";
 
@@ -10,7 +10,8 @@ function DotMenu({ options, riskOptions, position, containerRef }: MenuProps) {
     "dropdown-top" | "dropdown-bottom"
   >("dropdown-top");
 
-  const menuRef = useOutsideClick<HTMLDivElement>(() => {
+  const menuRef = useRef<HTMLDivElement>(null);
+  useOutsideClick<HTMLDivElement>(menuRef, () => {
     setOpen(false);
   });
 

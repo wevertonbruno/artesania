@@ -14,14 +14,6 @@ export const Container = styled.div`
     opacity: 0.9;
   }
 
-  .dropdown-control {
-    all: unset;
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    z-index: 3;
-  }
-
   .dropdown-title {
     font-size: 0.75rem;
     font-weight: 500;
