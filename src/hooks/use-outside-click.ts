@@ -1,18 +1,26 @@
 import { useEffect, RefObject } from "react";
 
-function useOutsideClick<T extends HTMLElement>(
-  ref: RefObject<T>,
-  callback: (event: MouseEvent) => void
+type RefProp = HTMLElement | null;
+
+interface Props {
+  callback: (event: MouseEvent) => void;
+  refs: RefProp[];
+}
+
+function useOutsideClick(
+  callback: (event: MouseEvent) => void,
+  ...refs: RefProp[]
 ) {
   useEffect(() => {
     /**
      * Alert if clicked on outside of element
      */
     function handleClickOutside(event: MouseEvent) {
-      if (ref.current?.contains(event.target as any)) {
-        return;
+      for (const ref of refs) {
+        if (ref?.contains(event.target as any)) {
+          return;
+        }
       }
-
       callback(event);
     }
     // Bind the event listener
@@ -21,7 +29,7 @@ function useOutsideClick<T extends HTMLElement>(
       // Unbind the event listener on clean up
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [ref]);
+  }, []);
 }
 
 export default useOutsideClick;

@@ -1,10 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/home";
-import Projects from "../pages/projects";
+import { ProjectPages } from "../pages/projects";
 import Products from "../pages/products";
-import ProjectNew from "../pages/projects/new-project";
-import ProjectView from "../pages/projects/view-project";
 import { Home as HomeIcon, Coffee, BookHeart } from "lucide-react";
 import { ElementType, ReactNode } from "react";
 
@@ -28,21 +26,21 @@ export const routerConfig: Config[] = [
     path: "/projetos",
     icon: BookHeart,
     text: "Projetos",
-    element: <Projects />,
+    element: <ProjectPages.Projects />,
   },
   {
     path: "/projetos/novo-projeto",
     text: "Novo projeto",
     icon: BookHeart,
     hidden: true,
-    element: <ProjectNew />,
+    element: <ProjectPages.NewProject />,
   },
   {
     path: "/projetos/:id",
     text: "Projeto",
     icon: BookHeart,
     hidden: true,
-    element: <ProjectView />,
+    element: <ProjectPages.ViewProject />,
   },
   {
     path: "/products",

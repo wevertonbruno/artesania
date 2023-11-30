@@ -60,7 +60,7 @@ export default function Sidebar() {
             )}
           </button>
         </div>
-
+        <hr className="dashed" />
         <ul className="flex-1 px-3 mt-6">
           {routerConfig
             .filter((config) => !config.hidden)
@@ -77,7 +77,6 @@ export default function Sidebar() {
         </ul>
 
         <div className="border-t shadow-sm">
-          <hr className="dashed" />
           <div className="flex p-3 px-4 bg-satin-200">
             <img
               src="https://ui-avatars.com/api/?background=ffffff&color=514336&bold=true&name=Weverton+Bruno"
@@ -101,7 +100,7 @@ export default function Sidebar() {
                 </span>
               </div>
               <div className="relative">
-                <Menu.Container position="top">
+                <Menu.Container position="top-end">
                   <Menu.Group>
                     <Menu.Item icon={Settings} text="Configurações" />
                     <Menu.Item icon={Moon} text="Dark Mode" />

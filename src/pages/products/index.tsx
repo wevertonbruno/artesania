@@ -2,7 +2,7 @@ import React from "react";
 import { MainSection, SectionTitle } from "../../components/main-section";
 import { Container } from "./styled";
 import Table, { ITable } from "../../components/table";
-import Btn from "../../components/button";
+import { Button } from "../../components/button";
 import { Link } from "react-router-dom";
 
 const projectTableData: ITable = {
@@ -79,7 +79,7 @@ function Products() {
       <Container>
         <Table {...projectTableData} />
         <Link to="/products/new">
-          <Btn.PlusButton className="new-btn" size={3} />
+          <Button.Container>Novo</Button.Container>
         </Link>
       </Container>
     </MainSection>

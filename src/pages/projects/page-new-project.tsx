@@ -6,10 +6,9 @@ import {
   SectionTitle,
 } from "../../components/main-section";
 import * as Styled from "./styled";
-import Select, { SelectEvent } from "../../components/select";
 import EditableText from "../../components/editabletext";
 import { Button } from "../../components/button";
-import ModalNewItem from "./modal-new-item";
+import ModalNewItem from "./components/modal-new-item";
 import { useForm } from "react-hook-form";
 import { Form } from "../../components/form";
 
@@ -61,13 +60,6 @@ function ProjectNew() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement> | SelectEvent
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   useEffect(() => {
     console.log(formData);
   }, [formData]);
@@ -92,7 +84,6 @@ function ProjectNew() {
                     <EditableText
                       defaultValue="Novo projeto sem título"
                       onBlur={handleBlur}
-                      onChange={handleChange}
                       value={formData.title}
                       name="title"
                     />
@@ -106,7 +97,6 @@ function ProjectNew() {
                         type="text"
                         placeholder="projeto..."
                         name="nome_projeto"
-                        onChange={handleChange}
                       />
                     </Form.Field>
                     <Form.Field>
@@ -115,7 +105,6 @@ function ProjectNew() {
                         type="date"
                         name="data_entrega"
                         placeholder="Enter your birth date"
-                        onChange={handleChange}
                       />
                     </Form.Field>
                     <Form.Field>
@@ -172,7 +161,6 @@ function ProjectNew() {
                           type="text"
                           placeholder="Rua manoel cle..."
                           name="cliente_endereco"
-                          onChange={handleChange}
                         />
                       </div>
                       <div className="col-span-2">
@@ -181,7 +169,6 @@ function ProjectNew() {
                           type="text"
                           placeholder="(87) 99999-9999"
                           name="cliente_telefone"
-                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -200,13 +187,11 @@ function ProjectNew() {
                     <EditableText
                       defaultValue="Orçamento 1"
                       onBlur={handleBlur}
-                      onChange={handleChange}
                       name="orcamento_title[]"
                     />
-                    <Button
-                      onClick={() => setExpanded(true)}
-                      text="+ Add Item"
-                    />
+                    <Button.Container onClick={() => setExpanded(true)}>
+                      + Add Item
+                    </Button.Container>
                   </div>
                 </Form.Header>
                 <span className="mt-3">Nenhum item adicionado</span>
@@ -224,11 +209,7 @@ function ProjectNew() {
           </Card>
         </div>
       </div>
-      <ModalNewItem
-        expanded={expanded}
-        setExpanded={setExpanded}
-        handleChange={handleChange}
-      />
+      <ModalNewItem expanded={expanded} setExpanded={setExpanded} />
     </MainSection>
   );
 }

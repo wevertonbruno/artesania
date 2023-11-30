@@ -11,6 +11,8 @@ import { BiChevronDown, BiChevronUp, BiSearch } from "react-icons/bi";
 import { useFormContext } from "react-hook-form";
 import { ChevronsDownUp, ChevronsUpDown, Search } from "lucide-react";
 import { Transition } from "@headlessui/react";
+import { Portal } from "../utils/portal";
+import { usePopper } from "react-popper";
 
 interface Option {
   value: string;
@@ -44,15 +46,27 @@ function Select({
   const { register } = useFormContext();
   const { ref, ...registerAttr } = register(name);
 
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+    null
+  );
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: "bottom-start",
+  });
+
   const selectRef = useRef<HTMLDivElement>(null);
   const selectHtmlRef = useRef<HTMLSelectElement>(null);
 
   useImperativeHandle(ref, () => selectHtmlRef.current);
 
-  useOutsideClick<HTMLDivElement>(selectRef, () => {
-    setExpanded(false);
-    setSearch("");
-  });
+  useOutsideClick(
+    () => {
+      setExpanded(false);
+      setSearch("");
+    },
+    selectRef.current,
+    popperElement
+  );
 
   const optionsMap = new Map<string, string>(
     options.map((obj) => [obj.value, obj.text])
@@ -99,6 +113,7 @@ function Select({
         text-gray-900  ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 
         sm:text-sm sm:leading-6"
           onClick={toggleExpanded}
+          ref={setReferenceElement}
         >
           <span className={`block truncate ${selected ? "" : "text-gray-400"}`}>
             {selected ? optionsMap.get(selected) : placeholder}
@@ -107,57 +122,66 @@ function Select({
             <ChevronsUpDown size={15} />
           </span>
         </div>
-        <Transition
-          show={expanded}
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0"
-        >
+        <Portal>
           <div
-            className={`absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-sm bg-white py-1 text-base shadow-lg ring-1 
-          ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+            className="absolute z-10"
+            {...attributes.popper}
+            ref={setPopperElement}
+            style={styles.popper}
           >
-            <div className="flex items-center gap-4 text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9">
-              <span className="pointer-events-none">
-                <Search size={15} className="text-gray-400" />
-              </span>
-              <input
-                className="w-full outline-none"
-                placeholder="Search..."
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-            <hr />
-            <ul>
-              <li
-                className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
-                onClick={() => handleSelect("")}
+            <Transition
+              show={expanded}
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0"
+            >
+              <div
+                className={` mt-1 max-h-56 w-full overflow-auto rounded-sm bg-white py-1 text-base shadow-lg ring-1 
+          ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
               >
-                <i className="text-disabled">
-                  {placeholder ? placeholder : "Nenhum"}
-                </i>
-              </li>
-              {filteredOptions.map((option) => (
-                <li
-                  key={option.value}
-                  className={`text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9 hover:bg-gray-100 cursor-pointer transition-all ${
-                    selected === option.value ? "bg-gray-100" : ""
-                  }`}
-                  data-value={option.value}
-                  onClick={() => handleSelect(option.value)}
-                >
-                  {option.text}
-                </li>
-              ))}
-            </ul>
+                <div className="flex items-center gap-4 text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9">
+                  <span className="pointer-events-none">
+                    <Search size={15} className="text-gray-400" />
+                  </span>
+                  <input
+                    className="w-full outline-none"
+                    placeholder="Search..."
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </div>
+                <hr />
+                <ul>
+                  <li
+                    className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
+                    onClick={() => handleSelect("")}
+                  >
+                    <i className="text-disabled">
+                      {placeholder ? placeholder : "Nenhum"}
+                    </i>
+                  </li>
+                  {filteredOptions.map((option) => (
+                    <li
+                      key={option.value}
+                      className={`text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9 hover:bg-gray-100 cursor-pointer transition-all ${
+                        selected === option.value ? "bg-gray-100" : ""
+                      }`}
+                      data-value={option.value}
+                      onClick={() => handleSelect(option.value)}
+                    >
+                      {option.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Transition>
           </div>
-        </Transition>
+        </Portal>
       </div>
     </div>
   );

@@ -1,19 +1,16 @@
-import Modal from "../../components/modal";
-import Input from "../../components/input";
-import Select, { SelectEvent } from "../../components/select";
-import { IconButton } from "../../components/button";
+import Modal from "../../../components/modal";
+import { Button } from "../../../components/button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ButtonPrimary } from "../../components/button/styled";
-import { Form } from "../../components/form";
+import { Form } from "../../../components/form";
+import { Plus, Trash } from "lucide-react";
 
 interface NewItemProps {
   expanded: boolean;
   setExpanded: (value: boolean) => void;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement> | SelectEvent) => void;
 }
 
-function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
+function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
   const methods = useForm();
 
   const [output, setOutput] = useState<{
@@ -79,9 +76,8 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
               <Form.Input placeholder="QTD" type="number" name="quantidade" />
             </Form.Field>
             <div className="form-control col-xl-1">
-              <IconButton
+              <Button.Container
                 type="button"
-                icon="plus"
                 onClick={() =>
                   setProdutos((prev) => [
                     ...prev,
@@ -93,7 +89,9 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
                     },
                   ])
                 }
-              />
+              >
+                <Button.Icon icon={Plus} />
+              </Button.Container>
             </div>
           </div>
           <hr className="dashed" />
@@ -149,18 +147,19 @@ function ModalNewItem({ expanded, setExpanded, handleChange }: NewItemProps) {
                   />
                 </div>
                 <div className="form-control col-xl-1">
-                  <IconButton
-                    icon="trash"
+                  <Button.Container
                     onClick={() => removeProduct(index)}
                     type="button"
-                  />
+                  >
+                    <Button.Icon icon={Trash} />
+                  </Button.Container>
                 </div>
               </div>
             ))}
           </div>
         </Form.Section>
 
-        <ButtonPrimary type="submit">Adicionar</ButtonPrimary>
+        <Button.Container type="submit">Adicionar</Button.Container>
       </Form.Root>
     </Modal>
   );
