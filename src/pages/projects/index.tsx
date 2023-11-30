@@ -7,6 +7,7 @@ import Table, { ITable, ITableRow } from "../../components/table";
 import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import Btn from "../../components/button";
 import { useNavigate } from "react-router-dom";
+import { FolderOpen, ListChecks, Trash } from "lucide-react";
 
 function Projects() {
   const navigate = useNavigate();
@@ -55,14 +56,14 @@ function Projects() {
       options: [
         {
           name: "Abrir Projeto",
-          icon: "windowOpen",
+          icon: FolderOpen,
           onClick: (row: ITableRow) => {
             navigate("/projetos/" + row.id);
           },
         },
         {
           name: "Visualizar tarefas",
-          icon: "task",
+          icon: ListChecks,
           onClick: (row: ITableRow) => {
             alert(row.id + row.name);
           },
@@ -71,7 +72,7 @@ function Projects() {
       riskOptions: [
         {
           name: "Apagar Projeto",
-          icon: "trash",
+          icon: Trash,
           onClick: (row: ITableRow) => {
             alert(row.id + row.name);
           },

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Styled from "./styled";
-import DotMenu from "../dotmenu";
+import { Menu } from "../menu";
 import { MenuProps } from "dotmenu";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,7 +38,7 @@ export const CardBody = ({
 }: BodyProps) => {
   return (
     <Styled.Body {...props}>
-      {menu && <DotMenu options={menu.options} position={{ x: 1.5, y: 1.5 }} />}
+      {/* {menu && <DotMenu options={menu.options} position={{ x: 1.5, y: 1.5 }} />} */}
       {children}
     </Styled.Body>
   );

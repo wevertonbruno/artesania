@@ -2,8 +2,17 @@ import React, { useContext, ElementType } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { SidebarContext } from "../../context/SidebarContext";
 import { routerConfig } from "../../router";
-import { MoreVertical, ChevronFirst, ChevronLast } from "lucide-react";
+import {
+  MoreVertical,
+  ChevronFirst,
+  ChevronLast,
+  Sun,
+  Moon,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { Menu } from "../menu";
 
 interface SidebarItemProps {
   icon: ElementType;
@@ -52,7 +61,7 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <ul className="flex-1 px-3">
+        <ul className="flex-1 px-3 mt-6">
           {routerConfig
             .filter((config) => !config.hidden)
             .map((config) => (
@@ -69,7 +78,7 @@ export default function Sidebar() {
 
         <div className="border-t shadow-sm">
           <hr className="dashed" />
-          <div className="flex p-3">
+          <div className="flex p-3 px-4 bg-satin-200">
             <img
               src="https://ui-avatars.com/api/?background=ffffff&color=514336&bold=true&name=Weverton+Bruno"
               alt=""
@@ -77,17 +86,31 @@ export default function Sidebar() {
             />
             <div
               className={`
-              flex justify-between items-center
-              overflow-hidden transition-all ${isOpen ? "w-52 ml-3" : "w-0"}
+              flex justify-between items-center 
+               transition-all origin-left ${
+                 isOpen
+                   ? "w-52 ml-3 opacity-100 scale-x-100"
+                   : "w-0 opacity-0 scale-x-0"
+               }
           `}
             >
-              <div className="leading-4">
+              <div className={`leading-4`}>
                 <h4 className="font-semibold">Weverton Bruno</h4>
                 <span className="text-xs text-gray-600">
                   wevertonbrunera@gmail.com
                 </span>
               </div>
-              <MoreVertical size={20} />
+              <div className="relative">
+                <Menu.Container position="top">
+                  <Menu.Group>
+                    <Menu.Item icon={Settings} text="Configurações" />
+                    <Menu.Item icon={Moon} text="Dark Mode" />
+                  </Menu.Group>
+                  <Menu.Group>
+                    <Menu.Item icon={LogOut} text="Sair" />
+                  </Menu.Group>
+                </Menu.Container>
+              </div>
             </div>
           </div>
         </div>
@@ -108,7 +131,7 @@ export function SidebarItem({
       <Link
         to={link}
         className={`
-        relative flex items-center p-3 my-1
+        relative flex items-center p-3 my-2
         font-medium rounded-md cursor-pointer
         transition-colors group
         ${

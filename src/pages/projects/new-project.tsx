@@ -127,8 +127,8 @@ function ProjectNew() {
                       />
                     </Form.Field>
                     <Form.Field>
-                      <Select
-                        title="Cliente"
+                      <Form.Label>Cliente:</Form.Label>
+                      <Form.Select
                         options={clientes}
                         placeholder="Novo cliente..."
                         name="cliente_id"

@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { ElementType, useRef } from "react";
 import * as Styled from "./styled";
-import DotMenu from "../dotmenu";
+import { Menu } from "../menu";
 import { Icon } from "my-icons";
 
 interface ITableColumnDef {
@@ -21,7 +21,7 @@ export interface ITableRow {
 
 interface ITableRowAction {
   name: string;
-  icon: Icon;
+  icon: ElementType;
   onClick: (row: ITableRow) => void;
 }
 
@@ -65,17 +65,29 @@ function Table({ id, columnsDef, rows, rowActions, footer }: ITable) {
                 ))}
                 {rowActions && (
                   <td>
-                    <DotMenu
-                      containerRef={containerRef}
-                      riskOptions={rowActions.riskOptions?.map((action) => ({
-                        ...action,
-                        onClick: () => action.onClick(row),
-                      }))}
-                      options={rowActions.options.map((action) => ({
-                        ...action,
-                        onClick: () => action.onClick(row),
-                      }))}
-                    />
+                    <Menu.Container>
+                      <Menu.Group>
+                        {rowActions.options.map((action) => (
+                          <Menu.Item
+                            key={action.name}
+                            text={action.name}
+                            icon={action.icon}
+                            onClick={() => action.onClick(row)}
+                          />
+                        ))}
+                      </Menu.Group>
+                      <Menu.Group>
+                        {rowActions.riskOptions?.map((action) => (
+                          <Menu.Item
+                            key={action.name}
+                            text={action.name}
+                            icon={action.icon}
+                            className="text-red-500 hover:text-red-500"
+                            onClick={() => action.onClick(row)}
+                          />
+                        ))}
+                      </Menu.Group>
+                    </Menu.Container>
                   </td>
                 )}
               </tr>
