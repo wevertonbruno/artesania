@@ -16,8 +16,10 @@ function useOutsideClick(
      * Alert if clicked on outside of element
      */
     function handleClickOutside(event: MouseEvent) {
+      console.log("clicked", refs);
       for (const ref of refs) {
         if (ref?.contains(event.target as any)) {
+          console.log(ref);
           return;
         }
       }
@@ -29,7 +31,7 @@ function useOutsideClick(
       // Unbind the event listener on clean up
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [refs]);
 }
 
 export default useOutsideClick;

@@ -99,8 +99,8 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
             {produtos.map((product, index) => (
               <div className="row" key={index}>
                 <div className="form-control col-xl-4">
+                  <Form.Label>{`Produto ${index + 1}:`}</Form.Label>
                   <Form.Select
-                    title={`Produto ${index + 1}`}
                     placeholder="Selecione o produto..."
                     options={[
                       {
@@ -130,6 +130,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                       },
                     ]}
                     name={`produtos.${index}.extra_id`}
+                    multiple
                   />
                 </div>
                 <div className="form-control col-xl-1">

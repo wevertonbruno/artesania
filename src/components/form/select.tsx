@@ -1,6 +1,7 @@
 import React, {
   Fragment,
   SelectHTMLAttributes,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -9,10 +10,17 @@ import * as Styled from "./styled";
 import useOutsideClick from "../../hooks/use-outside-click";
 import { BiChevronDown, BiChevronUp, BiSearch } from "react-icons/bi";
 import { useFormContext } from "react-hook-form";
-import { ChevronsDownUp, ChevronsUpDown, Search } from "lucide-react";
-import { Transition } from "@headlessui/react";
+import {
+  Check,
+  ChevronsDownUp,
+  ChevronsUpDown,
+  ChevronsUpDownIcon,
+  Search,
+} from "lucide-react";
+import { Listbox, Transition } from "@headlessui/react";
 import { Portal } from "../utils/portal";
 import { usePopper } from "react-popper";
+import { Controller } from "react-hook-form";
 
 interface Option {
   value: string;
@@ -22,6 +30,9 @@ interface Option {
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Option[];
   name: string;
+  nullable?: boolean;
+  value?: string | string[];
+  multiple?: boolean;
 }
 
 export interface SelectEvent {
@@ -31,20 +42,15 @@ export interface SelectEvent {
   };
 }
 
-//TODO - ADD TITLE
-
 function Select({
   options,
   name,
-  value = "",
+  value,
   placeholder,
-  title,
+  nullable = false,
+  multiple = false,
 }: SelectProps) {
-  const [expanded, setExpanded] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-  const [selected, setSelected] = useState<string>(value as string);
-  const { register } = useFormContext();
-  const { ref, ...registerAttr } = register(name);
 
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
@@ -54,137 +60,179 @@ function Select({
     placement: "bottom-start",
   });
 
-  const selectRef = useRef<HTMLDivElement>(null);
-  const selectHtmlRef = useRef<HTMLSelectElement>(null);
-
-  useImperativeHandle(ref, () => selectHtmlRef.current);
-
-  useOutsideClick(
-    () => {
-      setExpanded(false);
-      setSearch("");
-    },
-    selectRef.current,
-    popperElement
-  );
-
-  const optionsMap = new Map<string, string>(
-    options.map((obj) => [obj.value, obj.text])
-  );
-
-  const filteredOptions = options.filter(
-    (option) =>
-      search === "" || option.text.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const setSelectValue = (val: string) => {
-    if (selectHtmlRef.current) {
-      selectHtmlRef.current.value = val;
-      selectHtmlRef.current.dispatchEvent(
-        new Event("change", { bubbles: true })
-      );
+  const getDefaultValue = () => {
+    if (multiple && !value) {
+      return [];
     }
+
+    if (!multiple && !value) {
+      return "";
+    }
+
+    return value;
   };
 
-  const handleSelect = (val: string) => {
-    setSelected(val);
-    setSelectValue(val);
-    setExpanded(false);
-    setSearch("");
+  const optionsMap = options.reduce((acc, option) => {
+    acc.set(option.value, option.text);
+    return acc;
+  }, new Map<string, string>());
+
+  const filter = (options: Option[]) => {
+    return options.filter(
+      (option) => option.text.toLowerCase().indexOf(search.toLowerCase()) > -1
+    );
   };
 
-  const toggleExpanded = () => {
-    setExpanded(!expanded);
-  };
+  // useMemo to add a filteredOptions
+  const filteredOptions = React.useMemo(() => {
+    return filter(options);
+  }, [options, search]);
+
+  const { control } = useFormContext();
 
   return (
-    <div className="relative">
-      <select {...registerAttr} ref={selectHtmlRef} style={{ display: "none" }}>
-        <option value="" />
-        {options.map((item) => (
-          <option key={item.value} value={item.value}>
-            {item.text}
-          </option>
-        ))}
-      </select>
-      <div ref={selectRef}>
-        <div
-          className="relative cursor-pointer w-full text-sm rounded-sm leading-4 h-10 bg-white py-1.5 pl-3 pr-10 text-left 
-        text-gray-900  ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 
-        sm:text-sm sm:leading-6"
-          onClick={toggleExpanded}
-          ref={setReferenceElement}
-        >
-          <span className={`block truncate ${selected ? "" : "text-gray-400"}`}>
-            {selected ? optionsMap.get(selected) : placeholder}
-          </span>
-          <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-            <ChevronsUpDown size={15} />
-          </span>
-        </div>
-        <Portal>
-          <div
-            className="absolute z-10"
-            {...attributes.popper}
-            ref={setPopperElement}
-            style={styles.popper}
-          >
-            <Transition
-              show={expanded}
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0"
+    <Controller
+      name={name}
+      control={control}
+      defaultValue={value}
+      render={({ field: { onChange, value } }) => (
+        <Listbox value={value} onChange={onChange} multiple={multiple}>
+          <div className="relative">
+            <Listbox.Button
+              ref={setReferenceElement}
+              className="relative cursor-pointer w-full text-sm rounded-sm leading-4 h-10 bg-white py-1.5 pl-3 pr-10 text-left 
+          text-gray-900  ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-satin-500
+          sm:text-sm sm:leading-6"
             >
+              <span className="block truncate">
+                <SelectedOption
+                  value={value}
+                  multiple={multiple}
+                  options={optionsMap}
+                  placeholder={placeholder || "Selecione..."}
+                />
+              </span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <ChevronsUpDown
+                  className="h-4 w-4 text-gray-400"
+                  aria-hidden="true"
+                />
+              </span>
+            </Listbox.Button>
+            <Portal>
               <div
-                className={` mt-1 max-h-56 w-full overflow-auto rounded-sm bg-white py-1 text-base shadow-lg ring-1 
-          ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                className="absolute z-20"
+                ref={setPopperElement}
+                style={styles.popper}
+                {...attributes.popper}
               >
-                <div className="flex items-center gap-4 text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9">
-                  <span className="pointer-events-none">
-                    <Search size={15} className="text-gray-400" />
-                  </span>
-                  <input
-                    className="w-full outline-none"
-                    placeholder="Search..."
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                </div>
-                <hr />
-                <ul>
-                  <li
-                    className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9"
-                    onClick={() => handleSelect("")}
+                <Transition
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Listbox.Options
+                    className="mt-1 max-h-56 w-full overflow-auto rounded-sm bg-white py-1 text-base shadow-lg ring-1 
+          ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                   >
-                    <i className="text-disabled">
-                      {placeholder ? placeholder : "Nenhum"}
-                    </i>
-                  </li>
-                  {filteredOptions.map((option) => (
-                    <li
-                      key={option.value}
-                      className={`text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9 hover:bg-gray-100 cursor-pointer transition-all ${
-                        selected === option.value ? "bg-gray-100" : ""
-                      }`}
-                      data-value={option.value}
-                      onClick={() => handleSelect(option.value)}
-                    >
-                      {option.text}
-                    </li>
-                  ))}
-                </ul>
+                    <div className="flex items-center gap-4 text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9">
+                      <span className="pointer-events-none">
+                        <Search size={15} className="text-gray-400" />
+                      </span>
+                      <input
+                        className="w-full outline-none"
+                        placeholder="Search..."
+                        type="text"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === " ") {
+                            e.stopPropagation();
+                          }
+                        }}
+                        onBlur={(e) => {
+                          setSearch("");
+                        }}
+                      />
+                    </div>
+                    {nullable && (
+                      <Listbox.Option
+                        className={({ active }) =>
+                          `text-gray-400 relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            active
+                              ? "bg-driftwood-100 text-driftwood-900"
+                              : "text-gray-400"
+                          }`
+                        }
+                        value=""
+                      >
+                        Nenhum
+                      </Listbox.Option>
+                    )}
+                    {filteredOptions.map((option, index) => (
+                      <Listbox.Option
+                        key={option.value}
+                        className={({ active }) =>
+                          `text-gray-900 relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            active
+                              ? "bg-driftwood-100 text-driftwood-900"
+                              : "text-gray-900"
+                          }`
+                        }
+                        value={option.value}
+                      >
+                        {({ selected }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selected ? "font-medium" : "font-normal"
+                              }`}
+                            >
+                              {option.text}
+                            </span>
+                            {selected ? (
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-driftwood-600">
+                                <Check className="h-5 w-5" aria-hidden="true" />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </Transition>
               </div>
-            </Transition>
+            </Portal>
           </div>
-        </Portal>
-      </div>
-    </div>
+        </Listbox>
+      )}
+    />
   );
+}
+
+function SelectedOption({
+  value,
+  multiple,
+  placeholder,
+  options,
+}: {
+  value: string | string[];
+  multiple: boolean;
+  placeholder: string;
+  options: Map<string, string>;
+}) {
+  console.log(value);
+
+  if (multiple && value) {
+    return <>{(value as string[]).map((v) => options.get(v)).join(", ")}</>;
+  }
+
+  if (!multiple && value) {
+    return <>{options.get(value as string)}</>;
+  }
+
+  return <>{placeholder}</>;
 }
 
 export default Select;
