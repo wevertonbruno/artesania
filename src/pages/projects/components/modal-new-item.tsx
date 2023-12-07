@@ -97,63 +97,68 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
           <hr className="dashed" />
           <div className="row">
             {produtos.map((product, index) => (
-              <div className="row" key={index}>
-                <div className="form-control col-xl-4">
-                  <Form.Label>{`Produto ${index + 1}:`}</Form.Label>
-                  <Form.Select
-                    placeholder="Selecione o produto..."
-                    options={[
-                      {
-                        value: "1",
-                        text: "Xícara 1/2",
-                      },
-                      {
-                        value: "2",
-                        text: "Xicara Completa",
-                      },
-                    ]}
-                    name={`produtos.${index}.produto_id`}
-                  />
-                </div>
-                <div className="form-control col-xl-4">
-                  <Form.Select
-                    title=""
-                    placeholder="Selecione o extra..."
-                    options={[
-                      {
-                        value: "1",
-                        text: "Nome da Pessoa",
-                      },
-                      {
-                        value: "2",
-                        text: "Mini-Coração",
-                      },
-                    ]}
-                    name={`produtos.${index}.extra_id`}
-                    multiple
-                  />
-                </div>
-                <div className="form-control col-xl-1">
-                  <Form.Input
-                    placeholder="QTD"
-                    type="number"
-                    name={`produtos.${index}.quantidade`}
-                  />
-                </div>
-                <div className="form-control col-xl-2">
-                  <Form.Input
-                    placeholder="Valor"
-                    type="number"
-                    name={`produtos.${index}.valor`}
-                  />
-                </div>
-                <div className="form-control col-xl-1">
-                  <Button.Container
-                    onClick={() => removeProduct(index)}
-                    type="button"
-                  >
-                    <Button.Icon icon={Trash} />
-                  </Button.Container>
+              <div className="mb-3">
+                <Form.Label>{`Produto ${index + 1}:`}</Form.Label>
+                <div
+                  className="flex items-center gap-2 lg:flex-nowrap flex-wrap"
+                  key={index}
+                >
+                  <div className="flex-1">
+                    <Form.Select
+                      placeholder="Selecione o produto..."
+                      options={[
+                        {
+                          value: "1",
+                          text: "Xícara 1/2",
+                        },
+                        {
+                          value: "2",
+                          text: "Xicara Completa",
+                        },
+                      ]}
+                      name={`produtos.${index}.produto_id`}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <Form.Select
+                      title=""
+                      placeholder="Selecione o extra..."
+                      options={[
+                        {
+                          value: "1",
+                          text: "Nome da Pessoa",
+                        },
+                        {
+                          value: "2",
+                          text: "Mini-Coração",
+                        },
+                      ]}
+                      name={`produtos.${index}.extra_id`}
+                      multiple
+                    />
+                  </div>
+                  <div className="w-14">
+                    <Form.Input
+                      placeholder="QTD"
+                      type="number"
+                      name={`produtos.${index}.quantidade`}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-fit">
+                    <Form.Input
+                      placeholder="Valor"
+                      type="number"
+                      name={`produtos.${index}.valor`}
+                    />
+                  </div>
+                  <div className="">
+                    <Button.Container
+                      onClick={() => removeProduct(index)}
+                      type="button"
+                    >
+                      <Button.Icon icon={Trash} />
+                    </Button.Container>
+                  </div>
                 </div>
               </div>
             ))}
