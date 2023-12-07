@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ComponentProps } from "react";
+import { ComponentProps } from "react";
 import { VariantProps, tv } from "tailwind-variants";
 
 const buttonClass = tv({
