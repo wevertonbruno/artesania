@@ -60,7 +60,6 @@ export default function Sidebar() {
             )}
           </button>
         </div>
-        <hr className="dashed" />
         <ul className="flex-1 px-3 mt-6">
           {routerConfig
             .filter((config) => !config.hidden)

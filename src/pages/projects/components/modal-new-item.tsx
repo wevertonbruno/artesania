@@ -1,9 +1,9 @@
-import Modal from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form";
 import { Plus, Trash } from "lucide-react";
+import Modal from "../../../components/modal";
 
 interface NewItemProps {
   expanded: boolean;
@@ -31,7 +31,14 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
       quantidade: number;
       valor: number;
     }[]
-  >([]);
+  >([
+    {
+      produto: "",
+      extra: "",
+      quantidade: 0,
+      valor: 0,
+    },
+  ]);
 
   const clearAndClose = () => {
     setProdutos([
@@ -59,23 +66,24 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
   };
 
   return (
-    <Modal isOpen={expanded} onClose={clearAndClose} size="xl">
+    <Modal.Container isOpen={expanded} onClose={clearAndClose} size="xl">
+      <Modal.Header>Adicionar Item</Modal.Header>
       <Form.Root onSubmit={submit} methods={methods}>
-        <Form.Section title="Adicionar Item">
-          <div className="row">
-            <Form.Field>
+        <Modal.Body>
+          <div className="flex items-end gap-2 mb-2 flex-wrap">
+            <div className="flex-1">
               <Form.Label>Descriçao:</Form.Label>
               <Form.Input
                 placeholder="Descricão do item..."
                 type="text"
                 name="descricao"
               />
-            </Form.Field>
-            <Form.Field>
+            </div>
+            <div className="w-20">
               <Form.Label>Qtd.:</Form.Label>
               <Form.Input placeholder="QTD" type="number" name="quantidade" />
-            </Form.Field>
-            <div className="form-control col-xl-1">
+            </div>
+            <div className="">
               <Button
                 type="button"
                 onClick={() =>
@@ -103,7 +111,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                   className="flex items-center gap-2 lg:flex-nowrap flex-wrap"
                   key={index}
                 >
-                  <div className="flex-1">
+                  <div className="flex-1 lg:min-w-[14rem]">
                     <Form.Select
                       placeholder="Selecione o produto..."
                       options={[
@@ -119,7 +127,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                       name={`produtos.${index}.produto_id`}
                     />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 lg:min-w-[14rem]">
                     <Form.Select
                       title=""
                       placeholder="Selecione o extra..."
@@ -137,7 +145,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                       multiple
                     />
                   </div>
-                  <div className="w-14">
+                  <div className="w-20">
                     <Form.Input
                       placeholder="QTD"
                       type="number"
@@ -160,11 +168,15 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
               </div>
             ))}
           </div>
-        </Form.Section>
 
-        <Button type="submit">Adicionar</Button>
+          <Button type="submit">Adicionar</Button>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="submit">Adicionar</Button>
+          <Button onClick={clearAndClose}>cancelar</Button>
+        </Modal.Footer>
       </Form.Root>
-    </Modal>
+    </Modal.Container>
   );
 }
 

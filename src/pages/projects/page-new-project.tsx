@@ -11,6 +11,7 @@ import { Button } from "../../components/button";
 import ModalNewItem from "./components/modal-new-item";
 import { useForm } from "react-hook-form";
 import { Form } from "../../components/form";
+import { PlusSquare } from "lucide-react";
 
 const clientes = [
   {
@@ -189,8 +190,8 @@ function ProjectNew() {
                       onBlur={handleBlur}
                       name="orcamento_title[]"
                     />
-                    <Button onClick={() => setExpanded(true)}>
-                      + Add Item
+                    <Button variant="ghost" onClick={() => setExpanded(true)}>
+                      <PlusSquare />
                     </Button>
                   </div>
                 </Form.Header>

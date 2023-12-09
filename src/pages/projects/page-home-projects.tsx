@@ -7,7 +7,7 @@ import Table, { ITable, ITableRow } from "../../components/table";
 import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
-import { FolderOpen, ListChecks, Plus, Trash } from "lucide-react";
+import { FolderOpen, ListChecks, Plus, PlusSquare, Trash } from "lucide-react";
 
 function Projects() {
   const navigate = useNavigate();
@@ -152,7 +152,7 @@ function Projects() {
                   variant="ghost"
                   onClick={() => navigate("/projetos/novo-projeto")}
                 >
-                  <Plus />
+                  <PlusSquare />
                 </Button>
               </CardTitle>
               <CardSubTitle>Total de Projetos: 4</CardSubTitle>
