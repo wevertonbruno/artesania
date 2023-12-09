@@ -189,9 +189,9 @@ function ProjectNew() {
                       onBlur={handleBlur}
                       name="orcamento_title[]"
                     />
-                    <Button.Container onClick={() => setExpanded(true)}>
+                    <Button onClick={() => setExpanded(true)}>
                       + Add Item
-                    </Button.Container>
+                    </Button>
                   </div>
                 </Form.Header>
                 <span className="mt-3">Nenhum item adicionado</span>

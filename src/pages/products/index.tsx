@@ -79,7 +79,7 @@ function Products() {
       <Container>
         <Table {...projectTableData} />
         <Link to="/products/new">
-          <Button.Container>Novo</Button.Container>
+          <Button>Novo</Button>
         </Link>
       </Container>
     </MainSection>

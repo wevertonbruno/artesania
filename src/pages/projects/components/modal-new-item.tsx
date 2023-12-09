@@ -76,7 +76,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
               <Form.Input placeholder="QTD" type="number" name="quantidade" />
             </Form.Field>
             <div className="form-control col-xl-1">
-              <Button.Container
+              <Button
                 type="button"
                 onClick={() =>
                   setProdutos((prev) => [
@@ -90,8 +90,8 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                   ])
                 }
               >
-                <Button.Icon icon={Plus} />
-              </Button.Container>
+                <Plus />
+              </Button>
             </div>
           </div>
           <hr className="dashed" />
@@ -152,12 +152,9 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
                     />
                   </div>
                   <div className="">
-                    <Button.Container
-                      onClick={() => removeProduct(index)}
-                      type="button"
-                    >
-                      <Button.Icon icon={Trash} />
-                    </Button.Container>
+                    <Button onClick={() => removeProduct(index)} type="button">
+                      <Trash />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -165,7 +162,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
           </div>
         </Form.Section>
 
-        <Button.Container type="submit">Adicionar</Button.Container>
+        <Button type="submit">Adicionar</Button>
       </Form.Root>
     </Modal>
   );

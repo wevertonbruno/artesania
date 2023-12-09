@@ -8,8 +8,6 @@ import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { FolderOpen, ListChecks, Plus, Trash } from "lucide-react";
-import { Container } from "../../components/button/container";
-import { Icon } from "../../components/button/icon";
 
 function Projects() {
   const navigate = useNavigate();
@@ -150,11 +148,12 @@ function Projects() {
                 }}
               >
                 Resumo de Projetos{" "}
-                <Button.Container
+                <Button
+                  variant="ghost"
                   onClick={() => navigate("/projetos/novo-projeto")}
                 >
-                  <Button.Icon icon={Plus} />
-                </Button.Container>
+                  <Plus />
+                </Button>
               </CardTitle>
               <CardSubTitle>Total de Projetos: 4</CardSubTitle>
               <Table {...projectTableData} />
