@@ -39,7 +39,7 @@ const EditableText = ({
           autoFocus
         />
       ) : (
-        <span>{value || defaultValue}</span>
+        <h3 className="text-lg font-semibold">{value || defaultValue}</h3>
       )}
     </div>
   );

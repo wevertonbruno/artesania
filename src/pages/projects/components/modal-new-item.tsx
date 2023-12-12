@@ -41,14 +41,6 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
   ]);
 
   const clearAndClose = () => {
-    setProdutos([
-      {
-        produto: "",
-        extra: "",
-        quantidade: 0,
-        valor: 0,
-      },
-    ]);
     setExpanded(false);
   };
 
@@ -103,7 +95,7 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
             </div>
           </div>
           <hr className="dashed" />
-          <div className="row">
+          <div className="">
             {produtos.map((product, index) => (
               <div className="mb-3">
                 <Form.Label>{`Produto ${index + 1}:`}</Form.Label>
@@ -168,8 +160,6 @@ function ModalNewItem({ expanded, setExpanded }: NewItemProps) {
               </div>
             ))}
           </div>
-
-          <Button type="submit">Adicionar</Button>
         </Modal.Body>
         <Modal.Footer>
           <Button type="submit">Adicionar</Button>
