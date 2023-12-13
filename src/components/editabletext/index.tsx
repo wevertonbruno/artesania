@@ -1,46 +1,39 @@
 import { useState } from "react";
 import * as Styled from "./styled";
+import { useFormContext } from "react-hook-form";
+import { Form } from "../form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   defaultValue: string;
+  name: string;
 }
 
-const EditableText = ({
-  value,
-  defaultValue,
-  onChange,
-  onBlur,
-  ...props
-}: Props) => {
+const EditableText = ({ value, defaultValue, name, ...props }: Props) => {
   const [editing, setEditing] = useState(false);
-
-  const makeEditable = () => {
-    setEditing(true);
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (onBlur) onBlur(e);
-    setEditing(false);
-  };
-
-  const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) onChange(e);
-  };
+  const [itValue, setItValue] = useState(value || defaultValue);
 
   return (
-    <div className="editable-title" onClick={makeEditable}>
-      {editing ? (
-        <Styled.Input
-          type="text"
-          value={value}
-          onChange={handlerChange}
-          onBlur={handleBlur}
-          {...props}
-          autoFocus
-        />
-      ) : (
-        <h3 className="text-lg font-semibold">{value || defaultValue}</h3>
-      )}
+    <div className="editable-title" onClick={() => setEditing(true)}>
+      <Form.Input
+        className={`${editing ? "block" : "hidden"}`}
+        name={name}
+        type="text"
+        value={itValue}
+        onChange={(e) => {
+          setItValue(e.target.value);
+        }}
+        onBlur={() => {
+          if (!itValue) {
+            setItValue(value || defaultValue);
+          }
+          setEditing(false);
+        }}
+        {...props}
+        isFocused={editing}
+      />
+      <h3 className={`text-lg font-semibold ${editing ? "hidden" : "block"}`}>
+        {itValue}
+      </h3>
     </div>
   );
 };

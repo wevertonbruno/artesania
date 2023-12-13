@@ -51,7 +51,6 @@ function Select({
   multiple = false,
 }: SelectProps) {
   const [search, setSearch] = useState<string>("");
-
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
   );
@@ -59,18 +58,6 @@ function Select({
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "bottom-start",
   });
-
-  const getDefaultValue = () => {
-    if (multiple && !value) {
-      return [];
-    }
-
-    if (!multiple && !value) {
-      return "";
-    }
-
-    return value;
-  };
 
   const optionsMap = options.reduce((acc, option) => {
     acc.set(option.value, option.text);

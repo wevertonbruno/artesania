@@ -55,15 +55,8 @@ function ProjectNew() {
   });
 
   const methods = useForm();
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const { watch } = methods;
+  const clientId = watch("cliente_id");
 
   return (
     <MainSection>
@@ -77,15 +70,20 @@ function ProjectNew() {
         <div className="col-span-2">
           <Card className="mb-4">
             <CardBody>
-              <Form.Root methods={methods} onSubmit={() => {}}>
+              <Form.Root
+                methods={methods}
+                onSubmit={(data) => {
+                  console.log(data);
+                }}
+              >
+                <Button type="submit">submit</Button>
                 <Form.Header>
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <EditableText
                       defaultValue="Novo projeto sem título"
-                      onBlur={handleBlur}
-                      value={formData.title}
+                      value="Novo projeto sem título"
                       name="title"
                     />
                   </div>
@@ -122,11 +120,13 @@ function ProjectNew() {
                         options={clientes}
                         placeholder="Novo cliente..."
                         name="cliente_id"
+                        defaultValue=""
+                        nullable
                       />
                     </Form.Field>
                   </div>
                 </Form.Section>
-                {!formData.cliente_id && (
+                {!clientId && (
                   <Form.Section title="Cadastro do cliente">
                     <div className="grid lg:grid-cols-6 gap-4">
                       <div className="col-span-3">
@@ -187,7 +187,6 @@ function ProjectNew() {
                   >
                     <EditableText
                       defaultValue="Orçamento 1"
-                      onBlur={handleBlur}
                       name="orcamento_title[]"
                     />
                     <Button variant="ghost" onClick={() => setExpanded(true)}>
