@@ -1,7 +1,7 @@
-import { FormHTMLAttributes } from "react";
+import { ComponentProps } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 
-interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
+interface FormProps extends ComponentProps<"form"> {
   methods: UseFormReturn<FieldValues, any, undefined>;
   onSubmit: (data: any) => void;
 }

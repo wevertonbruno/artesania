@@ -1,22 +1,7 @@
-import React, {
-  Fragment,
-  SelectHTMLAttributes,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
-import * as Styled from "./styled";
-import useOutsideClick from "../../hooks/use-outside-click";
-import { BiChevronDown, BiChevronUp, BiSearch } from "react-icons/bi";
+import React, { Fragment, SelectHTMLAttributes, useState } from "react";
+
 import { useFormContext } from "react-hook-form";
-import {
-  Check,
-  ChevronsDownUp,
-  ChevronsUpDown,
-  ChevronsUpDownIcon,
-  Search,
-} from "lucide-react";
+import { Check, ChevronsUpDown, Search } from "lucide-react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Portal } from "../utils/portal";
 import { usePopper } from "react-popper";
@@ -91,7 +76,7 @@ function Select({
           text-gray-900  ring-1 ring-inset ring-gray-200 focus:outline-none focus:ring-2 focus:ring-satin-500
           sm:text-sm sm:leading-6"
             >
-              <span className="block truncate">
+              <span className="block truncate text-zinc-600">
                 <SelectedOption
                   value={value}
                   multiple={multiple}

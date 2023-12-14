@@ -134,7 +134,7 @@ export function SidebarItem({
         transition-colors group
         ${
           active
-            ? "bg-satin-300 text-gray-800"
+            ? "bg-satin-300 text-zinc-700"
             : "hover:bg-satin-200 text-gray-700"
         }
     `}

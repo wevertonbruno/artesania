@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import * as Styled from "./styled";
+import { useContext } from "react";
 import { SidebarContext } from "../../context/SidebarContext";
 
 interface ChildrenProps {
@@ -12,7 +11,11 @@ interface CoverProps {
 }
 
 export const SectionTitle = ({ children }: ChildrenProps) => {
-  return <Styled.Title className="page-title">{children}</Styled.Title>;
+  return (
+    <header className="flex items-center justify-start gap-1 text-4xl">
+      {children}
+    </header>
+  );
 };
 
 export const SectionCover = (cover: CoverProps) => {
@@ -32,7 +35,9 @@ export function MainSection({ children }: ChildrenProps) {
 
   return (
     <section className="overflow-auto w-screen h-screen scrollbar-thin">
-      <div className="h-full container mx-auto pb-4 px-8 ">{children}</div>
+      <div className="h-full container mx-auto pb-4 px-8 text-zinc-700">
+        {children}
+      </div>
     </section>
   );
 }

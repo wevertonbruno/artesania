@@ -4,7 +4,7 @@ import {
   SectionTitle,
 } from "../../components/main-section";
 import Table, { ITable, ITableRow } from "../../components/table";
-import { Card, CardBody, CardSubTitle, CardTitle } from "../../components/card";
+import { Card } from "../../components/card";
 import { Button } from "../../components/button";
 import { useNavigate } from "react-router-dom";
 import { FolderOpen, ListChecks, Plus, PlusSquare, Trash } from "lucide-react";
@@ -129,18 +129,16 @@ function Projects() {
         <div className="">
           <div className="row">
             <div className="col-xl-12">
-              <Card className="mb-4">
-                <CardBody title="Projeto" subtitle="Descrição">
-                  Lorem ipsum dolor sit.
-                </CardBody>
-              </Card>
+              <Card.Root className="mb-4">
+                <Card.Body>Lorem ipsum dolor sit.</Card.Body>
+              </Card.Root>
             </div>
           </div>
         </div>
         <div className="col-span-2">
-          <Card className="mb-4">
-            <CardBody>
-              <CardTitle
+          <Card.Root className="mb-4">
+            <Card.Body>
+              <Card.Title
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -154,11 +152,11 @@ function Projects() {
                 >
                   <PlusSquare />
                 </Button>
-              </CardTitle>
-              <CardSubTitle>Total de Projetos: 4</CardSubTitle>
+              </Card.Title>
+              <Card.SubTitle>Total de Projetos: 4</Card.SubTitle>
               <Table {...projectTableData} />
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
         </div>
       </div>
     </MainSection>

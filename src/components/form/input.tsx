@@ -31,10 +31,9 @@ export function FormInput({
 
   useEffect(() => {
     if (isFocused) {
-      console.log("focused");
       setFocus(name);
     }
-  }, [isFocused]);
+  }, [isFocused, name, setFocus]);
 
   return (
     <div className="relative">

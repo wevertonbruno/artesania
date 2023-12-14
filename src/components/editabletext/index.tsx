@@ -1,6 +1,4 @@
 import { useState } from "react";
-import * as Styled from "./styled";
-import { useFormContext } from "react-hook-form";
 import { Form } from "../form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,7 +11,7 @@ const EditableText = ({ value, defaultValue, name, ...props }: Props) => {
   const [itValue, setItValue] = useState(value || defaultValue);
 
   return (
-    <div className="editable-title" onClick={() => setEditing(true)}>
+    <div className={`text-zinc-700`} onClick={() => setEditing(true)}>
       <Form.Input
         className={`${editing ? "block" : "hidden"}`}
         name={name}
@@ -31,7 +29,11 @@ const EditableText = ({ value, defaultValue, name, ...props }: Props) => {
         {...props}
         isFocused={editing}
       />
-      <h3 className={`text-lg font-semibold ${editing ? "hidden" : "block"}`}>
+      <h3
+        className={`text-lg font-semibold relative ${
+          editing ? "hidden" : "block"
+        }`}
+      >
         {itValue}
       </h3>
     </div>
